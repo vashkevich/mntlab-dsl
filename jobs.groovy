@@ -64,7 +64,7 @@ for (i in 1..4) {
 	chmod +x script.sh
         ./script.sh > output.txt
 	BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
-        tar -cfv ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh'''
+        tar -cfz ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh'''
 	)
 
 	publishers {
