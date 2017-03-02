@@ -3,14 +3,15 @@ def student = 'sivanchic'
 
 job("MNTLAB-${student}-main-build-job") {
         scm {
-            git(giturl, "*/${student}" )
+            git(giturl, "*/\{$BRANCH_NAME}" )
         }
     }
 
 for(i in 1..4) {
     job("MNTLAB-${student}-child${i}-build-job") {
         scm {
-            git(giturl, "*/${student}" )
+            git(giturl, "*/\{$BRANCH_NAME}" )
+
         }
     }
 }
