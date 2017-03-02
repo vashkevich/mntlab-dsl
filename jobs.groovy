@@ -1,5 +1,6 @@
 def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
 def student = 'sivanchic'
+
 for(i in 1..4) {
     job("MNTLAB-{student}-child${i}-build-job") {
         scm {
