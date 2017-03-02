@@ -31,7 +31,7 @@ def studname = "acherlyonok"
               description('')
               branchFilter('')
               tagFilter('')
-              sortMode('')
+              sortMode('NONE')
               useRepository('')
               quickFilterEnabled(false)
 
