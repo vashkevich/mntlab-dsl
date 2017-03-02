@@ -24,7 +24,15 @@ for (i = 1; i < 5; i++)
         {
            shell('chmod +x script.sh')
            shell('./script.sh > output.txt')
-           shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
+           //TODO: if else master/branch case
+           if ( ${BRANCH_NAME} == "master" ) 
+           {
+               shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh')
+           }
+           else
+           {
+                shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
+           }
         }
 
         publishers
@@ -65,7 +73,8 @@ job('MNTLAB-pheraska-main-build-job')
         }
         
         steps
-        {   downstreamParameterized
+        {
+            downstreamParameterized
             {
                 trigger('$BUILDS_TRIGGER') 
                 {
