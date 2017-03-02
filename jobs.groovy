@@ -30,4 +30,12 @@ job('MNTLAB-' + mybranch + '-main-build-job')
         {
           github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
         }
+
+        publishers
+         {
+        	 publishBuild 
+        	 {
+            	 discardOldBuilds(7, 10)
+             }
+         }
     }
