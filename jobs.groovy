@@ -19,8 +19,8 @@ def studname = "mnikolayev"
           gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
-              branch('origin/${studname}')
-              defaultValue('origin/${studname}')  
+              branch('origin/mnikolayev')
+              defaultValue('origin/mnikolayev')  
               selectedValue('DEFAULT')
               sortMode('NONE')                    //что это?
               quickFilterEnabled(false)           //
