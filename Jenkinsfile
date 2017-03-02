@@ -7,6 +7,7 @@ import hudson.plugins.git.GitSCM
 import hudson.tasks.Shell
 import hudson.triggers.SCMTrigger
 import javaposse.jobdsl.plugin.ExecuteDslScripts
+import javaposse.jobdsl.plugin.*
 import jenkins.model.Jenkins
 import org.jenkinsci.plugins.multiplescms.MultiSCM
 import hudson.plugins.ws_cleanup.PreBuildCleanup
