@@ -21,7 +21,8 @@ job('MNTLAB-pheraska-main-build-job')
             choiceType('CHECKBOX')
             groovyScript {
                 script("""
-		       def jobsNamesArray = [];for (i = 0; i <4; i++)
+		       def jobsNamesArray = [];
+		       for (i = 0; i <4; i++)
 		       {
 			       jobsNamesArray.push("MNTLAB-pheraska-child${i}-build-job");
 		       };
