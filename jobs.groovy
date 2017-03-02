@@ -19,7 +19,8 @@ def studname = "acherlyonok"
           gitParam('BRANCH_NAME'){
             type('BRANCH')
             defaultValue('acherlyonok')
-            branch('acherlyonok')
+          //  SelectedValue('DEFAULT')
+            SelectedValue.DEFAULT
           }
       }
 
