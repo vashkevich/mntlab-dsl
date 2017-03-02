@@ -37,7 +37,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 
 
     }
-
+}
 	publishers {
         buildPipelineTrigger('${BUILD_TRIGGER}') {
             parameters {
