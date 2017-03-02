@@ -1,4 +1,5 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def studname = "akutsko"
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
@@ -15,9 +16,9 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 
 		def branches = proc.in.text.readLines().collect { 
         	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
-		//def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
+		def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
 
-		branches.each { println it }
+		name.each { println it }
 		""")
 }
 	activeChoiceParam('BUILD_TRIGGER') {
@@ -38,12 +39,35 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 
     }
 }
-	publishers {
-        buildPipelineTrigger('${BUILD_TRIGGER}') {
-            parameters {
-                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-            }
-        }
-    }
 
+// scm git url, branch
+      scm {
+        github("${gitURL}", "${studname}")
+      }
+
+// build step
+      steps {
+        downstreamParameterized {
+          trigger('$BUILDS_TRIGGER') {
+            block {
+              buildStepFailure('FAILURE')
+              failure('FAILURE')
+              unstable('UNSTABLE')
+            }
+            parameters {
+              predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+            }
+          }
+        }
+      }
+    
+      triggers {
+        scm 'H/5 * * * *'
+      }
+
+      wrappers {
+        timestamps()
+      }
+
+    
 }
