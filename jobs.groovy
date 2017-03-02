@@ -1,5 +1,4 @@
 job("MNTLAB-hvysotski-main-build-job") {
-    description 'Building one main job and four child'
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
@@ -7,7 +6,7 @@ job("MNTLAB-hvysotski-main-build-job") {
         scm 'H * * * *'
     }
      parameters {
-        choiceParam('BRANCH_NAME', ['hvysotski (default)', 'master'])
+        choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
     }
     
      parameters {
