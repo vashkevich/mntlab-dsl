@@ -2,7 +2,7 @@ class Branch_Script {
 			def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 			def command = "git ls-remote -h ${gitURL}"
                         def proc = command.execute()
-                        proc.waitFor()              
+                        //proc.waitFor()              
                         if ( proc.exitValue() != 0 ) {
                                  println "Error, ${proc.err.text}"
                                  System.exit(-1)}
