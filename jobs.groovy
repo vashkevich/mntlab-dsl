@@ -26,7 +26,6 @@ for (i = 1; i < 5; i++)
            shell('./script.sh > output.txt')
            //shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
 		println '${BRANCH_NAME}';
-		println $BRANCH_NAME;
 		println '$BRANCH_NAME';
 	   if ( '${BRANCH_NAME}' == 'master' ) 
            {
