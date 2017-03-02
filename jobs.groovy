@@ -4,7 +4,8 @@ job('MNTLAB-ikhamiakou-main-build-job') {
         activeChoiceReactiveParam('jobs') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('return ["MNTLAB-ikhamiakou-child1-build-job", "MNTLAB-ikhamiakou-child2-build-job", "MNTLAB-ikhamiakou-child3-build-job", "MNTLAB-ikhamiakou-child4-build-job"]')
+                script('def jobs = ["MNTLAB-ikhamiakou-child1-build-job", "MNTLAB-ikhamiakou-child2-build-job", "MNTLAB-ikhamiakou-child3-build-job", "MNTLAB-ikhamiakou-child4-build-job"]
+return jobs')
             }
             
         }
