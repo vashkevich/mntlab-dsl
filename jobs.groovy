@@ -35,7 +35,7 @@ def studname = "acherlyonok"
 
       // scm git
       scm {
-        github(${giturl}, ${studname})
+        github("${giturl}", "${studname}")
       }
         // build step
       steps {
@@ -64,7 +64,7 @@ def studname = "acherlyonok"
       
       // scm git
       scm {
-        github(${giturl}, ${studname})
+        github("${giturl}", "${studname}")
       }
       
       parameters {
