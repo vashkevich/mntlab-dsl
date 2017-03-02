@@ -3,9 +3,8 @@ def studname = "akaminski"
 //create master branch
 job("MNTLAB-${studname}-main-build")
 {
-		
+	description ("Build main job")
 }
-
 
 
 
@@ -18,7 +17,7 @@ for (number in 1..4){
     	scm {
           git("${giturl}"," ${studname}")
     	    }
-	steps { shell"sh script.sh" }
+	steps { shell"echo "hello""}
     	
 	}
 } 
