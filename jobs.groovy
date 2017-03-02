@@ -1,6 +1,5 @@
 job("MNTLAB-hvysotski-main-build-job") {
     scm {
-
         github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
     }
 	
@@ -10,7 +9,7 @@ job("MNTLAB-hvysotski-main-build-job") {
 	
      parameters {
         choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
-                        }
+                }
         parameters {
                 activeChoiceReactiveParam('BUILDS_TRIGGER') {
                 choiceType('CHECKBOX')
