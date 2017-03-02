@@ -28,11 +28,13 @@ job("MNTLAB-hvysotski-main-build-job") {
 		                   }
 	 }
     
-    for (i in 1..4) {
+    for (i in 1..4) 
+{
     
-    job("MNTLAB-hvysotski-child${i}-build-job") {
+    job("MNTLAB-hvysotski-child${i}-build-job") 
+{
     
-    scm {
+    scm  {
          github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
     }
     triggers {
@@ -44,10 +46,12 @@ job("MNTLAB-hvysotski-main-build-job") {
     
     steps {
         shell('chmod +x script.sh')
-        shell('./script.sh')
-        shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-        shell('touch output.txt')   
+        shell('./script.sh >> output.txt')
+        shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh') 
           }
-     }
-    } 
+	    
+    publishers {
+        archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')
+               }
   } 
+  }  
