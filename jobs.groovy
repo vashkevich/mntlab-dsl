@@ -60,7 +60,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
     }
 
 
-for (i = 1..4) 
+for (i in 1..4) 
 {
 	job('MNTLAB-' + mybranch + '-child' + i + '-build-job') 
 	{
