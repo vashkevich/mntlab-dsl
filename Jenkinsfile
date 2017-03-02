@@ -37,9 +37,10 @@ def job = { name ->
         addProperty(new ParametersDefinitionProperty(
             new StringParameterDefinition("BRANCH_NAME", "${env.BRANCH_NAME}", "")))
 
+        scriptLocation = new javaposse.jobdsl.plugin.ExecuteDslScripts.ScriptLocation()
         dslBuilder = new ExecuteDslScripts()
         dslBuilder.with {
-            scriptLocation = new ExecuteDslScripts.ScriptLocation()
+
             scriptLocation.with { targets = "jobs.groovy" }
         }
         buildersList.addAll([dslBuilder])
