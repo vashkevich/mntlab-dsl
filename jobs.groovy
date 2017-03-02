@@ -45,6 +45,8 @@ for(i in 1..4) {
 
 	steps {
 		shell('echo \$BRANCH_NAME')
+		shell('sh script.sh > output.txt')
+		shell('tar -cf $BRANCH_NAME_dsl_script.tar.gz script.sh jobs.groovy')
 	}
 
 	}
