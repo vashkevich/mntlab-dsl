@@ -15,7 +15,9 @@ for (number in 1..4){
       {
       description("Builds child${number}")
     	scm {
-          git("${giturl}","${studname}")
+          git{
+		remote { url("${giturl}")}
+		branch("$studname")
     	    }
 	steps { shell "echo 'hello'"}
     	
