@@ -16,6 +16,10 @@
                 }          
            }   
         }
+		
+    scm {
+        github("${giturl}", "${studname}")
+      }
     steps {
 	   downstreamParameterized {
 			trigger('${BUILDS_TRIGGER}') {
