@@ -1,6 +1,6 @@
 for (i = 1; i < 5; i++)
 {
-    job('MNTLAB-pheraska-child' + i + '-child-job') 
+    job('MNTLAB-pheraska-child' + i + '-build-job') 
     {
         parameters
         {
