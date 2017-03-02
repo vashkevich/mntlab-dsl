@@ -13,7 +13,10 @@ job("MNTLAB-mburakouski-main-build-job") {
      parameters {
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
-                    
+            groovyScript {
+                script('return ["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child3-build-job", "MNTLAB-mburakouski-child4-build-job"]'
+                      )
+                }          
            }   
         }
 
