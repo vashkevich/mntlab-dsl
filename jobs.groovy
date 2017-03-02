@@ -20,12 +20,12 @@ job("MNTLAB-aslesarenka-main-build-job") {
               defaultValue('origin/aslesarenka')
               selectedValue('DEFAULT')
 
-            //  description('')
-             // branchFilter('')
-              //tagFilter('')
-             // sortMode('NONE')
-             // useRepository('')
-             // quickFilterEnabled(false)
+            description('')
+             branchFilter('')
+              tagFilter('')
+              sortMode('NONE')
+              useRepository('')
+              quickFilterEnabled(false)
             }
      }
     publishers {
