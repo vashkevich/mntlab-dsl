@@ -9,17 +9,17 @@ job("MNTLAB-${studname}-main-build")
 			 type('BRANCH')
 			 defaultValue('akaminski')
 					 }
-		activeChoiceParam('CHOICE-1') {
-            description('Allows user choose from multiple choices')
-            filterable()
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script('["choice1", "choice2"]')
-                fallbackScript('"fallback choice"')
-            }
+		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES') {
+			choiceType('CHECKBOX')
+			groovyScript {
+				script('return ["MNTLAB--kaminskichild1-build-job", "MNTLAB-akaminski-child2-build-job", "MNTLAB-akaminski-child3-build-job", "MNTLAB-akaminski-child4-build-job"]')
+                	}
+
+        	}
+
         }
 
-		}
+		
 	description ("Build main job")
       scm {
           git{
@@ -29,7 +29,7 @@ job("MNTLAB-${studname}-main-build")
 	}
 	publishers {
         downstreamParameterized {
-            trigger('MNTLAB-akaminski-child1-build-job,MNTLAB-akaminski-child2-build-job,MNTLAB-akaminski-child3-build-job,MNTLAB-akaminski-child4-build-job') {
+            trigger('${TRIGGERED_JOB_NAMES}') {
                 condition('UNSTABLE_OR_BETTER')
                 parameters {predefinedProp('BRANCH_NAME', '$BRANCH_NAME') }
             }
