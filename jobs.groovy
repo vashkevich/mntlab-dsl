@@ -92,15 +92,12 @@ def studname = "acherlyonok"
           }
       }
 
-
-
       // build step
         steps {
           shell('''
 BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy
-bash script.sh > output.txt '''
-          )
+bash script.sh > output.txt ''')
           //shell(readFileFromWorkspace('script.sh'))
         }
       }
