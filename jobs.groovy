@@ -7,14 +7,15 @@ job('MNTLAB-mburakouski-main-build-job') {
         activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('["choice1", "choice2"]')
-                fallbackScript('"fallback choice"')
-            }
+                script('["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job"]')
+              }
          }
     }
 
-job('MNTLAB-mburakouski-child1-build-job') {
-    description 'Build child job.'
+    for  (i in 1..4){
+    
+    job('MNTLAB-mburakouski-child{i}-build-job') {
+    description 'Build and test the app.'
     scm {
         github 'MNT-Lab/mntlab-dsl'
         }
@@ -46,6 +47,10 @@ job('MNTLAB-mburakouski-child1-build-job') {
         archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
     }
 }
+
+}
+
+
 
 
 
