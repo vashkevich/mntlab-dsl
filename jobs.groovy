@@ -1,4 +1,4 @@
-mybranch=yskrabkou
+mybranch = 'yskrabkou'
 
 job('MNTLAB-' + mybranch + '-main-build-job') 
 	{
