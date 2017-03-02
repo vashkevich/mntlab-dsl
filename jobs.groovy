@@ -1,4 +1,4 @@
-student = 'artyom-bilun'
+student = 'abilun'
 job('MNTLAB-' + student + '-main-build-job') {
     scm {
         github 'MNT-Lab/mntlab-dsl'
