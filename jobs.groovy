@@ -12,12 +12,14 @@ def studname = "acherlyonok"
             url("${giturl}")
           }
         }
-      
-
         // build step
         steps { 
           shell(readFileFromWorkspace('script.sh'))
         } 
+      }
+      
+      triggers { 
+      scm 'H/5 * * * *' 
       }
     }
 
@@ -40,4 +42,4 @@ def studname = "acherlyonok"
         } 
       }
     }
-  } 
+  }
