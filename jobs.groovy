@@ -17,13 +17,14 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 
    
 
-         activeChoiceReactiveParam('JOB_SELECT')
-          {
-          	choiceType('CHECKBOX')
-            groovyScript {
-            script('return ["MNTLAB-' + mybranch + '-child1-build-job", "MNTLAB-' + mybranch + '-child2-build-job", "MNTLAB-abilun-' + mybranch + '-build-job", "MNTLAB-' + mybranch + '-child4-build-job"]')
-            }
-    	}
+         //activeChoiceReactiveParam('JOB_SELECT')
+         // {
+          //	choiceType('CHECKBOX')
+            //groovyScript 
+            //{
+            //script('return ["MNTLAB-' + mybranch + '-child1-build-job", "MNTLAB-' + mybranch + '-child2-build-job", "MNTLAB-abilun-' + mybranch + '-build-job", "MNTLAB-' + mybranch + '-child4-build-job"]')
+            //}
+    	//}
 
     	 } 
 
