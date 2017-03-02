@@ -28,7 +28,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('${name}')
+                script('${branches}')
                 fallbackScript('"fallback choice"')
             }
         }
