@@ -1,11 +1,10 @@
-
 def giturl = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "akaminski"
 
 
 //create master branch
 job("MNTLAB-${studname}-main-build")
-{
+{      parametrs{
 		gitParam('BRANCH_NAME'){
 			 type('BRANCH')
 			 defaultValue('akaminski')
