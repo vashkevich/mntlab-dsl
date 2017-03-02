@@ -16,12 +16,14 @@ def studname = "acherlyonok"
               }
           }
 
-          gitParameterDefinition('BRANCH_NAME') {
-            name
+          gitParam('BRANCH_NAME'){
             type('BRANCH')
             defaultValue('origin/acherlyonok')
-            selectedValue('DEFAULT')
+          //  SelectedValue('DEFAULT')
           //  SelectedValue.DEFAULT
+          }  
+          gitParameterDefinition('BRANCH_NAME') {
+            selectedValue('DEFAULT')
           }
       }
 
