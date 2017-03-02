@@ -1,9 +1,22 @@
 def giturl = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "akaminski"
+
+
 //create master branch
 job("MNTLAB-${studname}-main-build")
 {
 	description ("Build main job")
+	parameters {
+        activeChoiceParam('CHOICE-1') {
+            description('Allows user choose from multiple choices')
+            filterable()
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["choice1", "choice2"]')
+                fallbackScript('"fallback choice"')
+            }
+        }
+    }
 }
 
 
