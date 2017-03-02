@@ -1,5 +1,6 @@
 /* Written by Siarhei Hreben
-   DevOps Lab 2017	*/
+   DevOps Lab 2017
+   Jenkins Labwork 9	*/
 
 // Script for branch choice for main job
 def script_list_main_branches = '''def main_list_branch = ["shreben","master"];
