@@ -1,5 +1,5 @@
 
-  job('XXX_MNTLAB-yskrabkou-main-build-job') {
+  job('MNTLAB-yskrabkou-main-build-job') {
         scm {
             git("git://github.com/MNT-Lab/mntlab-dsl.git")
         }
