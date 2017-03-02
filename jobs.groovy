@@ -5,7 +5,8 @@ job('MNTLAB-' + student + '-main-build-job') {
     }
     parameters {
     	gitParam('BRANCH_NAME') {
-        	type('BRANCH')    
+        	type('BRANCH')
+    		defaultValue('abilun')
         }
         activeChoiceReactiveParam('BUILD_TRIGGER') {
             choiceType('CHECKBOX')
