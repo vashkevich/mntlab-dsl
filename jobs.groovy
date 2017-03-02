@@ -31,7 +31,7 @@ for (i in 1..4) {
 job("MNTLAB-mburakouski-child${i}-build-job") {
 
  scm {
-   github 'MNT-Lab/mntlab-dsl','*/${BRANCH_NAME}'
+   github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
      }
 triggers {
      scm 'H * * * *'
