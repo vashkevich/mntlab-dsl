@@ -4,7 +4,7 @@ job("MNTLAB-hvysotski-main-build-job") {
         github 'MNT-Lab/mntlab-dsl'
     }
     triggers {
-        scm 'H/5 * * * *'
+        scm 'H * * * *'
     }
      parameters {
         choiceParam('BRANCH_NAME', ['hvysotski (default)', 'master'])
