@@ -6,6 +6,7 @@ job("MNTLAB-${student}-main-build-job") {
 		gitParam('BRANCH_NAME') {
 			type('BRANCH')
 		}
+	}
 	scm {
 		git(giturl, "\${BRANCH_NAME}")
 	}
