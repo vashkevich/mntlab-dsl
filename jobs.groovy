@@ -59,7 +59,6 @@ job('MNTLAB-amatveenko-child' + i + '-build-job') {
 
   steps {
         shell('''
-          cd $WORKSPACE
           bash script.sh > output.txt
           tar -czvf *_dsl_script.tar.gz jobs.groovy
           ls -lh
