@@ -45,7 +45,7 @@
     }
 
 }*/
-	job("MNTLAB-hvysotski-main-build-job") {
+	job("MNTLAB-aslesarenka-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
@@ -53,14 +53,14 @@
     //    scm 'H * * * *'
     //}
      parameters {
-        choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
+        choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
     }
     
      parameters {
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('return ["MNTLAB-hvysotski-child1-build-job", "MNTLAB-hvysotski-child2-build-job", "MNTLAB-hvysotski-child3-build-job", "MNTLAB-hvysotski-child4-build-job"]'
+                script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenkachild3-build-job", "MNTLAB-aslesarenka-child4-build-job"]'
                       )
                 }          
            }   
@@ -77,7 +77,7 @@
     
     for (i in 1..4) {
     
-    job("MNTLAB-hvysotski-child${i}-build-job") {
+    job("MNTLAB-aslesarenka-child${i}-build-job") {
     
     scm {
         github 'MNT-Lab/mntlab-dsl'
@@ -86,7 +86,7 @@
     //    scm 'H * * * *'
     //}
      parameters {
-        choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
+        choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
     }   
     
     steps {
