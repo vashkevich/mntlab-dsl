@@ -33,8 +33,7 @@ job("MNTLAB-imanzhulin-main-build-job") {
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('return ["MNTLAB-imanzhulin-child1-build-job", "MNTLAB-imanzhulin-child2-build-job", "MNTLAB-imanzhulin-child3-build-job", "MNTLAB-imanzhulin-child4-build-job"]'
-                      )
+                script('return ["MNTLAB-imanzhulin-child1-build-job", "MNTLAB-imanzhulin-child2-build-job", "MNTLAB-imanzhulin-child3-build-job", "MNTLAB-imanzhulin-child4-build-job"]')
                 }          
            }   
      }
