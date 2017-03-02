@@ -11,7 +11,7 @@ job("MNTLAB-${studname}-main-build")
 		remote { url("${giturl}")}
 		branch("$studname")
     	    }
-	
+	}
 	publishers {
         downstreamParameterized {
             trigger('MNTLAB-akaminski-child1-build-job,MNTLAB-akaminski-child2-build-job,MNTLAB-akaminski-child3-build-job,MNTLAB-akaminski-child4-build-job') {
