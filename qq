@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+$vrem=$(date)
+echo 1
+echo $vrem
+echo 2
+git add .
+echo 3
+git commit -a -m "$vrem"
+git push origin yskrabkou
