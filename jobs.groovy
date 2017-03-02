@@ -6,8 +6,13 @@ job("MNTLAB-${student}-main-build-job") {
 		gitParam('BRANCH_NAME') {
 			type('BRANCH')
 		}
+	}
 
-
+	activeChoiceReactiveParam('CHILDREN') {
+		choiceType('CHECKBOX')
+		groovyScript {
+			script('return ["MNTLAB-sivanchic-child1-build-job, MNTLAB-sivanchic-child2-build-job, MNTLAB-sivanchic-child3-build-job, MNTLAB-sivanchic-child4-build-job"]')
+		}
 	}
 
 	scm {
@@ -16,7 +21,7 @@ job("MNTLAB-${student}-main-build-job") {
 
 	publishers {
 		downstreamParameterized {
-			trigger('MNTLAB-sivanchic-child1-build-job, MNTLAB-sivanchic-child2-build-job, MNTLAB-sivanchic-child3-build-job, MNTLAB-sivanchic-child4-build-job') {
+			trigger('CHILDREN') {
 				condition('UNSTABLE_OR_BETTER')
 				parameters {
 					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
