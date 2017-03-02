@@ -52,7 +52,7 @@ job('MNTLAB-amatveenko-child' + i + '-build-job') {
         activeChoiceReactiveParam('BRANCH_NAME') {
         choiceType('SINGLE_SELECT')
         groovyScript {
-        script('["origin-amatveenko", "master"]')
+        script('["origin-amatveenko", "origin-master"]')
         }
         }
   }
