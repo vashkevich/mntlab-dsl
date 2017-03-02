@@ -40,20 +40,21 @@ job("MNTLAB-mburakouski-main-build-job") {
   //   scm 'H * * * *'
 // }
   
- gitParameterDefinition {
-              name('BRANCH_NAME')
-              type('BRANCH')
-              branch('mburakouski')
-              defaultValue('mburakouski')
-              selectedValue('DEFAULT')
-
-              description('')
-              branchFilter('')
-              tagFilter('')
-              sortMode('NONE')
-              useRepository('')
-              quickFilterEnabled(false)
-            }
+ parameters {
+        gitParameterDefinition{
+            name('BRANCH_NAME')
+            type('BRANCH')
+            defaultValue('abilun')
+            selectedValue('DEFAULT')
+            branch('origin/abilun')
+            description('')
+            branchFilter('')
+            tagFilter('')
+            sortMode('NONE')
+            useRepository('')
+            quickFilterEnabled(false)
+        }
+ }
  steps {
      shell('touch output.txt')
      shell('chmod +x script.sh')
