@@ -1,8 +1,7 @@
-job("MNTLAB-mburakouski-main-build-job") {
+        job("MNTLAB-mburakouski-main-build-job") {
     scm {
-
-        github ('MNT-Lab/mntlab-dsl', '${BRANCH_NAME}')
-    }
+        github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
+	    }
    // triggers {
    //     scm 'H * * * *'
    // }
@@ -11,8 +10,8 @@ job("MNTLAB-mburakouski-main-build-job") {
                         }
         parameters {
      choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
- }
-           }
+ 					}
+           
         steps {
         downstreamParameterized {
             trigger('$job'){
@@ -40,21 +39,20 @@ job("MNTLAB-mburakouski-main-build-job") {
   //   scm 'H * * * *'
 // }
   
- parameters {
-        gitParameterDefinition{
-            name('BRANCH_NAME')
-            type('BRANCH')
-            defaultValue('abilun')
-            selectedValue('DEFAULT')
-            branch('origin/abilun')
-            description('')
-            branchFilter('')
-            tagFilter('')
-            sortMode('NONE')
-            useRepository('')
-            quickFilterEnabled(false)
+
+parameters
+        {
+            activeChoiceParam('BRANCH_NAME')
+          {
+                description('Allows to choose branch from repository')
+                choiceType('SINGLE_SELECT')
+                groovyScript
+                {
+                    script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["mburakouski"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
+                }
+            }
         }
- }
+
  steps {
      shell('touch output.txt')
      shell('chmod +x script.sh')
