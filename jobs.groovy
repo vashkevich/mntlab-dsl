@@ -62,8 +62,8 @@ for (number in 1..4){
     	    }}
 	steps { shell ('''sh script.sh > output.txt
 			 tar -czf $BRANCH_NAME_dsl_script.tar.gz script.sh jobs.groovy output.txt
-			 	 '''}
-    	
+			 	 ''')
+    	}
 	publishers{
 		archiveArtifacts('*.tar.gz')	
 		}
