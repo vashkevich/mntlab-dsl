@@ -26,8 +26,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             choiceType('CHECKBOX')
             groovyScript {
                 script("""
-			return["MNTLAB-akutsko-main-build-job", 
-			"MNTLAB-akutsko-child1-build-job", 
+			return["MNTLAB-akutsko-child1-build-job", 
 			"MNTLAB-akutsko-child2-build-job", 
 			"MNTLAB-akutsko-child3-build-job", 
 			"MNTLAB-akutsko-child4-build-job"]
@@ -49,7 +48,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
         downstreamParameterized {
           trigger('$BUILD_TRIGGER') {
             block {
-              buildStepFailure('FAILURE')
+              '$BUILD_TRIGGER'buildStepFailure('FAILURE')
               failure('FAILURE')
               unstable('UNSTABLE')
             }
@@ -64,6 +63,26 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
         scm 'H/5 * * * *'
       }
 
+for (number in 1..4){
+    job("MNTLAB-akutsko-child${number}-build-job") {
+      description("Builds child${number}")
+      
+      // scm git
+      scm {
+        github("MNT-Lab/mntlab-dsl", "${BRANCH_NAME}")
+      }
+      
+      parameters {stringParam('BUILD_TRIGGER', '')}
+      parameters {stringParam('BRANCH_NAME', '')}
 
+      // build step
+        steps {
+          shell("""
+                cat script.sh >> output.txt
+		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh >> output.txt
+	  """)
+        }
+	}
+    }
     
 }
