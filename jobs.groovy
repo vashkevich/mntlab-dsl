@@ -58,13 +58,13 @@ def studname = "acherlyonok"
             }
           }
         }
-      }
+      
       triggers {
         scm 'H/5 * * * *'
       }
 
-    }
-  }
+    
+  
 
 
   for (number in 1..4){
