@@ -20,7 +20,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
          	choiceType('CHECKBOX')
             groovyScript 
             {
-            script('return ["MNTLAB-child1-build-job", "MNTLAB-' + mybranch + '-child2-build-job", "MNTLAB-abilun-' + mybranch + '-build-job", "MNTLAB-' + mybranch + '-child4-build-job"]')
+            script('return ["MNTLAB-child1-build-job", "MNTLAB-yskrabkou-child2-build-job", "MNTLAB-abilun-yskrabkou-build-job", "MNTLAB-yskrabkou-child4-build-job"]')
             }
     	}
 
