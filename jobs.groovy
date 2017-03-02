@@ -13,13 +13,9 @@ job('MNTLAB-' + mybranch + '-main-build-job')
                     script('def getTags = ("def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def branchList  = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique(); branchList  = branchList .reverse(); return branchList;')
                 }
             }
-        }  
+        
 
-    scm
-        {
-          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
-        }
-
+   
 
          activeChoiceReactiveParam('JOB_SELECT')
           {
@@ -28,4 +24,11 @@ job('MNTLAB-' + mybranch + '-main-build-job')
             script('return ["MNTLAB-' + mybranch + '-child1-build-job", "MNTLAB-' + mybranch + '-child2-build-job", "MNTLAB-abilun-' + mybranch + '-build-job", "MNTLAB-' + mybranch + '-child4-build-job"]')
             }
     	}
+
+    	 } 
+
+    	 scm
+        {
+          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
+        }
     }
