@@ -8,15 +8,15 @@ job('MNTLAB-pheraska-main-build-job')
             description('Allows to choose branch from repository')
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["pheraska"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
-	    }
+                script('return [' + studentName +',"master"]')
+			}
         }
 	activeChoiceParam('BUILDS_TRIGGER') {
             description('Allows to choose branch from repository')
             choiceType('CHECKBOX')
             groovyScript {
-                script('def jobsNamesArray = [];for (i = 0; i <4; i++){ jobsNamesArray.push("MNTLAB-pheraska-child${i}-build-job");};return jobsNamesArray;')
-	    }
+                script('def jobsNamesArray = [];for (i = 1; i < 5; i++){ jobsNamesArray.push("MNTLAB-pheraska-child${i}-build-job");};return jobsNamesArray;')
+			}
         }
-    }
+    }        
 }
