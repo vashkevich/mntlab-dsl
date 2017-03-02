@@ -17,10 +17,7 @@ job("MNTLAB-${studname}-main-build")
 		              sortMode('NONE')
 		              useRepository('')
 		              quickFilterEnabled(false)            }
-		//gitParam('BRANCH_NAME'){
-		//	 type('BRANCH')
-		//	 defaultValue('akaminski')
-		//			 }
+		
 		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES'){
 			choiceType('CHECKBOX')
 			groovyScript {
