@@ -53,7 +53,6 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
     }
 
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
                 
@@ -81,14 +80,14 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
     }
     
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
-           
+                
             
         publishers {
         archiveArtifacts('*')
         }
+    }
     }
     
     
@@ -109,7 +108,6 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
     }
 
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
                 
@@ -117,6 +115,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
         publishers {
         archiveArtifacts('*')
         }
+    }
     }
     
     
@@ -139,14 +138,14 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
 
 
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
-         
- 
+                
+            
         publishers {
         archiveArtifacts('*')
         }
+    }
     }
     
 }    
