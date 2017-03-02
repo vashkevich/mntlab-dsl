@@ -6,7 +6,7 @@ def studname = "mnikolayev"
     job("MNTLAB-${studname}-main-build-job") {
       description("Builds main${number}")
       
-      // This project is parameterized: activeChoiceReactiveParam
+      //activeChoiceReactiveParam 
       parameters {
           activeChoiceReactiveParam('BUILDS_TRIGGER') {
               description('Allows user choose from multiple choices')
@@ -16,11 +16,20 @@ def studname = "mnikolayev"
               }
           }
 
-          gitParam('BRANCH_NAME'){
-            type('BRANCH')
-            defaultValue("${studname}")
-            selectValue('DEFAULT')
-          }
+          gitParameterDefinition {
+              name('BRANCH_NAME')
+              type('BRANCH')
+              branch('origin/${studname}')
+              defaultValue('origin/${studname}')
+              selectedValue('DEFAULT')
+
+//              description('')
+//              branchFilter('')
+//              tagFilter('')
+              sortMode('NONE')
+//              useRepository('')
+              quickFilterEnabled(false)
+            }
       }
 
 //цепляем с гита
@@ -36,7 +45,7 @@ def studname = "mnikolayev"
         }
       }
       triggers {
-        scm '1 * * * *'
+        scm '*/10 * * * *'
       }
 
     }
