@@ -5,7 +5,7 @@ job("MNTLAB-aslesarenka-main-build-job") {
      parameters {
     	gitParam('BRANCH_NAME') {
         	type('BRANCH')
-            defaultValue('aslesarenka')
+            //defaultValue('aslesarenka')
         }
     }
     
