@@ -21,21 +21,23 @@ job('MNTLAB-ikhamiakou-main-build-job') {
     steps {
         downstreamParameterized {
             trigger('$jobs') {
-                block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
+                    block {
+                        buildStepFailure('FAILURE')
+                        failure('FAILURE')
                     unstable('UNSTABLE')
-                }
-                parameters {
+                    }
+                    parameters {
                     predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                     
-                }
-        }
+                    }
+            }
        
         
+         }
+    
+    
     }
-    
-    
+
 }
 
 job('MNTLAB-ikhamiakou-child1-build-job') {
@@ -62,8 +64,8 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
         }
     }
     
-    
-}
+}   
+
 
 job('MNTLAB-ikhamiakou-child2-build-job') {
     
@@ -91,7 +93,7 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
     }
     
     
-}
+
 
 job('MNTLAB-ikhamiakou-child3-build-job') {
     
@@ -119,7 +121,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
     }
     
     
-}
+
 
 job('MNTLAB-ikhamiakou-child4-build-job') {
     
@@ -148,5 +150,3 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
     }
     }
     
-}    
-}
