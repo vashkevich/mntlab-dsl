@@ -21,10 +21,11 @@ def studname = "acherlyonok"
             defaultValue('origin/acherlyonok')
           //  SelectedValue('DEFAULT')
           //  SelectedValue.DEFAULT
+            gitParameterDefinition {
+              selectedValue('DEFAULT')
+            }
           }  
-          gitParameterDefinition {
-            selectedValue('DEFAULT')
-          }
+          
       }
 
 
