@@ -1,12 +1,24 @@
-job('MNTLAB-mburakouski-main-build-job') {
-    description 'Build main job.'
+job("MNTLAB-hvysotski-main-build-job") {
+    description 'Building one main job and four child'
     scm {
         github 'MNT-Lab/mntlab-dsl'
-        }
-    parameters {
-        choiceParam('BRANCH_NAME', ['mburakouski (default)', 'master'])
-        
     }
+    triggers {
+        scm 'H * * * *'
+    }
+     parameters {
+        choiceParam('BRANCH_NAME', ['hvysotski (default)', 'master'])
+    }
+    
+     parameters {
+        activeChoiceReactiveParam('BUILDS_TRIGGER') {
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('return ["MNTLAB-hvysotski-child1-build-job", "MNTLAB-hvysotski-child2-build-job", "MNTLAB-hvysotski-child3-build-job", "MNTLAB-hvysotski-child4-build-job"]'
+                      )
+                }          
+           }   
+        }
 
     for  (i in 1..4){
     
