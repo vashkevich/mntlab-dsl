@@ -47,8 +47,8 @@ for (i = 1; i <5; i++) {
         }
         steps {
             shell('''
+#!/bin/bash 
 BRANCH_NAME = $(echo $BRANCH_NAME | cut -c 8-)
-cd $WORKSPACE
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy
 bash script.sh > output.txt
 		  '''
