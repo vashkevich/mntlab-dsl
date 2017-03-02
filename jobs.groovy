@@ -1,3 +1,4 @@
+def studentName = "pheraska"
 job('MNTLAB-pheraska-main-build-job') 
 {
     scm {
