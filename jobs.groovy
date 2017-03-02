@@ -49,16 +49,16 @@ def studname = "acherlyonok"
         // build step
         steps {
           downstreamParameterized {
-           trigger('$BUILDS_TRIGGER') {
-             block {
-               buildStepFailure('FAILURE')
-               failure('FAILURE')
-               unstable('UNSTABLE')
-             }
-             parameters {
-               predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+            trigger('$BUILDS_TRIGGER') {
+              block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
               }
-             }
+              parameters {
+                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+              }
+            }
           }
         }
       }
@@ -95,7 +95,7 @@ def studname = "acherlyonok"
         steps {
           shell('''
 BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
-tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy
+tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 bash script.sh > output.txt ''')
           //shell(readFileFromWorkspace('script.sh'))
         }
