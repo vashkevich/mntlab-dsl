@@ -49,5 +49,5 @@ job("MNTLAB-hvysotski-main-build-job") {
         shell('touch output.txt')   
           }
      }
-    }
+    } 
   } 
