@@ -64,7 +64,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
       }
 
 for (number in 1..4){
-    def BRANCH_NAME = ${BRANCH_NAME}
+    def BRANCH_NAME = "${BRANCH_NAME}"
     job("MNTLAB-akutsko-child${number}-build-job") {
       description("Builds child${number}")
       
