@@ -13,17 +13,12 @@ def studname = "acherlyonok"
             url("${giturl}")
           }
         }
-      } 
-      triggers { 
-       scm 'H/5 * * * *' 
-      }
+      
 
       // build step
-      steps { 
-        shell "echo 'hello'"
-      } 
-      
-    
+      steps { shell "echo 'hello'"} 
+      }
+    }
   } 
 
   for (number in 1..4){
@@ -33,15 +28,14 @@ def studname = "acherlyonok"
       // scm git
       scm {
         git {
-          remote {
+          remote { 
             url("${giturl}")
           }
         }
-      }
+      
 
       // build step
-      steps { 
-        shell "echo 'hello'"
+      steps { shell "echo 'hello'"} 
       }
     }
   } 
