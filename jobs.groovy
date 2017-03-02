@@ -16,8 +16,8 @@ def studname = "acherlyonok"
               }
           }
 
-          gitParam {
-            branch('origin/acherlyonok')
+          gitParam('BRANCH_NAME'){
+            type('BRANCH')
           }
       }
 
