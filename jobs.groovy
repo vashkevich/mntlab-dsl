@@ -46,10 +46,7 @@ for (i in 1..4) {
 		github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
 	}
 	
-//    parameters {
-//        choiseParam('BRANCH_NAME', ['mkuzniatsou', 'master'])
-//    }
-    parameters{
+	parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('SINGLE_SELECT')
             groovyScript {
@@ -62,12 +59,17 @@ for (i in 1..4) {
 
 
 	steps {
-	shell('chmod +x script.sh')
-        shell('./script.sh > ${WORKSPACE}/output.txt')
-//        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-    publishers {
+	shell('''
+	rm -rf *.tar.gz
+	chmod +x script.sh
+        ./script.sh > output.txt
+	BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+        tar -cfv ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh'''
+	)
+
+	publishers {
         archiveArtifacts('output.txt')
-//        archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
+        archiveArtifacts('*.tar.gz')
 			}
 		}
 	}
