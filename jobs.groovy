@@ -69,11 +69,22 @@ for (i in 1..4)
         	numToKeep(10)        
         }
 
-		parameters {
-            //activeChoiceReactiveParam('BRANCH_NAME') {
-             //       choiceType('SINGLE_SELECT')
-                    stringParam('myParameterName', 'my default stringParam value', 'my description')
-            }
+		parameters
+		{
+   	    	stringParam('BRANCH_NAME', 'master')
+        }
+
+        steps
+        {
+        	shell('pwd		
+				'
+          	     )
+        }
+        
+        publishers 
+        {
+        	archiveArtifacts('*.tar.gz')
+        }
         
 	}
 }
