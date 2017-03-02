@@ -15,7 +15,7 @@ job('MNTLAB-ikhamiakou-main-build-job') {
     }
     
     scm {
-        github('hopetds/dsl1', '$BRANCH_NAME')
+        github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
     }
     
     steps {
@@ -49,7 +49,7 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
         }
     }
     scm {
-        github('hopetds/dsl1')
+        github('MNT-Lab/mntlab-dsl')
     }
 
     steps {
@@ -77,7 +77,7 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
         }
     }
     scm {
-        github('hopetds/dsl1')
+        github('MNT-Lab/mntlab-dsl')
     }
     
     steps {
@@ -105,7 +105,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
         }
     }
     scm {
-        github('hopetds/dsl1')
+        github('MNT-Lab/mntlab-dsl')
     }
 
     steps {
@@ -134,7 +134,7 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
     }
     
     scm {
-        github('hopetds/dsl1')
+        github('MNT-Lab/mntlab-dsl')
     }
 
 
