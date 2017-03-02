@@ -41,8 +41,20 @@ for (i in 1..4) {
   //   scm 'H * * * *'
 // }
   parameters {
-     choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
- }
+        gitParameterDefinition{
+            name('BRANCH_NAME')
+            type('BRANCH')
+            defaultValue('hvysotski')
+            selectedValue('DEFAULT')
+            branch('origin/hvysotski')
+            description('')
+            branchFilter('')
+            tagFilter('')
+            sortMode('NONE')
+            useRepository('')
+            quickFilterEnabled(false)
+        }
+    }
 
  steps {
      shell('touch output.txt')
