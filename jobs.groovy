@@ -41,9 +41,17 @@ for (i in 1..4) {
 //   scm 'H * * * *'
 // }
 	 
-  parameters {
-     choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
- }
+  parameters
+        {
+            activeChoiceParam('BRANCH_NAME')
+	        {
+                description('Allows to choose branch from repository')
+                choiceType('SINGLE_SELECT')
+                groovyScript
+                {
+                    script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["hvysotski"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
+                }
+            }
 
  steps {
      shell('touch output.txt')
