@@ -74,6 +74,6 @@ for (i in 1..4)
              //       choiceType('SINGLE_SELECT')
                     stringParam('myParameterName', 'my default stringParam value', 'my description')
             }
-        }
+        
 	}
 }
