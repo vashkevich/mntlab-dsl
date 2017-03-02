@@ -1,4 +1,4 @@
-job('MNTLAB-amatveenko-main-build-job'){
+job('MNTLAB-amatveenko-main-build-job') {
     scm {
       github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
     }
@@ -7,12 +7,12 @@ job('MNTLAB-amatveenko-main-build-job'){
             name('BRANCH_NAME')
             type('BRANCH')
             defaultValue('amatveenko')
-            sortMode('ASCENDING')
             selectedValue('DEFAULT')
             branch('')
             description('')
             branchFilter('')
             tagFilter('')
+            sortMode('ASCENDING')
             useRepository('')
             quickFilterEnabled(false)
     }
@@ -27,7 +27,7 @@ job('MNTLAB-amatveenko-main-build-job'){
     
   steps {
     downstreamParameterized {
-     		trigger('$BUILDS_TRIGGER'){
+     		trigger('$BUILDS_TRIGGER') {
                   block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
@@ -42,7 +42,7 @@ job('MNTLAB-amatveenko-main-build-job'){
 }
 
 
-for (i = 1; i <2; i++) {
+for (i = 1; i <5; i++) {
 job('MNTLAB-amatveenko-child' + i + '-build-job') {
 
     scm {
