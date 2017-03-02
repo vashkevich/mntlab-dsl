@@ -19,4 +19,13 @@ job('MNTLAB-pheraska-main-build-job')
 		}
         }
     }
+    steps {
+    downstreamParameterized {
+        trigger('$BUILDS_TRIGGER') {
+            parameters {
+                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+            }
+        }
+    }
+    }
 }
