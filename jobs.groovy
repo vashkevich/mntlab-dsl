@@ -49,9 +49,6 @@
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
-    //triggers {
-    //    scm 'H * * * *'
-    //}
      parameters {
         choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
     }
@@ -68,6 +65,7 @@
     steps {
 	   downstreamParameterized {
 			trigger('${BUILDS_TRIGGER}') {
+				condition('UNSTABLE_OR_BETTER')
 				parameters {
 					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
 				}
@@ -82,21 +80,17 @@
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
-    //triggers {
-    //    scm 'H * * * *'
-    //}
+
      parameters {
         choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
     }   
     
     steps {
-        shell('chmod +x script.sh')
-        shell('./script.sh >> output.txt')
+         shell('chmod +x script.sh')
+        shell('./script.sh')    
         shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-       }
-   publishers {
-    archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')      
-              }          
+        shell('bash script.sh > output.txt')  
+       }        
      }
     }
   } 
