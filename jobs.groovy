@@ -47,7 +47,7 @@ for (i in 1..4) {
 	}
 	
     parameters {
-        choisParam('BRANCH_NAME', ['mkuzniatsou', 'master'])
+        choiseParam('BRANCH_NAME', ['mkuzniatsou', 'master'])
     }
 	steps {
 	shell('chmod +x script.sh')
