@@ -18,10 +18,9 @@ job("MNTLAB-hvysotski-main-build-job") {
                 }          
            }   
         }
-    publishers {
+    steps {
 	   downstreamParameterized {
 			trigger('${BUILDS_TRIGGER}') {
-				condition('UNSTABLE_OR_BETTER')
 				parameters {
 					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
 				}
@@ -45,10 +44,12 @@ job("MNTLAB-hvysotski-main-build-job") {
     
     steps {
         shell('chmod +x script.sh')
-        shell('./script.sh')
+        shell('./script.sh >> output.txt')
         shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-        shell('touch output.txt')   
        }
+   publishers {
+    archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')      
+              }          
      }
     }
   } 
