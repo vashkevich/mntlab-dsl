@@ -16,7 +16,7 @@ for (number in 1..4){
       {
       description("Builds child${number}")
     	scm {
-          github("${giturl}")
+          git("${giturl}")
     	    }
 	steps { shell"sh script.sh" }
     	
