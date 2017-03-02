@@ -5,7 +5,7 @@ def studname = "akaminski"
 //create master branch
 job("MNTLAB-${studname}-main-build")
 {       parameters {
-		gitParam('BRANCH_NAME') { type('BRANCH') }
+		gitParam('BRANCH_NAME') { type('BRANCH') defaultValue("${studname}") }
 		activeChoiceParam('CHOICE-1') {
             description('Allows user choose from multiple choices')
             filterable()
