@@ -66,11 +66,14 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
     
     
     steps {
-        shell('rm -rf $WORKSPACE/*', 'BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-', 'wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/master/script.sh', 'chmod +x script.sh', './script.sh>>output.txt', 'tar -zcvf $BRANCH_NAME.tar.gz $WORKSPACE/script.sh' )
-       
-    
+        shell('rm -rf $WORKSPACE/*')
+        shell('BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-')
+        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/master/script.sh')        
+        shell('chmod +x script.sh')
+        shell('./script.sh>>output.txt')
+        shell('tar -zcvf $BRANCH_NAME.tar.gz $WORKSPACE/script.sh')        
         publishers {
-            archiveArtifacts('*')
+        archiveArtifacts('*')
         }
 
     }
