@@ -40,7 +40,7 @@ job('MNTLAB-ikhamiakou-main-build-job') {
 
 }
 
-job('MNTLAB-ikhamiakou-child1-build-job') {
+job('MNTLAB-ikhamiakou-child3-build-job') {
     
     parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
@@ -55,20 +55,20 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
     }
 
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
-        shell('chmod +x work.sh')
-        shell('./work.sh')
-        shell('rm -rf work.sh')         
+        shell('''
+                BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+                bash script.sh >> output.txt
+                tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh output.txt '''
+            )         
             
         publishers {
         archiveArtifacts('*')
         }
     }
-    
-}   
+    }   
 
 
-job('MNTLAB-ikhamiakou-child2-build-job') {
+job('MNTLAB-ikhamiakou-child3-build-job') {
     
     parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
@@ -81,13 +81,14 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
     scm {
         github('MNT-Lab/mntlab-dsl')
     }
-    
+
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
-        shell('chmod +x work.sh')
-        shell('./work.sh')
-        shell('rm -rf work.sh')         
-           
+        shell('''
+                BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+                bash script.sh >> output.txt
+                tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh output.txt '''
+            )         
+            
         publishers {
         archiveArtifacts('*')
         }
@@ -112,10 +113,11 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
     }
 
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
-        shell('chmod +x work.sh')
-        shell('./work.sh')
-        shell('rm -rf work.sh')         
+        shell('''
+                BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+                bash script.sh >> output.txt
+                tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh output.txt '''
+            )         
             
         publishers {
         archiveArtifacts('*')
@@ -126,7 +128,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
     
 
 
-job('MNTLAB-ikhamiakou-child4-build-job') {
+job('MNTLAB-ikhamiakou-child3-build-job') {
     
     parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
@@ -136,18 +138,16 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
             }
         }
     }
-    
     scm {
         github('MNT-Lab/mntlab-dsl')
     }
 
-
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
-        shell('chmod +x work.sh')
-        shell('./work.sh')
-        shell('rm -rf work.sh')
-               
+        shell('''
+                BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+                bash script.sh >> output.txt
+                tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh output.txt '''
+            )         
             
         publishers {
         archiveArtifacts('*')
