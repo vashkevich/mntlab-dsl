@@ -4,7 +4,7 @@ def studname = "akaminski"
 
 //create master branch
 job("MNTLAB-${studname}-main-build")
-{      parametrs{
+{      parameters{
 		gitParam('BRANCH_NAME'){
 			 type('BRANCH')
 			 defaultValue('akaminski')
