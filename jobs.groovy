@@ -65,7 +65,7 @@ for (number in 1..4){
 			 	 ''')
     	}
 	publishers{
-		archiveArtifacts('*.tar.gz')	
+		archiveArtifacts('ult.tar.gz')	
 		}
 }
 } 
