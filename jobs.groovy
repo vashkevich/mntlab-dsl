@@ -49,14 +49,17 @@ archiveArtifacts('${BRANCH_NAME//\/}_dsl_script.tar.gz')
 }	
 }
 }*/
-			def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'def 
-			student = 'aslesarenka'job("MNTLAB-${student}-main-build-job") {	
-			parameters {	gitParam('BRANCH_NAME') 
-				    {type('BRANCH')	}	
-				    activeChoiceReactiveParam('TRIGGERED_JOB_NAMES') 
-				    {	choiceType('CHECKBOX')	groovyScript 
-				     {	script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenka-child3-build-job", "MNTLAB-aslesarenka-child4-build-job"]') 
-				     } }	}	
+	def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
+def myJob = 'aslesarenka'job("MNTLAB-aslesarenka-main-build-job") {	
+parameters {
+    gitParam('BRANCH_NAME') {
+        type('BRANCH')	}	
+		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES') {
+		   choiceType('CHECKBOX')	
+		   groovyScript	{script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenka-child3-build-job", "MNTLAB-aslesarenka-child4-build-job"]') 
+		   } 
+		}	
+}	
 				scm {	git(giturl, "\${BRANCH_NAME}")	}	
 				publishers {
 					downstreamParameterized {	
@@ -71,4 +74,4 @@ for(i in 1..4) {
 	 steps {	shell('echo \$BRANCH_NAME')	
 		shell('sh script.sh > output.txt')
 		shell('tar -cvzf ${BRANCH_NAME//[/]}_dsl_script.tar.gz script.sh jobs.groovy')	}	
-	 publishers {archiveArtifacts('${BRANCH_NAME//[/]}_dsl_script.tar.gz') }	}}
+	 publishers {archiveArtifacts('${BRANCH_NAME//[/]}_dsl_script.tar.gz') }	}}		
