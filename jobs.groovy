@@ -2,9 +2,10 @@ mybranch = 'yskrabkou'
 
 job('MNTLAB-' + mybranch + '-main-build-job') 
 	{
+		logRotator(30)
+		discardOldBuilds(7, 10)
 		parameters
-        {
-        	 discardOldBuilds(7, 10)
+        {        	 
             activeChoiceParam('BRANCH_NAME')
 	        {
                 description('Allows to choose branch from repository')
