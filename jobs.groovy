@@ -48,7 +48,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
         downstreamParameterized {
           trigger('$BUILD_TRIGGER') {
             block {
-              '$BUILD_TRIGGER'buildStepFailure('FAILURE')
+              buildStepFailure('FAILURE')
               failure('FAILURE')
               unstable('UNSTABLE')
             }
