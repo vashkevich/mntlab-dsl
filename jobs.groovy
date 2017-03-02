@@ -22,10 +22,10 @@ job('MNTLAB-pheraska-main-build-job')
             groovyScript {
                 script("""
 		       def jobsNamesArray = [];
-		       for ($i = 0; $i<4; $i++)
+		       for (i = 0; i<4; i++)
 		       {
-			       jobsNamesArray.push("MNTLAB-pheraska-child$i -build-job");
-		       };
+                   jobsNamesArray.push('MNTLAB-pheraska-child-' + i + '-build-job');
+		       }
 		       return jobsNamesArray;
 		       """)
 		}
