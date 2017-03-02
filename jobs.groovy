@@ -41,10 +41,10 @@ for (i = 1; i <5; i++) {
         }
         steps {
             shell('''
-					cd $WORKSPACE
-                    tar -czvf $BRANCH_NAME_dsl_script.tar.gz jobs.groovy
+		    cd $WORKSPACE
+		    tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy
                     bash script.sh > output.txt
-				'''
+		  '''
           	)
         }
         
