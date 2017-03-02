@@ -33,7 +33,7 @@ def studname = "acherlyonok"
       }
 
 
-      // scm git
+      // scm git url, branch
       scm {
         github("${giturl}", "${studname}")
       }
