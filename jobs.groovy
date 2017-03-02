@@ -40,7 +40,7 @@ job('MNTLAB-ikhamiakou-main-build-job') {
 
 }
 
-job('MNTLAB-ikhamiakou-child3-build-job') {
+job('MNTLAB-ikhamiakou-child1-build-job') {
     
     parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
@@ -68,7 +68,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
     }   
 
 
-job('MNTLAB-ikhamiakou-child3-build-job') {
+job('MNTLAB-ikhamiakou-child2-build-job') {
     
     parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
@@ -128,7 +128,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
     
 
 
-job('MNTLAB-ikhamiakou-child3-build-job') {
+job('MNTLAB-ikhamiakou-child4-build-job') {
     
     parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
