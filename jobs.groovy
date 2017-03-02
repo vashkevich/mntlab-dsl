@@ -15,7 +15,8 @@ def studname = "acherlyonok"
                   script('def used_jobs = ["MNTLAB-acherlyonok-child1-build-job", "MNTLAB-acherlyonok-child2-build-job", "MNTLAB-acherlyonok-child3-build-job", "MNTLAB-acherlyonok-child4-build-job"] \n return used_jobs')
               }
           }
-
+          
+            // show branches
             gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
