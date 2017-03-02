@@ -11,7 +11,7 @@ job("MNTLAB-imanzhulin-main-build-job") {
                            }
         }
         */
-	  gitParameterDefinition {
+	/*  gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
               branch('imanzhulin')
@@ -25,8 +25,16 @@ job("MNTLAB-imanzhulin-main-build-job") {
               useRepository('')
               quickFilterEnabled(false)
             }
+*/
 	     
-	     
+	     activeChoiceParam('BRANCH_NAME') {
+            description('Allows user choose from multiple choices')
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('return["origin/imanzhulin", "master"]')
+                           }
+        }
+
 	     
 	     
 	     
@@ -62,13 +70,33 @@ job("MNTLAB-imanzhulin-main-build-job") {
     }
 
      parameters {
-        	 activeChoiceParam('BRANCH_NAME') {
+        	 
+/*
+activeChoiceParam('BRANCH_NAME') {
             description('Allows user choose from multiple choices')
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('return["origin/imanzhulin", "master"]')
                            }
         }
+
+*/
+gitParameterDefinition {
+              name('BRANCH_NAME')
+              type('BRANCH')
+              branch('imanzhulin')
+              defaultValue('imanzhulin')
+              selectedValue('DEFAULT')
+
+              description('')
+              branchFilter('')
+              tagFilter('')
+              sortMode('NONE')
+              useRepository('')
+              quickFilterEnabled(false)
+            }
+
+
     }   
     
     steps {
