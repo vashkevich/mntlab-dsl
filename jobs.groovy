@@ -1,5 +1,6 @@
 job("MNTLAB-hvysotski-main-build-job") {
     scm {
+
         github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
     }
 	
@@ -24,10 +25,11 @@ job("MNTLAB-hvysotski-main-build-job") {
                 parameters {
                     predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                         }
+                    }
                 }
-        }
-    }
-}
+            }
+         }
+
 
 for (i in 1..4) {
 
@@ -36,22 +38,12 @@ for (i in 1..4) {
  scm {
      github 'MNT-Lab/mntlab-dsl','*/${BRANCH_NAME}'
  }
-	 
 // triggers {
-//   scm 'H * * * *'
+  //   scm 'H * * * *'
 // }
-	 
-  parameters
-        {
-            activeChoiceParam('BRANCH_NAME')
-	        {
-                description('Allows to choose branch from repository')
-                choiceType('SINGLE_SELECT')
-                groovyScript
-                {
-                    script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["hvysotski"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
-                }
-            }
+  parameters {
+     choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
+ }
 
  steps {
      shell('touch output.txt')
@@ -62,5 +54,5 @@ for (i in 1..4) {
       publishers {
      archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')
      }
-  }
+   }
  }
