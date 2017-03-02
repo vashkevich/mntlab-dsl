@@ -1,5 +1,4 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-def studname = "akutsko"
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
@@ -42,13 +41,13 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 
 // scm git url, branch
       scm {
-        github("${gitURL}", "${studname}")
+        github("MNT-Lab/mntlab-dsl", "akutsko")
       }
 
 // build step
       steps {
         downstreamParameterized {
-          trigger('$BUILDS_TRIGGER') {
+          trigger('$BUILD_TRIGGER') {
             block {
               buildStepFailure('FAILURE')
               failure('FAILURE')
@@ -65,9 +64,6 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
         scm 'H/5 * * * *'
       }
 
-      wrappers {
-        timestamps()
-      }
 
     
 }
