@@ -49,7 +49,7 @@ def studname = "acherlyonok"
         // build step
         steps {
           downstreamParameterized {
-           trigger('$BUILD_TRIGGERS') {
+           trigger('$BUILDS_TRIGGER') {
              block {
                buildStepFailure('FAILURE')
                failure('FAILURE')
