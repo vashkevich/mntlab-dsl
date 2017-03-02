@@ -43,14 +43,13 @@ def studname = "acherlyonok"
       scm {
         git {
           remote { 
-
             url("${giturl}")
           }
         }
         // build step
         steps {
           downstreamParameterized {
-           trigger('$BUILD_TRIGGER') {
+           trigger('$BUILD_TRIGGERS') {
              block {
                buildStepFailure('FAILURE')
                failure('FAILURE')
