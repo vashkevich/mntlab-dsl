@@ -8,6 +8,10 @@ job('MNTLAB-ikhamiakou-main-build-job') {
             }
             
         }
+        gitParam('BRANCH_NAME'){
+            type('BRANCH')
+        }
+
     }
     scm {
         git('https://github.com/MNT-Lab/mntlab-dsl.git')
