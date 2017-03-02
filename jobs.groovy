@@ -40,7 +40,7 @@ job("MNTLAB-hvysotski-main-build-job") {
         scm 'H * * * *'
     }
      parameters {
-        choiceParam('BRANCH_NAME', ['hvysotski (default)', 'master'])
+        choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
     }   
     
     steps {
