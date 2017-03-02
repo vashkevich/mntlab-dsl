@@ -3,14 +3,6 @@ job("MNTLAB-rvashkevich-main-build-job") {
     github('MNT-Lab/mntlab-dsl','rvashkevich')
   }
   parameters {
-/* activeChoiceParam('BRANCH_NAME') {
-description('Allows user choose from multiple choices')
-choiceType('SINGLE_SELECT')
-groovyScript {
-script('return["rvashkevich", "master"];')
-}
-}
-*/
     gitParameterDefinition {
       name('BRANCH_NAME')
       type('BRANCH')
@@ -70,13 +62,8 @@ script('return["rvashkevich", "master"];')
       steps {
         shell('''BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
-bash script.sh > output.txt ''')
+bash script.sh | tee -a logfile.txt''')
       }
-
-/*shell('chmod +x script.sh')
-shell('./script.sh') 
-shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-shell('bash script.sh > output.txt')*/ 
     } 
   }
 }
