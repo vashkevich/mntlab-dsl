@@ -62,7 +62,7 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
             )         
             
         publishers {
-        archiveArtifacts('*')
+        archiveArtifacts('*.tar.gz')
         }
     }
     }   
@@ -90,7 +90,7 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
             )         
             
         publishers {
-        archiveArtifacts('*')
+        archiveArtifacts('*.tar.gz')
         }
     }
     }
@@ -120,7 +120,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
             )         
             
         publishers {
-        archiveArtifacts('*')
+        archiveArtifacts('*.tar.gz')
         }
     }
     }
@@ -150,7 +150,7 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
             )         
             
         publishers {
-        archiveArtifacts('*')
+        archiveArtifacts('*.tar.gz')
         }
     }
     }
