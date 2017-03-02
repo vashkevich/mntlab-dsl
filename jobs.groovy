@@ -1,6 +1,6 @@
-job('DSL-Tutorial-2-Test') {
+job('XXX_MNTLAB-yskrabkou-main-build-job') {
     scm {
-        git('https://github.com/MNT-Lab/mntlab-dsl')
+        git("git://github.com/MNT-Lab/mntlab-dsl.git", yskrabkou)
     }
     triggers {
         scm('H/15 * * * *')
