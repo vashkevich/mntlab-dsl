@@ -22,6 +22,7 @@ def studname = "acherlyonok"
           //  SelectedValue('DEFAULT')
           //  SelectedValue.DEFAULT
             gitParameterDefinition {
+              name('BRANCH_NAME')
               selectedValue('DEFAULT')
             }
           }  
