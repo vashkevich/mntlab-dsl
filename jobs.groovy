@@ -4,21 +4,20 @@ job('MNTLAB-' + student + '-main-build-job') {
         github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
     }
     parameters {
-	    
-		gitParameterDefinition{
-            name('BRANCH_NAME')
-            type('BRANCH')
-            defaultValue('abilun')
-            selectedValue('DEFAULT')
-            branch('origin/abilun')
-            description('')
-            branchFilter('')
-            tagFilter('')
-            sortMode('NONE')
-            useRepository('')
-            quickFilterEnabled(false)
+	    gitParameterDefinition{
+		    name('BRANCH_NAME')
+		    type('BRANCH')
+		    defaultValue('abilun')
+		    selectedValue('DEFAULT')
+		    branch('origin/abilun')
+		    description('')
+		    branchFilter('')
+		    tagFilter('')
+		    sortMode('NONE')
+		    useRepository('')
+		    quickFilterEnabled(false)
 	    }
-        activeChoiceReactiveParam('BUILD_TRIGGER') {
+    activeChoiceReactiveParam('BUILD_TRIGGER') {
             choiceType('CHECKBOX')
             groovyScript {
                 script('return ["MNTLAB-abilun-child1-build-job", "MNTLAB-abilun-child2-build-job", "MNTLAB-abilun-child3-build-job", "MNTLAB-abilun-child4-build-job"]')
