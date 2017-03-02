@@ -1,14 +1,6 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 
-def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
-	parameters {
-        activeChoiceParam('BRANCH_NAME') {
-            description('You can choose name of branch from GitHub repository')
-            filterable()
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script(
-			def command = "git ls-remote -h ${gitURL}"
+def command = "git ls-remote -h ${gitURL}"
                         def proc = command.execute()
                         proc.waitFor()              
                         if ( proc.exitValue() != 0 ) {
@@ -19,7 +11,15 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
                                  def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
                                  name.each { println it }
 
-		)
+
+def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
+	parameters {
+        activeChoiceParam('BRANCH_NAME') {
+            description('You can choose name of branch from GitHub repository')
+            filterable()
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('${name}')
                 fallbackScript('"fallback choice"')
             }
         }
