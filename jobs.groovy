@@ -17,7 +17,7 @@
 
         steps {
         downstreamParameterized {
-            trigger('$job'){
+            trigger('$BUILDS_TRIGGER'){
                 parameters {
                     predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                         }
