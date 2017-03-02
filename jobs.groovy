@@ -7,7 +7,7 @@ job("MNTLAB-${student}-main-build-job") {
 			type('BRANCH')
 		}
 	
-		activeChoiceReactiveParam('CHILDREN') {
+		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES') {
 			choiceType('CHECKBOX')
 			groovyScript {
 				script('return ["MNTLAB-sivanchic-child1-build-job", "MNTLAB-sivanchic-child2-build-job", "MNTLAB-sivanchic-child3-build-job", "MNTLAB-sivanchic-child4-build-job"]')
@@ -23,7 +23,7 @@ job("MNTLAB-${student}-main-build-job") {
 
 	publishers {
 		downstreamParameterized {
-			trigger('$CHILDREN') {
+			trigger('${TRIGGERED_JOB_NAMES}') {
 				condition('UNSTABLE_OR_BETTER')
 				parameters {
 					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
