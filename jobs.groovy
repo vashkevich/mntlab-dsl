@@ -16,11 +16,6 @@ def studname = "acherlyonok"
               }
           }
 
-          //gitParam('BRANCH_NAME'){
-          //  type('BRANCH')
-          //  defaultValue('origin/acherlyonok')
-          //  SelectedValue('DEFAULT')
-          //  SelectedValue.DEFAULT
             gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
@@ -35,30 +30,29 @@ def studname = "acherlyonok"
               useRepository('')
               quickFilterEnabled(false)
             }
-          //}
       }
 
 
       // scm git
       scm {
-        github("${giturl}, acherlyonok")
+        github("${giturl}, ${studname}")
       }
         // build step
-        steps {
-          downstreamParameterized {
-            trigger('$BUILDS_TRIGGER') {
-              block {
-                buildStepFailure('FAILURE')
-                failure('FAILURE')
-                unstable('UNSTABLE')
-              }
-              parameters {
-                predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-              }
-            }
+      steps {
+         downstreamParameterized {
+           trigger('$BUILDS_TRIGGER') {
+             block {
+               buildStepFailure('FAILURE')
+               failure('FAILURE')
+               unstable('UNSTABLE')
+             }
+             parameters {
+               predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+             }
           }
-        }
-      
+         }
+       }
+    
       triggers {
         scm 'H/5 * * * *'
       }
@@ -73,7 +67,7 @@ def studname = "acherlyonok"
       
       // scm git
       scm {
-        github("${giturl}, acherlyonok")
+        github("${giturl}, ${studname}")
       }
       
       parameters {
