@@ -23,6 +23,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
                 script("""
 //Groovy script for 
 def bs = '\'
+import jenkins.model.Jenkins
 def command = "git ls-remote -h ${gitURL}"
 def proc = command.execute()
 proc.waitFor()
