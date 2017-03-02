@@ -57,10 +57,6 @@ def studname = "acherlyonok"
         scm 'H/5 * * * *'
       }
 
-    
-  
-
-
   for (number in 1..4){
     job("MNTLAB-${studname}-child${number}-build-job") {
       description("Builds child${number}")
@@ -89,4 +85,3 @@ bash script.sh > output.txt ''')
         }
       }
     }
-  }
