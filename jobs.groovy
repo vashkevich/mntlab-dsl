@@ -3,7 +3,10 @@ job("MNTLAB-aslesarenka-main-build-job") {
         github 'MNT-Lab/mntlab-dsl'
     }
      parameters {
-        choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
+    	gitParam('BRANCH_NAME') {
+        	type('BRANCH')
+            defaultValue('aslesarenka')
+        }
     }
     
      parameters {
