@@ -24,7 +24,7 @@ def studname = "acherlyonok"
             gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
-              branch('master')
+              branch('origin/acherlyonok')
               defaultValue('origin/acherlyonok')
               selectedValue('DEFAULT')
 
@@ -34,7 +34,6 @@ def studname = "acherlyonok"
               sortMode('NONE')
               useRepository('')
               quickFilterEnabled(false)
-
             }
           //}  
           
