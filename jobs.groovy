@@ -1,10 +1,10 @@
 for (i = 1; i < 5; i++)
 {
-    job('MNTLAB-pheraska-child' + i + '-build-job') 
+    job('MNTLAB-pheraska-child' + i + '-child-job') 
     {
         parameters
         {
-            activeChoiceParam('BRANCH_NAME_CHILD')
+            activeChoiceParam('BRANCH_NAME')
 	        {
                 description('Allows to choose branch from repository')
                 choiceType('SINGLE_SELECT')
@@ -15,37 +15,22 @@ for (i = 1; i < 5; i++)
             }
         }
 
-        /*scm
-        {
-            git
-            {
-                remote
-                {
-                    name('origin');
-                    url('https://github.com/MNT-Lab/mntlab-dsl.git');
-                }
-                branch('$BRANCH_NAME')
-            } 
-        }
-*/
         scm
         {
-            github('MNT-Lab/mntlab-dsl', 'pheraska')
+            github('MNT-Lab/mntlab-dsl', '${BRANCH_NAME}')
         }
 
         steps
         {
            shell('chmod +x script.sh')
            shell('./script.sh > output.txt')
-           //shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-	   shell('tar -czf test_dsl_script.tar.gz jobs.groovy script.sh')
+           shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
         }
 
         publishers
         { 
             archiveArtifacts('output.txt')
-	    archiveArtifacts('test_dsl_script.tar.gz')
-            //archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
+            archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
         }
     }
 }
