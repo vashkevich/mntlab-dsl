@@ -50,7 +50,7 @@ archiveArtifacts('${BRANCH_NAME//\/}_dsl_script.tar.gz')
 }
 }*/
 	def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
-def myJob = 'aslesarenka'job("MNTLAB-aslesarenka-main-build-job") {	
+def student = 'aslesarenka'job("MNTLAB-${student}-main-build-job") {	
 parameters {
     gitParam('BRANCH_NAME') {
         type('BRANCH')	}	
