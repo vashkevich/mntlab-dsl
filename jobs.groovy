@@ -1,17 +1,18 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 
+//Groovy script for 
 def command = "git ls-remote -h ${gitURL}"
-                        def proc = command.execute()
-                        proc.waitFor()              
-                        if ( proc.exitValue() != 0 ) {
-                                 println "Error, ${proc.err.text}"
-                                 System.exit(-1)}
-                                 def branches = proc.in.text.readLines().collect { 
-                                 it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')}
-                                 def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
-                                 name.each { println it }
+def proc = command.execute()
+proc.waitFor()              
+if ( proc.exitValue() != 0 ) {
+println "Error, ${proc.err.text}"
+System.exit(-1)}
+def branches = proc.in.text.readLines().collect { 
+it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')}
+def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
+name.each { println it }
 
-
+//Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 	parameters {
         activeChoiceParam('BRANCH_NAME') {
@@ -26,7 +27,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 	activeChoiceParam('BUILD_TRIGGER') {
             description('You can choose jobs for works')
             filterable()
-            choiceType('CHECK_BOXES')
+            choiceType('CHECKBOX')
             groovyScript {
                 script("""
 			return [
