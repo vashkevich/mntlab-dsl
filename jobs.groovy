@@ -1,4 +1,5 @@
 def giturl = "MNT-Lab/mntlab-dsl"
+def studname = "aslesarenka"
 	job("MNTLAB-aslesarenka-main-build-job") {
    // scm {
       //  github 'MNT-Lab/mntlab-dsl'
