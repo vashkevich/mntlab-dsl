@@ -1,4 +1,3 @@
-def studentName = "pheraska"
 for (i = 1; i < 5; i++)
 {
     job('MNTLAB-pheraska-child' + i + '-child-job') 
@@ -16,7 +15,6 @@ for (i = 1; i < 5; i++)
         }
     }
 }
-
 
 job('MNTLAB-pheraska-main-build-job') 
 {
@@ -39,4 +37,5 @@ job('MNTLAB-pheraska-main-build-job')
 	    }
         }
     }        
+  }
 }
