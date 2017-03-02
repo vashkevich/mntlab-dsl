@@ -35,12 +35,14 @@ job('MNTLAB-ikhamiakou-main-build-job') {
 
 job('MNTLAB-ikhamiakou-child1-build-job') {
     
-    activeChoiceReactiveParam('jobs') {
+    parameters{
+        activeChoiceReactiveParam('jobs') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
             }
-    
+        }
+    }
     
     steps {
         shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')        
@@ -55,12 +57,14 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
 
 job('MNTLAB-ikhamiakou-child2-build-job') {
     
-    activeChoiceReactiveParam('jobs') {
+    parameters{
+        activeChoiceReactiveParam('jobs') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
             }
-    
+        }
+    }
     
     steps {
         shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
@@ -77,13 +81,15 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
 
 job('MNTLAB-ikhamiakou-child3-build-job') {
     
-    activeChoiceReactiveParam('jobs') {
+    parameters{
+        activeChoiceReactiveParam('jobs') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
             }
-    
-    
+        }
+    }
+
     steps {
         shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
@@ -99,12 +105,14 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
 
 job('MNTLAB-ikhamiakou-child4-build-job') {
     
-    activeChoiceReactiveParam('jobs') {
+    parameters{
+        activeChoiceReactiveParam('jobs') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
             }
-    
+        }
+    }
     
     steps {
         shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
