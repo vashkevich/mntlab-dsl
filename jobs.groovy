@@ -45,7 +45,7 @@ parameters {
         }
       }
       triggers {
-        scm '*/15 * * * *'
+        scm 'H * * * *'
       }
 
     }
