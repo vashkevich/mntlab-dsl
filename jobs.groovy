@@ -2,9 +2,9 @@ job("MNTLAB-hvysotski-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
-    triggers {
-        scm 'H * * * *'
-    }
+    //triggers {
+    //    scm 'H * * * *'
+    //}
      parameters {
         choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
     }
@@ -36,9 +36,9 @@ job("MNTLAB-hvysotski-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
-    triggers {
-        scm 'H * * * *'
-    }
+    //triggers {
+    //    scm 'H * * * *'
+    //}
      parameters {
         choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
     }   
