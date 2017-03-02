@@ -1,11 +1,11 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 
 def job_names="""
-MNTLAB-akutsko-main-build-job
-MNTLAB-akutsko-child1-build-job
-MNTLAB-akutsko-child2-build-job
-MNTLAB-akutsko-child3-build-job
-MNTLAB-akutsko-child4-build-job
+["MNTLAB-akutsko-main-build-job", 
+"MNTLAB-akutsko-child1-build-job, 
+"MNTLAB-akutsko-child2-build-job, 
+"MNTLAB-akutsko-child3-build-job, 
+"MNTLAB-akutsko-child4-build-job]
 """
 
 //Groovy script for 
@@ -17,8 +17,8 @@ println "Error, ${proc.err.text}"
 System.exit(-1)}
 def branches = proc.in.text.readLines().collect { 
 it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')}
-//def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
-//name.each { println it }
+def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
+name.each { println it }
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
@@ -28,7 +28,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('${branches}')
+                script('["drhr", "srgys"]')
                 fallbackScript('"fallback choice"')
             }
         }
