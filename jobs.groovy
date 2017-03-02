@@ -10,12 +10,8 @@ job("MNTLAB-mburakouski-main-build-job") {
         choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
                         }
         parameters {
-                activeChoiceReactiveParam('job') {
-                choiceType('CHECKBOX')
-                groovyScript {
-                script('return ["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child3-build-job", "MNTLAB-mburakouski-child4-build-job"]')
-                }
-            }
+     choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
+ }
            }
         steps {
         downstreamParameterized {
@@ -43,10 +39,21 @@ job("MNTLAB-mburakouski-main-build-job") {
 // triggers {
   //   scm 'H * * * *'
 // }
-  parameters {
-     choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
- }
+  
+ gitParameterDefinition {
+              name('BRANCH_NAME')
+              type('BRANCH')
+              branch('mburakouski')
+              defaultValue('mburakouski')
+              selectedValue('DEFAULT')
 
+              description('')
+              branchFilter('')
+              tagFilter('')
+              sortMode('NONE')
+              useRepository('')
+              quickFilterEnabled(false)
+            }
  steps {
      shell('touch output.txt')
      shell('chmod +x script.sh')
@@ -58,5 +65,4 @@ job("MNTLAB-mburakouski-main-build-job") {
      }
   }
  }
-
 
