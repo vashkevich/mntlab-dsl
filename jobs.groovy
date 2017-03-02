@@ -1,4 +1,4 @@
-def giturl = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def giturl = "MNT-Lab/mntlab-dsl"
 def studname = "acherlyonok"
 //create master branch
 
@@ -41,11 +41,8 @@ def studname = "acherlyonok"
 
       // scm git
       scm {
-        git {
-          remote { 
-            url("${giturl}")
-          }
-        }
+        github("${giturl}, acherlyonok")
+      }
         // build step
         steps {
           downstreamParameterized {
@@ -76,11 +73,8 @@ def studname = "acherlyonok"
       
       // scm git
       scm {
-        git {
-          remote {
-            url("${giturl}")
-          }
-        }
+        github("${giturl}, acherlyonok")
+      }
       
       parameters {
           activeChoiceReactiveParam('BRANCH_NAME') {
