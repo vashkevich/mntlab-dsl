@@ -65,8 +65,7 @@ job('MNTLAB-pheraska-main-build-job')
         }
         
         steps
-        {
-            downstreamParameterized
+        {   downstreamParameterized
             {
                 trigger('$BUILDS_TRIGGER') 
                 {
