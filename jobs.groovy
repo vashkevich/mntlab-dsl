@@ -42,7 +42,7 @@ for (number in 1..4){
   job("MNTLAB-${studname}-child${number}-build-job")
       {
       description("Builds child${number}")
-      parameters { stringParam("BRANCH_NAME", 'Hello world!')}
+      parameters { stringParam("BRANCH_NAME")}
       scm {
           git{
 		remote { url("${giturl}")}
