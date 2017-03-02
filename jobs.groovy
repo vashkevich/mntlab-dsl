@@ -24,7 +24,7 @@ return child_list_branch;
 
 // Script to list jobs
 def script_list_child_jobs = '''def child_jobs_list = [];
-(1..4).each { child_jobs_list << "MNTLAB-SHREBEN-child\${it}-build-job" };
+(1..4).each { child_jobs_list << "MNTLAB-shreben-child\${it}-build-job" };
 return child_jobs_list;
 '''
 
@@ -32,7 +32,7 @@ return child_jobs_list;
 // Define child jobs list
 def child_jobs_list = []
 (1..4).each { it ->
-	child_jobs_list << "MNTLAB-SHREBEN-child${it}-build-job"
+	child_jobs_list << "MNTLAB-shreben-child${it}-build-job"
 }
 
 
@@ -74,7 +74,7 @@ child_jobs_list.each {
 
 
 // Define main job
-job('MNTLAB-SHREBEN-main-build-job') {
+job('MNTLAB-shreben-main-build-job') {
     parameters {
                 activeChoiceParam('BRANCH_NAME') {
                 description('Choose branch')
