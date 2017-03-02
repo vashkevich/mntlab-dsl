@@ -1,4 +1,4 @@
-job('MAIN-1') {
+job('MNTLAB-ikhamiakou-main-build-job') {
     
     parameters {
         activeChoiceReactiveParam('jobs') {
