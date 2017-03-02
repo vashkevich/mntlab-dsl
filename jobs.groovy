@@ -50,8 +50,7 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
         shell('tar -zcvf $BRANCH_NAME.tar.gz $WORKSPACE/script.sh')
     
         publishers {
-        archiveArtifacts('*.txt')
-        archiveArtifacts('*.tar.gz')
+        archiveArtifacts('*')
         }
     }
     
@@ -75,8 +74,7 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
         shell('tar -zcvf $BRANCH_NAME.tar.gz $WORKSPACE/script.sh')
     
         publishers {
-        archiveArtifacts('*.txt')
-        archiveArtifacts('*.tar.gz')
+            archiveArtifacts('*')
         }
 
     }
@@ -101,8 +99,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
         shell('tar -zcvf $BRANCH_NAME.tar.gz $WORKSPACE/script.sh')
     
         publishers {
-        archiveArtifacts('*.txt')
-        archiveArtifacts('*.tar.gz')
+        archiveArtifacts('*')
         }
 
     }
@@ -127,8 +124,8 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
         shell('tar -zcvf $BRANCH_NAME.tar.gz $WORKSPACE/script.sh')
     
         publishers {
-        archiveArtifacts('*.txt')
-        archiveArtifacts('*.tar.gz')
+        archiveArtifacts('*')
+        
         }
 
     }
