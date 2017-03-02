@@ -18,6 +18,16 @@ job("MNTLAB-hvysotski-main-build-job") {
                 }          
            }   
         }
+    publishers {
+	   downstreamParameterized {
+			trigger('${BUILDS_TRIGGER}') {
+				condition('UNSTABLE_OR_BETTER')
+				parameters {
+					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+				}
+			}
+		}
+	}
     
     for (i in 1..4) {
     
