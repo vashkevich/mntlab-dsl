@@ -28,7 +28,7 @@ job("MNTLAB-aslesarenka-main-build-job") {
     
     for (i in 1..4) {
     
-    job("MNTLAB-aslesarenka-child${i}-build-job") {
+    job("MNTLAB-aslesarenka-child3-build-job") {
     
     scm {
         github 'MNT-Lab/mntlab-dsl'
