@@ -40,22 +40,22 @@ job("MNTLAB-mkuzniatsou-main-build") {
 
 
 for (i in 1..4) {
-  job('MNTLAB-mkuzniatsou-child${i}-build-job') {
+  job("MNTLAB-mkuzniatsou-child${i}-build-job") {
 
 	scm {
 		github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
 	}
 	
     parameters {
-        stringParam('BRANCH_NAME')
+        choisParam('BRANCH_NAME', ['mkuzniatsou', 'master'])
     }
 	steps {
-		shell('chmod +x script.sh')
+	shell('chmod +x script.sh')
         shell('/usr/bin/sh ${WORKSPACE}/script.sh > ${WORKSPACE}/output.txt')
-        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
+//        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
     publishers {
         archiveArtifacts('output.txt')
-        archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
+//        archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
 			}
 		}
 	}
