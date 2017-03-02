@@ -8,8 +8,8 @@ job("MNTLAB-${studname}-main-build")
 		gitParameterDefinition { 
 		             name('BRANCH_NAME') 
 		             type('BRANCH')
-		              branch('akaminski')
-		              defaultValue('akaminski')
+		              branch('origin/akaminski')
+		              defaultValue('origin/akaminski')
 		              selectedValue('DEFAULT')
 		              description('')
 		              branchFilter('')
@@ -60,7 +60,8 @@ for (number in 1..4){
 		remote { url("${giturl}")}
 		branch("${studname}")
     	    }}
-	steps { shell ('''sh script.sh > output.txt
+	steps { shell ('''BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+			 sh script.sh > output.txt
 			 tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy output.txt
 			 	 ''')
     	}
