@@ -11,7 +11,7 @@ def studname = "acherlyonok"
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
             description('Allows user choose from multiple choices')
             filterable()
-            choiceType('CHECK_BOXES')
+            choiceType('CHECKBOX')
             groovyScript {
                 script('def used_jobs = ["MNTLAB-ac-child1-build-job", "MNTLAB-ac-child2-build-job", "MNTLAB-ac-child3-build-job", "MNTLAB-ac-child4-build-job", "MNTLAB-ac-child5-build-job"] \n return used_jobs')
                 fallbackScript('"fallback choice"')
