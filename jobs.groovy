@@ -2,7 +2,10 @@ mybranch = 'yskrabkou'
 
 job('MNTLAB-' + mybranch + '-main-build-job') 
 	{
-		logRotator(30)
+		 logRotator {
+        numToKeep(5)
+        artifactNumToKeep(1)
+    }
 		parameters
         {        	 
             activeChoiceParam('BRANCH_NAME')
