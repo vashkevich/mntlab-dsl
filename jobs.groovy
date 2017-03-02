@@ -24,7 +24,7 @@ job("MNTLAB-${studname}-main-build")
       	scm {
           git{
 		remote { url("${giturl}")}
-		branch("${BRANCH_NAME}")
+		branch("\${BRANCH_NAME}")
     	    }
 	    }
 	publishers {
