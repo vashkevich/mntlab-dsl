@@ -14,7 +14,7 @@ def studname = "acherlyonok"
             choiceType('CHECKBOX')
             groovyScript {
                 script('def used_jobs = ["MNTLAB-ac-child1-build-job", "MNTLAB-ac-child2-build-job", "MNTLAB-ac-child3-build-job", "MNTLAB-ac-child4-build-job", "MNTLAB-ac-child5-build-job"] \n return used_jobs')
-                fallbackScript('"fallback choice"')
+              //  fallbackScript('"fallback choice"')
             }
           //  referencedParameter('BOOLEAN-PARAM-1')
           //  referencedParameter('BOOLEAN-PARAM-2')
