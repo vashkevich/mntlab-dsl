@@ -4,6 +4,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 	{
 		parameters
         {
+        	 discardOldBuilds(7, 10)
             activeChoiceParam('BRANCH_NAME')
 	        {
                 description('Allows to choose branch from repository')
@@ -31,18 +32,23 @@ job('MNTLAB-' + mybranch + '-main-build-job')
           github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
         }
 
-          steps {
-        downstreamParameterized {
-            trigger('$BUILD_TRIGGER') {
-		block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
-                    unstable('UNSTABLE')
-                }
-                parameters {
-                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+          steps
+           {
+       			downstreamParameterized 
+       			{
+               		trigger('$JOB_SELECT') 
+               		{
+		            	block 
+		            	{
+                    		buildStepFailure('FAILURE')
+                    		failure('FAILURE')
+                    		unstable('UNSTABLE')
+                        }
+               			parameters 
+               			{
+               			    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+                        }
+                    }
                 }
             }
-        }
-        }
     }
