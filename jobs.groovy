@@ -46,9 +46,21 @@ for (i in 1..4) {
 		github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
 	}
 	
-    parameters {
-        choiseParam('BRANCH_NAME', ['mkuzniatsou', 'master'])
+//    parameters {
+//        choiseParam('BRANCH_NAME', ['mkuzniatsou', 'master'])
+//    }
+    parameters{
+        activeChoiceReactiveParam('BRANCH_NAME') {
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["mkuzniatsou", "master"]')
+            }
+        }
     }
+
+
+
+
 	steps {
 	shell('chmod +x script.sh')
         shell('/usr/bin/sh ${WORKSPACE}/script.sh > ${WORKSPACE}/output.txt')
