@@ -16,17 +16,17 @@ def studname = "acherlyonok"
               }
           }
 
-          gitParam('BRANCH_NAME'){
-            type('BRANCH')
-            defaultValue('origin/acherlyonok')
+          //gitParam('BRANCH_NAME'){
+          //  type('BRANCH')
+          //  defaultValue('origin/acherlyonok')
           //  SelectedValue('DEFAULT')
           //  SelectedValue.DEFAULT
             gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
-              branch('origin/acherlyonok')
+              branch('master')
               defaultValue('origin/acherlyonok')
-              selectedValue('DEFAULT')
+              selectedValue('default')
 
               description('')
               branchFilter('')
@@ -36,7 +36,7 @@ def studname = "acherlyonok"
               quickFilterEnabled(false)
 
             }
-          }  
+          //}  
           
       }
 
