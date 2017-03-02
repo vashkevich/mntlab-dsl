@@ -1,88 +1,6 @@
-/*def gitURL="git@github.com:MNT-Lab/mntlab-dsl.git"
-def myJob = 'aslesarenka'job("MNTLAB-${student}-main-build-job"){
-parameters{
-
-gitParam('BRANCH_NAME')
- {	type('BRANCH')	}
-
-activeChoiceReactiveParam('TRIGGERED_JOB_NAMES') {
-description('Choose from multiple Jobs')
-            filterable()
-            choiceType('CHECK_BOXES')
-            groovyScript {
-script '( [ return
-'MNTLAB-aslesarenka-main-build-job'
-'MNTLAB-aslesarenka-child1-build-job'
-'MNTLAB-aslesarenka-child2-build-job'
-'MNTLAB-aslesarenka-child3-build-job'
-'MNTLAB-aslesarenka-child4-build-job'
-]') }
-              
-                fallbackScript('"wrong choice"')
-            }
-        }
-    }
-}
-
-
-scm {	git(giturl, "\${BRANCH_NAME}")	}
-	
-publishers {	
-downstreamParameterized {	
-trigger('${TRIGGERED_JOB_NAMES}') {	
-condition('UNSTABLE_OR_BETTER')	
-parameters {	
-predefinedProp('BRANCH_NAME', '$BRANCH_NAME')	}
-	}
-	}	
-}
-}
-for(i in 1..4) {	
-job("MNTLAB-${student}-child${i}-build-job") {
-	scm {	git(giturl, "\${BRANCH_NAME}" )	}	
-parameters {	
-stringParam("BRANCH_NAME", 'origin/aslesarenka') }	
-steps {	shell('echo \$BRANCH_NAME')	
-shell('sh script.sh > output.txt')	
-shell('tar -cvzf ${BRANCH_NAME//\/}_dsl_script.tar.gz script.sh jobs.groovy')	}	publishers {	
-archiveArtifacts('${BRANCH_NAME//\/}_dsl_script.tar.gz')	
-}	
-}
-}*/
-/*	def giturl = 'https://github.com/MNT-Lab/mntlab-dsl.git'
-def student = 'aslesarenka'job("MNTLAB-${student}-main-build-job") {	
-parameters {
-    gitParam('BRANCH_NAME') {
-        type('BRANCH')	}	
-		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES') {
-		   choiceType('CHECKBOX')	
-		   groovyScript	{script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenka-child3-build-job", "MNTLAB-aslesarenka-child4-build-job"]') 
-		   } 
-		}	
-}	
-				scm {	git(giturl, "\${BRANCH_NAME}")	}	
-				publishers {
-					downstreamParameterized {	
-						trigger('${TRIGGERED_JOB_NAMES}') 
-						{	condition('UNSTABLE_OR_BETTER')	
-						 parameters {	predefinedProp('BRANCH_NAME', '$BRANCH_NAME')	
-							    }	}	}	}}
-for(i in 1..4) {	
-	job("MNTLAB-${student}-child${i}-build-job") 
-	{	scm {	git(giturl, "\${BRANCH_NAME}" )	}	
-	 parameters {	stringParam("BRANCH_NAME", 'origin/aslesarenka') }	
-	 steps {	shell('echo \$BRANCH_NAME')	
-		shell('sh script.sh > output.txt')
-		shell('tar -cvzf ${BRANCH_NAME//[/]}_dsl_script.tar.gz script.sh jobs.groovy')	}	
-	 publishers {archiveArtifacts('${BRANCH_NAME//[/]}_dsl_script.tar.gz') }	}}*/
-
-
 job("MNTLAB-aslesarenka-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
-    }
-    triggers {
-        scm 'H * * * *'
     }
      parameters {
         choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
@@ -94,19 +12,29 @@ job("MNTLAB-aslesarenka-main-build-job") {
             groovyScript {
                 script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenka-child3-build-job", "MNTLAB-aslesarenka-child4-build-job"]'
                       )
-                }          
-           }   
-        }
+                }}  
+     gitParameterDefinition {
+              name('BRANCH_NAME')
+              type('BRANCH')
+              branch('origin/aslesarenka')
+              defaultValue('origin/aslesarenka')
+              selectedValue('DEFAULT')
+
+              description('')
+              branchFilter('')
+              tagFilter('')
+              sortMode('NONE')
+              useRepository('')
+              quickFilterEnabled(false)
+            }
+     }
     publishers {
 	   downstreamParameterized {
 			trigger('${BUILDS_TRIGGER}') {
 				condition('UNSTABLE_OR_BETTER')
 				parameters {
 					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-				}
-			}
-		}
-	}
+				}}}}
     
     for (i in 1..4) {
     
@@ -114,9 +42,6 @@ job("MNTLAB-aslesarenka-main-build-job") {
     
     scm {
         github 'MNT-Lab/mntlab-dsl'
-    }
-    triggers {
-        scm 'H * * * *'
     }
      parameters {
         choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
@@ -127,7 +52,4 @@ job("MNTLAB-aslesarenka-main-build-job") {
         shell('./script.sh')
         shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
         shell('touch output.txt')   
-       }
-     }
-    }
-  } 
+       }}}} 
