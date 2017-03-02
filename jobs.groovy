@@ -6,17 +6,6 @@ def studname = "akaminski"
 job("MNTLAB-${studname}-main-build")
 {
 	description ("Build main job")
-	parameters {
-        activeChoiceParam('CHOICE-1') {
-            description('Allows user choose from multiple choices')
-            filterable()
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script('["choice1", "choice2"]')
-                fallbackScript('"fallback choice"')
-            }
-        }
-    }
 }
 
 
@@ -32,7 +21,7 @@ for (number in 1..4){
 		remote { url("${giturl}")}
 		branch("$studname")
     	    }
-	steps { shell "echo 'hello'"}
+	steps { shell "sh script.sh "}
     	
 	}
 }
