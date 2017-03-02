@@ -47,7 +47,7 @@ job('MNTLAB-pheraska-main-build-job')
     {
         activeChoiceParam('BRANCH_NAME') 
 	    {
-            description('Allows to choose branch from repository')
+            description('Allows to choose master/student branch.')
             choiceType('SINGLE_SELECT')
             groovyScript
 	        {
@@ -57,7 +57,7 @@ job('MNTLAB-pheraska-main-build-job')
 	    
         activeChoiceParam('BUILDS_TRIGGER')
 	    {
-            description('Allows to choose branch from repository')
+            description('Allows to choose job.')
             choiceType('CHECKBOX')
             groovyScript
             {
