@@ -29,7 +29,7 @@ job("MNTLAB-${studname}-main-build")
 	}
 	publishers {
         downstreamParameterized {
-            trigger('${TRIGGERED_JOB_NAMES}') {
+            trigger("${TRIGGERED_JOB_NAMES}") {
                 condition('UNSTABLE_OR_BETTER')
                 parameters {predefinedProp('BRANCH_NAME', '$BRANCH_NAME') }
             }
