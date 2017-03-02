@@ -66,7 +66,7 @@ job("MNTLAB-imanzhulin-main-build-job") {
             description('Allows user choose from multiple choices')
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('return["origin/imanzhulin", "origin/master"]')
+                script('return["origin/imanzhulin", "master"]')
                            }
         }
     }   
