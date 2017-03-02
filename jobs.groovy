@@ -65,7 +65,7 @@
     steps {
 	   downstreamParameterized {
 			trigger('${BUILDS_TRIGGER}') {
-				condition('UNSTABLE_OR_BETTER')
+				//condition('UNSTABLE_OR_BETTER')
 				parameters {
 					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
 				}
