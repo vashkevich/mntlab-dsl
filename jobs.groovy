@@ -4,8 +4,16 @@ def studname = "akaminski"
 
 //create master branch
 job("MNTLAB-${studname}-main-build")
-{
+{       parameters {gitParam('BRANCH_NAME') { type('BRANCH') }}
 	description ("Build main job")
+	publishers {
+        downstreamParameterized {
+            trigger('MNTLAB-akaminski-child1-build-job,MNTLAB-akaminski-child2-build-job,MNTLAB-akaminski-child3-build-job,MNTLAB-akaminski-child4-build-job') {
+                condition('UNSTABLE_OR_BETTER')
+                parameters {predefinedProp('BRANCH_NAME', '$BRANCH_NAME') }
+            }
+        }
+    }
 }
 
 
@@ -16,15 +24,14 @@ for (number in 1..4){
   job("MNTLAB-${studname}-child${number}-build-job")
       {
       description("Builds child${number}")
-      parameters { stringParam("BRANCH_NAME", 'Hello world!') 
-   		}
+      parameters { stringParam("BRANCH_NAME", 'Hello world!')}
       scm {
           git{
 		remote { url("${giturl}")}
 		branch("$studname")
     	    }
 	steps { shell "sh script.sh "}
-    	
-	}
+    	}
+	
 }
 } 
