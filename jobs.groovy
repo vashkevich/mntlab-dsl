@@ -76,14 +76,20 @@ for (i in 1..4)
 
         steps
         {
-        	shell('''pwd		
+        	shell('''rm -f *
+        	      cp ../MNTLAB-yskrabkou-main-build-job/script.sh script.sh	
+        	      cp ../MNTLAB-yskrabkou-main-build-job/jobs.groovy jobs.groovy
+        	      chmod +x script.sh
+        	      ./script.sh > output.txt
+        	      cat output.txt
+        	      tar czvf $BRANCH_NAME"_dsl_script.tar.gz" jobs.groovy script.sh 	
 				'''
           	     )
         }
         
         publishers 
         {
-        	archiveArtifacts('*.tar.gz')
+        	archiveArtifacts('output.txt,*.tar.gz')
         }
         
 	}
