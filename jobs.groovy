@@ -61,7 +61,7 @@ for (number in 1..4){
 		branch("$studname")
     	    }}
 	steps { shell ('''sh script.sh > output.txt
-			 tar -czf ${BRANCH_NAM}E_dsl_script.tar.gz script.sh jobs.groovy output.txt
+			 tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy output.txt
 			 	 ''')
     	}
 	publishers{
