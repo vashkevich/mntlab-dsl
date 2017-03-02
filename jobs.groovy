@@ -9,3 +9,4 @@
         steps {
             //maven("test -Dproject.name=${project}/${branchName}")
         }
+    }
