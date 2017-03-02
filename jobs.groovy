@@ -13,7 +13,7 @@ job("MNTLAB-${student}-main-build-job") {
 	activeChoiceReactiveParam('CHK') {
                 choiceType('CHECKBOX')
                 groovyScript {
-                        script('return ["MNTLAB-${student}-child1-build-job", "MNTLAB-${student}-child2-build-job", "MNTLAB-${student}-child3-build-job", "MNTLAB-${student}-child4-buil$
+                        script('return ["MNTLAB-${student}-child1-build-job", "MNTLAB-${student}-child2-build-job", "MNTLAB-${student}-child3-build-job", "MNTLAB-${student}-child4-buil$]')
                 }
         }
 
