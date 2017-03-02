@@ -22,4 +22,5 @@ for (number in 1..4){
 	steps { shell "echo 'hello'"}
     	
 	}
+}
 } 
