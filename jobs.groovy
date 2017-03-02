@@ -1,6 +1,6 @@
-  job('MNTLAB-yskrabkou-main-build-job') 
-    {
-        parameters
+job('MNTLAB-yskrabkou-main-build-job') 
+	{
+		parameters
         {
             activeChoiceParam('BRANCH_NAME')
 	        {
@@ -13,7 +13,8 @@
             }
         }  
 
-      scm
+    scm
         {
             github('MNT-Lab/mntlab-dsl', '${BRANCH_NAME}')
         }
+    }
