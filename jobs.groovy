@@ -1,4 +1,4 @@
-job("MNTLAB-hvysotski-main-build-job") {
+job("MNTLAB-mburakouski-main-build-job") {
     description 'Building one main job and four child'
     scm {
         github 'MNT-Lab/mntlab-dsl'
