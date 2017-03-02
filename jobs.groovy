@@ -7,16 +7,13 @@ job("MNTLAB-mburakouski-main-build-job") {
         scm 'H * * * *'
     }
      parameters {
-        choiceParam('BRANCH_NAME', ['hvysotski (default)', 'master'])
+        choiceParam('BRANCH_NAME', ['mburakouski (default)', 'master'])
     }
     
      parameters {
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
-            groovyScript {
-                script('return ["MNTLAB-hvysotski-child1-build-job", "MNTLAB-hvysotski-child2-build-job", "MNTLAB-hvysotski-child3-build-job", "MNTLAB-hvysotski-child4-build-job"]'
-                      )
-                }          
+                    
            }   
         }
 
