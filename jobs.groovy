@@ -66,7 +66,7 @@ job('MNTLAB-amatveenko-child' + i + '-build-job') {
           ''')
 	}
           publishers {
-          archiveArtifacts('*_dsl_script.tar.gz')
+          archiveArtifacts('$BRANCH_NAME_dsl_script.tar.gz')
           }
 }
 }
