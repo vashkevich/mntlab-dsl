@@ -55,7 +55,7 @@ for (i = 1; i <5; i++) {
             }
         }
         steps {
-            shell('''
+            shell('''#!/bin/bash
 BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
 bash script.sh > output.txt
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh output.txt '''
