@@ -20,7 +20,7 @@ def studname = "acherlyonok"
             name('BRANCH_NAME')
             type('BRANCH')
             defaultValue('origin/acherlyonok')
-            SelectedValue('DEFAULT')
+            selectedValue('DEFAULT')
           //  SelectedValue.DEFAULT
           }
       }
