@@ -8,7 +8,7 @@ job('MNTLAB-pheraska-main-build-job')
             description('Allows to choose branch from repository')
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('return ["pheraska","master"]')
+                script('return ["pheraska","master"];')
 	    }
         }
 	activeChoiceParam('BUILDS_TRIGGER') {
