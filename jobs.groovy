@@ -18,6 +18,11 @@ job('MNTLAB-' + student + '-main-build-job') {
     steps {
         downstreamParameterized {
             trigger('$BUILD_TRIGGER') {
+		block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
                 parameters {
                     predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                 }
