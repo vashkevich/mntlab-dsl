@@ -72,11 +72,7 @@ for (i in 1..4)
 		parameters {
             //activeChoiceReactiveParam('BRANCH_NAME') {
              //       choiceType('SINGLE_SELECT')
-              //      groovyScript {
-               //         script('["origin-abilun", "origin-master"]')
-                 stingParam('myParameterName', 'my default stringParam value', 'my description')
-
-                    }
+                    stringParam('myParameterName', 'my default stringParam value', 'my description')
             }
         }
 	}
