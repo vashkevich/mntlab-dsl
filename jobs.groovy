@@ -5,10 +5,22 @@ def studname = "akaminski"
 //create master branch
 job("MNTLAB-${studname}-main-build")
 {      parameters{
-		gitParam('BRANCH_NAME'){
-			 type('BRANCH')
-			 defaultValue('akaminski')
-					 }
+		gitParameterDefinition { 
+		             name('BRANCH_NAME') 
+		             type('BRANCH')
+		              branch('origin/akaminski')
+		              defaultValue('origin/akaminski')
+		              selectedValue('DEFAULT')
+		              description('')
+		              branchFilter('')
+		              tagFilter('')
+		              sortMode('NONE')
+		              useRepository('')
+		              quickFilterEnabled(false)            }
+		//gitParam('BRANCH_NAME'){
+		//	 type('BRANCH')
+		//	 defaultValue('akaminski')
+		//			 }
 		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES'){
 			choiceType('CHECKBOX')
 			groovyScript {
