@@ -13,20 +13,20 @@ job("MNTLAB-aslesarenka-main-build-job") {
                 script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenka-child3-build-job", "MNTLAB-aslesarenka-child4-build-job"]')
             }
 	}  
-     	gitParameterDefinition {
-              name('BRANCH_NAME')
-              type('BRANCH')
-              branch('origin/aslesarenka')
-              defaultValue('origin/aslesarenka')
-              selectedValue('DEFAULT')
+     	//gitParameterDefinition {
+            //  name('BRANCH_NAME')
+             // type('BRANCH')
+            //  branch('origin/aslesarenka')
+            //  defaultValue('origin/aslesarenka')
+             // selectedValue('DEFAULT')
 
-              description('')
-              branchFilter('')
-              tagFilter('')
-              sortMode('NONE')
-              useRepository('')
-              quickFilterEnabled(false)
-            }
+              //description('')
+             // branchFilter('')
+             // tagFilter('')
+             // sortMode('NONE')
+             // useRepository('')
+              //quickFilterEnabled(false)
+            //}
      }
     publishers {
 	   downstreamParameterized {
