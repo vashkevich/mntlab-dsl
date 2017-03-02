@@ -1,4 +1,4 @@
-def giturl = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "mnikolayev"
 //create master branch
 
@@ -12,53 +12,46 @@ def studname = "mnikolayev"
               description('Allows user choose from multiple choices')
               choiceType('CHECKBOX')
               groovyScript {
-                  script('def used_jobs = ["MNTLAB-ac-child1-build-job", "MNTLAB-ac-child2-build-job", "MNTLAB-ac-child3-build-job", "MNTLAB-ac-child4-build-job", "MNTLAB-ac-child5-build-job"] \n return used_jobs')
+                  script('def used_jobs = ["MNTLAB-$studname-parent-dsl-job", "MNTLAB-$studname-child1-dsl-job", "MNTLAB-$studname-child2-dsl-job", "MNTLAB-$studname-child3-dsl-job", "MNTLAB-$studname-child4-dsl-job"] \n return used_jobs')
               }
           }
 
           gitParam('BRANCH_NAME'){
             type('BRANCH')
-            defaultValue('acherlyonok')
+            defaultValue("${studname}")
             selectValue('DEFAULT')
           }
       }
 
-
-      // scm git
+//цепляем с гита
       scm {
         git {
           remote { 
 
-            url("${giturl}")
+            url("${gitURL}")
           }
         }
-        // build step
         steps {
           shell(readFileFromWorkspace('script.sh'))
         }
       }
       triggers {
-        scm 'H/5 * * * *'
+        scm '1 * * * *'
       }
 
     }
   }
 
-
+//исполняем шелл скрипт
   for (number in 1..4){
     job("MNTLAB-${studname}-child${number}-build-job") {
       description("Builds child${number}")
-      
-      // scm git
       scm {
         git {
           remote {
-            url("${giturl}")
+            url("${gitURL}")
           }
         }
-      
-
-      // build step
         steps { 
           shell(readFileFromWorkspace('script.sh'))
         }
