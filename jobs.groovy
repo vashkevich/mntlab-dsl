@@ -10,10 +10,10 @@ job("MNTLAB-aslesarenka-main-build-job") {
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenka-child3-build-job", "MNTLAB-aslesarenka-child4-build-job"]'
-                      )
-                }}  
-     gitParameterDefinition {
+                script('return ["MNTLAB-aslesarenka-child1-build-job", "MNTLAB-aslesarenka-child2-build-job", "MNTLAB-aslesarenka-child3-build-job", "MNTLAB-aslesarenka-child4-build-job"]')
+            }
+	}  
+     	gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
               branch('origin/aslesarenka')
