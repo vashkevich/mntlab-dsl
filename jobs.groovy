@@ -25,7 +25,7 @@ for (i = 1; i < 5; i++)
            shell('chmod +x script.sh')
            shell('./script.sh > output.txt')
            //shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-	   if ( '${BRANCH_NAME}' == "master" ) 
+	   if ( '${BRANCH_NAME}' == 'master' ) 
            {
                shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh')
            }
