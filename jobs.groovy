@@ -13,20 +13,20 @@ job("MNTLAB-${studname}-main-build")
 			choiceType('CHECKBOX')
 			groovyScript {
 				script('return ["MNTLAB-kaminskichild1-build-job","MNTLAB-akaminski-child2-build-job","MNTLAB-akaminski-child3-build-job","MNTLAB-akaminski-child4-build-job"]')
-                	}
+                		}
 
-        	}
+        			}	
 
-        }
+        	}	
 
 		
 	description ("Build main job")
-      scm {
+      	scm {
           git{
 		remote { url("${giturl}")}
 		branch("$studname")
     	    }
-	}
+	    }
 	publishers {
         downstreamParameterized {
             trigger('${CHOICE}') {
