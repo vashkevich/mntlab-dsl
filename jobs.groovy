@@ -26,7 +26,7 @@ def studname = "acherlyonok"
               type('BRANCH')
               branch('master')
               defaultValue('origin/acherlyonok')
-              selectedValue('default')
+              selectedValue('DEFAULT')
 
               description('')
               branchFilter('')
