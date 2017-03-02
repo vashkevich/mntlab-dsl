@@ -74,7 +74,7 @@ child_jobs_list.each {
 
 
 // Define main job
-Job('MNTLAB-SHREBEN-main-build-job') {
+job('MNTLAB-SHREBEN-main-build-job') {
     parameters {
                 activeChoiceParam('BRANCH_NAME') {
                 description('Choose branch')
