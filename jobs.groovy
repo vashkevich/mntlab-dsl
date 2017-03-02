@@ -18,7 +18,7 @@ def studname = "acherlyonok"
 
           gitParam('BRANCH_NAME'){
             type('BRANCH')
-            branch('acherlyonok')
+            branch('origin/acherlyonok')
           }
       }
 
