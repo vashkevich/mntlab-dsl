@@ -1,21 +1,20 @@
         job("MNTLAB-mburakouski-main-build-job") {
     scm {
         github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
-	    }
+            }
    // triggers {
    //     scm 'H * * * *'
    // }
      parameters {
         choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
-                        }
-        parameters {
-                activeChoiceReactiveParam('BUILDS_TRIGGER') {
+        activeChoiceReactiveParam('BUILDS_TRIGGER') {
                 choiceType('CHECKBOX')
                 groovyScript {
                 script('return ["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child3-build-job", "MNTLAB-mburakouski-child4-build-job"]')
                 }
              }
-           
+}
+
         steps {
         downstreamParameterized {
             trigger('$job'){
@@ -32,7 +31,7 @@
 }
 
 
-         for (i in 1..4) {
+        for (i in 1..4) {
 
  job("MNTLAB-mburakouski-child${i}-build-job") {
 
@@ -42,7 +41,7 @@
 // triggers {
   //   scm 'H * * * *'
 // }
-  
+
 
 parameters {
         gitParameterDefinition{
@@ -71,4 +70,3 @@ parameters {
      }
   }
  }
-
