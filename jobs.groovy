@@ -56,6 +56,11 @@ def studname = "acherlyonok"
       triggers {
         scm 'H/5 * * * *'
       }
+
+      wrappers {
+        timestamps()
+      }
+
     }
   }
   for (number in 1..4){
@@ -82,5 +87,10 @@ def studname = "acherlyonok"
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 bash script.sh > output.txt ''')
         }
+
+      wrappers {
+        timestamps()
+      }
+      
     }
   }
