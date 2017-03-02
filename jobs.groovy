@@ -9,8 +9,8 @@ println "Error, ${proc.err.text}"
 System.exit(-1)}
 def branches = proc.in.text.readLines().collect { 
 it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')}
-def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
-name.each { println it }
+def branche = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
+//branche.each { println it }
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
@@ -20,7 +20,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('["drhr", "srgys"]')
+                script(return branche)
             }
         }
 	activeChoiceParam('BUILD_TRIGGER') {
@@ -30,10 +30,10 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             groovyScript {
                 script("""
 			return["MNTLAB-akutsko-main-build-job", 
-			"MNTLAB-akutsko-child1-build-job, 
-			"MNTLAB-akutsko-child2-build-job, 
-			"MNTLAB-akutsko-child3-build-job, 
-			"MNTLAB-akutsko-child4-build-job]
+			"MNTLAB-akutsko-child1-build-job", 
+			"MNTLAB-akutsko-child2-build-job", 
+			"MNTLAB-akutsko-child3-build-job", 
+			"MNTLAB-akutsko-child4-build-job"]
 		""")
             }
         }
