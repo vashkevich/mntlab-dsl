@@ -1,3 +1,5 @@
+def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def bs = '\'
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
