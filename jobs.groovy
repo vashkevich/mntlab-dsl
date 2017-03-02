@@ -28,7 +28,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             filterable()
             choiceType('CHECK_BOXES')
             groovyScript {
-                script('
+                script("""
 			return [
 			'MNTLAB-akutsko-main-build-job',
 			'MNTLAB-akutsko-child1-build-job', 
@@ -36,7 +36,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 			'MNTLAB-akutsko-child3-build-job', 
 			'MNTLAB-akutsko-child4-build-job'
 			]
-		')
+		""")
                 fallbackScript('"fallback choice"')
             }
         }
