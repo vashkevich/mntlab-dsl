@@ -1,8 +1,11 @@
 
 	job("MNTLAB-aslesarenka-main-build-job") {
-    scm {
-        github 'MNT-Lab/mntlab-dsl'
-    }
+   // scm {
+      //  github 'MNT-Lab/mntlab-dsl'
+   // }
+scm {
+        github("${giturl}", "${studname}")
+      }
      parameters {
         choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
     }
