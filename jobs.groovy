@@ -2,10 +2,28 @@ def giturl = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "acherlyonok"
 //create master branch
 
-  for (number in 1..4){
+  for (number in 1..2){
     job("MNTLAB-${studname}-main-build-job") {
       description("Builds main${number}")
       
+
+    parameters {
+        activeChoiceReactiveParam('BUILDS_TRIGGER') {
+            description('Allows user choose from multiple choices')
+            filterable()
+            choiceType('CHECK_BOXES')
+            groovyScript {
+                script('def used_jobs = ["MNTLAB-ac-child1-build-job", "MNTLAB-ac-child2-build-job", "MNTLAB-ac-child3-build-job", "MNTLAB-ac-child4-build-job", "MNTLAB-ac-child5-build-job"]
+                        return used_jobs')
+                fallbackScript('"fallback choice"')
+            }
+          //  referencedParameter('BOOLEAN-PARAM-1')
+          //  referencedParameter('BOOLEAN-PARAM-2')
+        }
+    }
+
+
+
       // scm git
       scm {
         git {
