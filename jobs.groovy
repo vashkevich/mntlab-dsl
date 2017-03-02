@@ -14,21 +14,17 @@ job('MNTLAB-mburakouski-main-build-job') {
 
     for  (i in 1..4){
     
-    job('MNTLAB-mburakouski-child{i}-build-job') {
+    job("MNTLAB-mburakouski-child${i}-build-job") {
     description 'Build and test the app.'
     scm {
         github 'MNT-Lab/mntlab-dsl'
         }
-    
     parameters {
-        activeChoiceReactiveParam('BRANCH_NAME') {
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script('["choice1", "choice2"]')
-                fallbackScript('"fallback choice"')
-            }
-            referencedParameter('BOOLEAN-PARAM-1')
-            referencedParameter('BOOLEAN-PARAM-2')
+       activeChoiceReactiveParam('BRANCH_NAME') {
+          choiceType('SINGLE_SELECT')
+          groovyScript {
+            script('["choice1", "choice2"]')
+          }
         }
     }
 }
@@ -49,9 +45,4 @@ job('MNTLAB-mburakouski-main-build-job') {
 }
 
 }
-
-
-
-
-
 
