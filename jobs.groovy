@@ -49,7 +49,18 @@ def studname = "acherlyonok"
         }
         // build step
         steps {
-          shell(readFileFromWorkspace('script.sh'))
+          downstreamParameterized {
+           trigger('$BUILD_TRIGGER') {
+             block {
+               buildStepFailure('FAILURE')
+               failure('FAILURE')
+               unstable('UNSTABLE')
+             }
+             parameters {
+               predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+              }
+             }
+          }
         }
       }
       triggers {
@@ -72,6 +83,16 @@ def studname = "acherlyonok"
           }
         }
       
+      parameters {
+          activeChoiceReactiveParam('BRANCH_NAME') {
+                  choiceType('SINGLE_SELECT')
+                  groovyScript {
+                    script('["origin-abilun", "origin-master"]')
+                  }
+          }
+      }
+
+
 
       // build step
         steps {
