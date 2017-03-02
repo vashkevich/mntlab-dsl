@@ -11,7 +11,7 @@ job("MNTLAB-hvysotski-main-build-job") {
         choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
                         }
         parameters {
-                activeChoiceReactiveParam('job') {
+                activeChoiceReactiveParam('BUILDS_TRIGGER') {
                 choiceType('CHECKBOX')
                 groovyScript {
                 script('return ["MNTLAB-hvysotski-child1-build-job", "MNTLAB-hvysotski-child2-build-job", "MNTLAB-hvysotski-child3-build-job", "MNTLAB-hvysotski-child4-build-job"]')
@@ -20,7 +20,7 @@ job("MNTLAB-hvysotski-main-build-job") {
            }
         steps {
         downstreamParameterized {
-            trigger('$job'){
+            trigger('$BUILDS_TRIGGER'){
                 parameters {
                     predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                         }
