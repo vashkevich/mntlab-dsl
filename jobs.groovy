@@ -85,4 +85,3 @@ bash script.sh > output.txt ''')
        }        
      }
     }
-  }
