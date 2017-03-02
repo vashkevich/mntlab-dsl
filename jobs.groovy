@@ -4,8 +4,7 @@ job('MNTLAB-ikhamiakou-main-build-job') {
         activeChoiceReactiveParam('jobs') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('def jobs = ["MNTLAB-ikhamiakou-child1-build-job", "MNTLAB-ikhamiakou-child2-build-job", "MNTLAB-ikhamiakou-child3-build-job", "MNTLAB-ikhamiakou-child4-build-job"]
-return jobs')
+                script('return ["MNTLAB-ikhamiakou-child1-build-job", "MNTLAB-ikhamiakou-child2-build-job", "MNTLAB-ikhamiakou-child3-build-job", "MNTLAB-ikhamiakou-child4-build-job"]')
             }
             
         }
@@ -36,16 +35,15 @@ return jobs')
 
 job('MNTLAB-ikhamiakou-child1-build-job') {
     
-    parameters {
-        stringParam('BRANCH_NAME')
-        
-    }
+    activeChoiceReactiveParam('jobs') {
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["ikhamiakou", "master"]')
+            }
     
     
     steps {
-        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
-        shell('chmod +x work.sh')
-        shell('./work.sh')        
+        shell('wget https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')        
             
         publishers {
         archiveArtifacts('*')
@@ -57,10 +55,11 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
 
 job('MNTLAB-ikhamiakou-child2-build-job') {
     
-    parameters {
-        stringParam('BRANCH_NAME')
-        
-    }
+    activeChoiceReactiveParam('jobs') {
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["ikhamiakou", "master"]')
+            }
     
     
     steps {
@@ -78,10 +77,11 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
 
 job('MNTLAB-ikhamiakou-child3-build-job') {
     
-    parameters {
-        stringParam('BRANCH_NAME')
-        
-    }
+    activeChoiceReactiveParam('jobs') {
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["ikhamiakou", "master"]')
+            }
     
     
     steps {
@@ -99,10 +99,11 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
 
 job('MNTLAB-ikhamiakou-child4-build-job') {
     
-    parameters {
-        stringParam('BRANCH_NAME')
-        
-    }
+    activeChoiceReactiveParam('jobs') {
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('["ikhamiakou", "master"]')
+            }
     
     
     steps {
