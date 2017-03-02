@@ -1,7 +1,7 @@
 
   job('XXX_MNTLAB-yskrabkou-main-build-job') {
         scm {
-            git("git://github.com/MNT-Lab/mntlab-dsl.git", yskrabkou)
+            git("git://github.com/MNT-Lab/mntlab-dsl.git")
         }
          triggers {
         scm('H/15 * * * *')
