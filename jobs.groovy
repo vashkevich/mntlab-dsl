@@ -9,7 +9,7 @@ job('MNTLAB-pheraska-main-build-job')
             filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('
+                script(
                        def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute()
                        def branchesList = ["pheraska"]
                        def hd = getTags.text.readLines().collect {it.split()[1].replaceAll('refs/heads/', '')  }.unique()
@@ -18,7 +18,7 @@ job('MNTLAB-pheraska-main-build-job')
                            branchesList << it
                        }
                        return branchesList.unique()
-                     ')
+                     )
             }
         }
     }
