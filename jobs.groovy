@@ -1,13 +1,5 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 
-def job_names="""
-["MNTLAB-akutsko-main-build-job", 
-"MNTLAB-akutsko-child1-build-job, 
-"MNTLAB-akutsko-child2-build-job, 
-"MNTLAB-akutsko-child3-build-job, 
-"MNTLAB-akutsko-child4-build-job]
-"""
-
 //Groovy script for 
 def command = "git ls-remote -h ${gitURL}"
 def proc = command.execute()
@@ -29,7 +21,6 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["drhr", "srgys"]')
-                fallbackScript('"fallback choice"')
             }
         }
 	activeChoiceParam('BUILD_TRIGGER') {
@@ -37,7 +28,13 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script('${job_names}')
+                script("""
+			return["MNTLAB-akutsko-main-build-job", 
+			"MNTLAB-akutsko-child1-build-job, 
+			"MNTLAB-akutsko-child2-build-job, 
+			"MNTLAB-akutsko-child3-build-job, 
+			"MNTLAB-akutsko-child4-build-job]
+		""")
             }
         }
 
