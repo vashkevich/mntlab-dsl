@@ -1,7 +1,7 @@
 job("MNTLAB-mburakouski-main-build-job") {
     scm {
 
-        github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
+        github ('MNT-Lab/mntlab-dsl', '${BRANCH_NAME}')
     }
    // triggers {
    //     scm 'H * * * *'
