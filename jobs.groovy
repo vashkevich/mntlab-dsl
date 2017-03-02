@@ -41,7 +41,7 @@ for (i = 1; i <5; i++) {
             activeChoiceReactiveParam('BRANCH_NAME') {
                     choiceType('SINGLE_SELECT')
                     groovyScript {
-                        script('["origin\abilun", "origin\master"]')
+                        script('["origin-abilun", "origin-master"]')
                     }
             }
         }
