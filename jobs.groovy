@@ -15,9 +15,9 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 		def branches = proc.in.text.readLines()
 
 		if (branches.findAll { item -> item.contains('akutsko') } )
-		{return "akutsko, master"}
+		{return["akutsko", "master"]}
 		else 
-		{return "master"}
+		{return["master"]}
 		""")
             }
         }
