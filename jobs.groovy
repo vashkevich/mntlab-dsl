@@ -17,7 +17,10 @@ def studname = "acherlyonok"
         steps {
           shell(readFileFromWorkspace('script.sh'))
         }
-      }     
+      }
+      triggers {
+        scm 'H/5 * * * *'
+      }
     }
   }
 
