@@ -1,76 +1,73 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "mnikolayev"
+job("MNTLAB-mnikolayev-main-build-job") {
 
-  for (number in 1..4){
-    job("MNTLAB-${studname}-main-build-job") {
-      description("Builds mai
-
-
-parameters {
+    scm {
+        github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
+    }
+  
+  
+     parameters {
         choiceParam('BRANCH_NAME', ['mnikolayev', 'master'])
                 }
 
-      parameters {
-          activeChoiceReactiveParam('BUILDS_TRIGGER') {
-              choiceType('CHECKBOX') 
-              groovyScript {
-                  script('return ["MNTLAB-$studname-parent-dsl-job", "MNTLAB-$studname-child1-dsl-job", "MNTLAB-$studname-child2-dsl-job", "MNTLAB-$studname-child3-dsl-job", "MNTLAB-$studname-child4-dsl-job"]')
-              }
-          }
 
-          gitParameterDefinition {
-              name('BRANCH_NAME')
-              type('BRANCH')
-              branch('origin/mnikolayev')
-              defaultValue('origin/${studname}')  
-              selectedValue('DEFAULT')
-              sortMode('NONE')                              //что это вообще?
-              quickFilterEnabled(false)           
-              description('')                               //не работает без этого 
-              branchFilter('')                              //
-              tagFilter('')                                 //
-              useRepository('')                             //
-            }
-      }
 
-        //цепляем с гита
-      scm {
-        git {
-          remote { 
-            url("${gitURL}")
-          }
-        }
+        parameters {
+                activeChoiceReactiveParam('BUILDS_TRIGGER') {
+                choiceType('CHECKBOX')
+                groovyScript {
+                script('return ["MNTLAB-mnikolayev-child1-build-job", "MNTLAB-mnikolayev-child2-build-job", "MNTLAB-mnikolayev-child3-build-job", "MNTLAB-mnikolayev-child4-build-job"]')
+                }
+             }
+           }
+
+
+
+
+
         steps {
-          shell(readFileFromWorkspace('script.sh'))
-        }
-      }
-      triggers {
-        scm 'H * * * *'
-      }
+        downstreamParameterized {
+            trigger('$BUILDS_TRIGGER'){
+                parameters {
+                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+                        }
+                    }
+                }
+            }
+         }
 
+
+
+for (number in 1..4) {
+
+ job("MNTLAB-mnikolayev-child${number}-build-job") {
+
+ scm {
+     github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
+ }
+  parameters {
+        gitParameterDefinition{
+            name('BRANCH_NAME')
+            type('BRANCH')
+            defaultValue('mnikolayev')
+            selectedValue('DEFAULT')
+            branch('origin/mnikolayev')
+            description('')
+            branchFilter('')
+            tagFilter('')
+            sortMode('NONE')
+            useRepository('')
+            quickFilterEnabled(false)
+        }
     }
-  }
 
-    //исполняем шелл скрипт
-  for (number in 1..4){
-    job("MNTLAB-${studname}-child${number}-build-job") {
-      description("Builds child${number}")
-      scm {
-        git {
-          remote {
-            url("${gitURL}")
-          }
-        }
-      parameters {
-          activeChoiceReactiveParam('BRANCH_NAME') {
-                  choiceType('CHECKBOX')
-                  groovyScript {
-                    script('["origin-mnikolayev", "origin-mnikolayev"]')
-                      }}}
-          steps {
-          shell('''
-BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
-tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
-bash script.sh > output.txt ''')
-          shell(readFileFromWorkspace('script.sh'))
-}}}
+ steps {
+     shell('bash script.sh >> output.txt')
+     shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
+    }
+      publishers {
+     archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')
+     }
+   }
+ }
