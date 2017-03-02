@@ -147,7 +147,7 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
         shell('chmod +x work.sh')
         shell('./work.sh')
         shell('rm -rf work.sh')
-        echo "Ok!!!!"       
+               
             
         publishers {
         archiveArtifacts('*')
