@@ -55,6 +55,7 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
     }
 
     steps {
+        shell('https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
                 
@@ -82,6 +83,7 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
     }
     
     steps {
+        shell('https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
                 
@@ -110,6 +112,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
     }
 
     steps {
+        shell('https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
                 
@@ -140,6 +143,7 @@ job('MNTLAB-ikhamiakou-child4-build-job') {
 
 
     steps {
+        shell('https://raw.githubusercontent.com/MNT-Lab/mntlab-dsl/ikhamiakou/work.sh')
         shell('chmod +x work.sh')
         shell('./work.sh')
                 
