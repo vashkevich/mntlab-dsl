@@ -3,14 +3,33 @@ job("MNTLAB-imanzhulin-main-build-job") {
         github('MNT-Lab/mntlab-dsl','imanzhulin')
     }
      parameters {
-      	 activeChoiceParam('BRANCH_NAME') {
-            description('Allows user choose from multiple choices')
+      /* activeChoiceParam('BRANCH_NAME') {
+           description('Allows user choose from multiple choices')
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('return["imanzhulin", "master"];')
                            }
         }
-                  
+        */
+	  gitParameterDefinition {
+              name('BRANCH_NAME')
+              type('BRANCH')
+              branch('imanzhulin')
+              defaultValue('imanzhulin')
+              selectedValue('DEFAULT')
+
+              description('')
+              branchFilter('')
+              tagFilter('')
+              sortMode('NONE')
+              useRepository('')
+              quickFilterEnabled(false)
+            }
+	     
+	     
+	     
+	     
+	     
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
             choiceType('CHECKBOX')
             groovyScript {
