@@ -7,7 +7,7 @@ job('MNTLAB-mburakouski-main-build-job') {
         activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job"]')
+                script('return ["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job"]')
               }
          }
     }
