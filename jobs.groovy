@@ -1,4 +1,4 @@
-job("MNTLAB-aslesarenka-main-build-job") {
+/*job("MNTLAB-aslesarenka-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
@@ -31,7 +31,7 @@ job("MNTLAB-aslesarenka-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
-   /* parameters {
+    parameters {
         choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
     }   
     
@@ -45,7 +45,47 @@ job("MNTLAB-aslesarenka-main-build-job") {
     }
 
 }*/
-		 parameters {
+	job("MNTLAB-hvysotski-main-build-job") {
+    scm {
+        github 'MNT-Lab/mntlab-dsl'
+    }
+    //triggers {
+    //    scm 'H * * * *'
+    //}
+     parameters {
+        choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
+    }
+    
+     parameters {
+        activeChoiceReactiveParam('BUILDS_TRIGGER') {
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('return ["MNTLAB-hvysotski-child1-build-job", "MNTLAB-hvysotski-child2-build-job", "MNTLAB-hvysotski-child3-build-job", "MNTLAB-hvysotski-child4-build-job"]'
+                      )
+                }          
+           }   
+        }
+    steps {
+	   downstreamParameterized {
+			trigger('${BUILDS_TRIGGER}') {
+				parameters {
+					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+				}
+			}
+		}
+	}
+    
+    for (i in 1..4) {
+    
+    job("MNTLAB-hvysotski-child${i}-build-job") {
+    
+    scm {
+        github 'MNT-Lab/mntlab-dsl'
+    }
+    //triggers {
+    //    scm 'H * * * *'
+    //}
+     parameters {
         choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
     }   
     
@@ -59,4 +99,7 @@ job("MNTLAB-aslesarenka-main-build-job") {
               }          
      }
     }
-  }     
+  } 
+
+
+  
