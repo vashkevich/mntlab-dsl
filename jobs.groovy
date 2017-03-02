@@ -1,17 +1,12 @@
 job("MNTLAB-mburakouski-main-build-job") {
-    description 'Building one main job and four child'
-    scm {
-        github 'MNT-Lab/mntlab-dsl'
-    }
     triggers {
-        scm 'H/5 * * * *'
-    }
+        scm '* * * * *'
+   	     }
      parameters {
         choiceParam('BRANCH_NAME', ['mburakouski (default)', 'master'])
-    }
-    
-     parameters {
-        activeChoiceReactiveParam('BUILDS_TRIGGER') {
+                }
+    parameters {
+        activeChoiceReactiveParam('job') {
             choiceType('CHECKBOX')
             groovyScript {
                 script('return ["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child3-build-job", "MNTLAB-mburakouski-child4-build-job"]'
@@ -19,16 +14,17 @@ job("MNTLAB-mburakouski-main-build-job") {
                 }          
            }   
         }
+}
+    
 
-    for  (i in 1..4){
+for  (i in 1..4){
     
     job("MNTLAB-mburakouski-child${i}-build-job") {
     description 'Build and test the app.'
     scm {
         github 'MNT-Lab/mntlab-dsl'
         }
- }
-    
+  
     triggers {
         scm('* * * * *')
     }
@@ -42,6 +38,5 @@ job("MNTLAB-mburakouski-main-build-job") {
     publishers {
         archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
     }
-}
-
+    }
 }
