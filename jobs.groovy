@@ -17,7 +17,7 @@ for (number in 1..4){
     	scm {
           git("${giturl}","${studname}")
     	    }
-	steps { shell "echo hello"}
+	steps { shell "echo 'hello'"}
     	
 	}
 } 
