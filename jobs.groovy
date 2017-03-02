@@ -4,12 +4,8 @@ job('MNTLAB-mburakouski-main-build-job') {
         github 'MNT-Lab/mntlab-dsl'
         }
     parameters {
-        activeChoiceReactiveParam('BRANCH_NAME') {
-            choiceType('CHECKBOX')
-            groovyScript {
-                script('return ["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job"]')
-              }
-         }
+        choiceParam('BRANCH_NAME', ['mburakouski (default)', 'master'])
+        
     }
 
     for  (i in 1..4){
