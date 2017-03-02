@@ -86,7 +86,7 @@ def studname = "acherlyonok"
           activeChoiceReactiveParam('BRANCH_NAME') {
                   choiceType('SINGLE_SELECT')
                   groovyScript {
-                    script('["origin-abilun", "origin-master"]')
+                    script('["origin-acherlyonok", "origin-acherlyonok"]')
                   }
           }
       }
