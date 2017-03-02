@@ -1,4 +1,4 @@
-job('DSL-Tutorial-1-Test') {
+job('DSL-Tutorial-2-Test') {
     scm {
         git('https://github.com/MNT-Lab/mntlab-dsl')
     }
