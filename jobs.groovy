@@ -22,6 +22,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             groovyScript {
                 script("""
 //Groovy script for 
+def bs = '\'
 def command = "git ls-remote -h ${gitURL}"
 def proc = command.execute()
 proc.waitFor()
@@ -29,7 +30,7 @@ if ( proc.exitValue() != 0 ) {
 println "Error, ${proc.err.text}"
 System.exit(-1)}
 def branches = proc.in.text.readLines().collect {
-it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')}
+it.replaceAll(/[a-z0-9]*\trefs$bs/heads$bs//, '')}
 def branche = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
 branche.each { println it }
 return branche
