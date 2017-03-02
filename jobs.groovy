@@ -31,7 +31,7 @@ job("MNTLAB-aslesarenka-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
-     parameters {
+   /* parameters {
         choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
     }   
     
@@ -44,4 +44,19 @@ job("MNTLAB-aslesarenka-main-build-job") {
 	    }
     }
 
-}
+}*/
+		 parameters {
+        choiceParam('BRANCH_NAME', ['hvysotski', 'master'])
+    }   
+    
+    steps {
+        shell('chmod +x script.sh')
+        shell('./script.sh >> output.txt')
+        shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
+       }
+   publishers {
+    archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')      
+              }          
+     }
+    }
+  }     
