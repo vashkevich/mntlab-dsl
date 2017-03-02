@@ -9,7 +9,6 @@ job("MNTLAB-aslesarenka-main-build-job") {
               branch('origin/user')
               defaultValue('origin/user')
               selectedValue('DEFAULT')
-
               description('')
               branchFilter('')
               tagFilter('')
@@ -53,4 +52,4 @@ job("MNTLAB-aslesarenka-main-build-job") {
         shell('./script.sh')    
         shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
         shell('bash script.sh > output.txt')   
-       }}}
+    }}}}
