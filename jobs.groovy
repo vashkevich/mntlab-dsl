@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def giturl = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "acherlyonok"
 //create master branch
@@ -43,6 +42,3 @@ def studname = "acherlyonok"
       }
     }
   } 
-=======
-#1
->>>>>>> 9f06c8994df798b3440671eaeca99a8e9aaddeaf
