@@ -44,17 +44,21 @@
 // }
   
 
-parameters
-        {
-            activeChoiceParam('BRANCH_NAME')
-          	{
-                choiceType('SINGLE_SELECT')
-                groovyScript
-                	{
-                    script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["mburakouski"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
-                	}
-            	}
+parameters {
+        gitParameterDefinition{
+            name('BRANCH_NAME')
+            type('BRANCH')
+            defaultValue('mburakouski')
+            selectedValue('DEFAULT')
+            branch('origin/mburakouski')
+            description('')
+            branchFilter('')
+            tagFilter('')
+            sortMode('NONE')
+            useRepository('')
+            quickFilterEnabled(false)
         }
+    }
 
  steps {
      shell('touch output.txt')
