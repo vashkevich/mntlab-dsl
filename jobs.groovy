@@ -1,16 +1,14 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "mnikolayev"
-//create master branch
 
   for (number in 1..2){
     job("MNTLAB-${studname}-main-build-job") {
       description("Builds main${number}")
       
-      //activeChoiceReactiveParam 
       parameters {
           activeChoiceReactiveParam('BUILDS_TRIGGER') {
               description('Allows user choose from multiple choices')
-              choiceType('CHECKBOX')
+              choiceType('CHECKBOX') // не работает почему-то тоже
               groovyScript {
                   script('def used_jobs = ["MNTLAB-$studname-parent-dsl-job", "MNTLAB-$studname-child1-dsl-job", "MNTLAB-$studname-child2-dsl-job", "MNTLAB-$studname-child3-dsl-job", "MNTLAB-$studname-child4-dsl-job"] \n return used_jobs')
               }
@@ -20,10 +18,10 @@ def studname = "mnikolayev"
               name('BRANCH_NAME')
               type('BRANCH')
               branch('origin/mnikolayev')
-              defaultValue('origin/mnikolayev')  
+              defaultValue('origin/${studname}')  
               selectedValue('DEFAULT')
-              sortMode('NONE')                    //что это?
-              quickFilterEnabled(false)           //
+              sortMode('NONE')                    //что это вообще?
+              quickFilterEnabled(false)           
               description('')   //не работает без этого 
               branchFilter('')  //
               tagFilter('')     //
@@ -31,11 +29,10 @@ def studname = "mnikolayev"
             }
       }
 
-//цепляем с гита
+        //цепляем с гита
       scm {
         git {
           remote { 
-
             url("${gitURL}")
           }
         }
@@ -44,13 +41,13 @@ def studname = "mnikolayev"
         }
       }
       triggers {
-        scm '*/10 * * * *'
+        scm '*/15 * * * *'
       }
 
     }
   }
 
-//исполняем шелл скрипт
+    //исполняем шелл скрипт
   for (number in 1..4){
     job("MNTLAB-${studname}-child${number}-build-job") {
       description("Builds child${number}")
@@ -60,7 +57,19 @@ def studname = "mnikolayev"
             url("${gitURL}")
           }
         }
-        steps { 
+      parameters {
+          activeChoiceReactiveParam('BRANCH_NAME') {
+                  choiceType('CHECKBOX')
+                  groovyScript {
+                    script('["origin-mnikolayev", "origin-mnikolayev"]')
+                      }
+                    }
+                  }
+          steps {
+          shell('''
+BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
+bash script.sh > output.txt ''')
           shell(readFileFromWorkspace('script.sh'))
         }
       }
