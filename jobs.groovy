@@ -26,7 +26,7 @@ job("MNTLAB-aslesarenka-main-build-job") {
              // sortMode('NONE')
              // useRepository('')
              // quickFilterEnabled(false)
-            //}
+            }
      }
     publishers {
 	   downstreamParameterized {
