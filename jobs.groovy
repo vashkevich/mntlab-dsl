@@ -2,8 +2,7 @@ def giturl = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "acherlyonok"
 //create master branch
 
-  for (number in 1..1){
-    job("MNTLAB-${studname}-main${number}-build-job") {
+    job("MNTLAB-${studname}-main-build-job") {
       description("Builds main${number}")
       
       // scm git
@@ -21,7 +20,6 @@ def studname = "acherlyonok"
         } 
       }
     }
-  } 
 
   for (number in 1..4){
     job("MNTLAB-${studname}-child${number}-build-job") {
