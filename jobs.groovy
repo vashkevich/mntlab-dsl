@@ -1,8 +1,3 @@
-def jobsNamesArray = [];
-for (i = 0; i <4; i++) {
-    jobsNamesArray.push("MNTLAB-pheraska-child${i}-build-job")
-}
-
 job('MNTLAB-pheraska-main-build-job') 
 {
     scm {
@@ -20,7 +15,7 @@ job('MNTLAB-pheraska-main-build-job')
             description('Allows to choose branch from repository')
             choiceType('CHECKBOX')
             groovyScript {
-                script('return jobsNamesArray')
+                script('def jobsNamesArray = [];for (i = 0; i <4; i++){ jobsNamesArray.push("MNTLAB-pheraska-child${i}-build-job");};return jobsNamesArray')
 		}
         }
     }
