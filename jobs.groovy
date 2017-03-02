@@ -39,24 +39,25 @@ def studname = "acherlyonok"
       }
         // build step
       steps {
-         downstreamParameterized {
-           trigger('$BUILDS_TRIGGER') {
-             block {
-               buildStepFailure('FAILURE')
-               failure('FAILURE')
-               unstable('UNSTABLE')
-             }
-             parameters {
-               predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-             }
+        downstreamParameterized {
+          trigger('$BUILDS_TRIGGER') {
+            block {
+              buildStepFailure('FAILURE')
+              failure('FAILURE')
+              unstable('UNSTABLE')
+            }
+            parameters {
+              predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+            }
           }
-         }
-       }
+        }
+      }
     
       triggers {
         scm 'H/5 * * * *'
       }
-
+    }
+  }
   for (number in 1..4){
     job("MNTLAB-${studname}-child${number}-build-job") {
       description("Builds child${number}")
@@ -83,5 +84,5 @@ tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 bash script.sh > output.txt ''')
           //shell(readFileFromWorkspace('script.sh'))
         }
-      }
     }
+  }
