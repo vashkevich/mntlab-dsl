@@ -14,6 +14,8 @@ job("MNTLAB-${student}-main-build-job") {
 		git(giturl, "\${BRANCH_NAME}")
 	}
 
+
+
 }
 
 for(i in 1..4) {
@@ -21,5 +23,9 @@ for(i in 1..4) {
 		scm {
 			git(giturl, "\${BRANCH_NAME}" )
 		}
+	parameters {
+		stringParam("BRANCH_NAME", 'origin/sivanchic') 
+	}
+
 	}
 }
