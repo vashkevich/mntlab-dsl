@@ -50,6 +50,8 @@ job("MNTLAB-aslesarenka-main-build-job") {
     steps {
         shell('chmod +x script.sh')
         shell('./script.sh')
+	//shell('touch output.txt') 
+	    
         shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-        shell('touch output.txt')   
+        shell('bash script.sh > output.txt')   
        }}}} 
