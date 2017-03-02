@@ -13,8 +13,7 @@ def studname = "acherlyonok"
             filterable()
             choiceType('CHECK_BOXES')
             groovyScript {
-                script('def used_jobs = ["MNTLAB-ac-child1-build-job", "MNTLAB-ac-child2-build-job", "MNTLAB-ac-child3-build-job", "MNTLAB-ac-child4-build-job", "MNTLAB-ac-child5-build-job"]
-                        return used_jobs')
+                script('def used_jobs = ["MNTLAB-ac-child1-build-job", "MNTLAB-ac-child2-build-job", "MNTLAB-ac-child3-build-job", "MNTLAB-ac-child4-build-job", "MNTLAB-ac-child5-build-job"] \n return used_jobs')
                 fallbackScript('"fallback choice"')
             }
           //  referencedParameter('BOOLEAN-PARAM-1')
