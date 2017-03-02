@@ -4,7 +4,7 @@ job("MNTLAB-mburakouski-main-build-job") {
         github 'MNT-Lab/mntlab-dsl'
     }
     triggers {
-        scm 'H * * * *'
+        scm 'H/5 * * * *'
     }
      parameters {
         choiceParam('BRANCH_NAME', ['mburakouski (default)', 'master'])
@@ -27,15 +27,7 @@ job("MNTLAB-mburakouski-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
         }
-    parameters {
-       activeChoiceReactiveParam('BRANCH_NAME') {
-          choiceType('SINGLE_SELECT')
-          groovyScript {
-            script('["choice1", "choice2"]')
-          }
-        }
-    }
-}
+ }
     
     triggers {
         scm('* * * * *')
@@ -53,4 +45,3 @@ job("MNTLAB-mburakouski-main-build-job") {
 }
 
 }
-
