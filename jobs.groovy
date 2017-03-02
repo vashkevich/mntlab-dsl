@@ -14,7 +14,16 @@ job("MNTLAB-${student}-main-build-job") {
 		git(giturl, "\${BRANCH_NAME}")
 	}
 
-
+	publishers {
+		downstreamParameterized {
+			trigger('MNTLAB-sivanchic-child1-build-job, MNTLAB-sivanchic-child2-build-job, MNTLAB-sivanchic-child3-build-job, MNTLAB-sivanchic-child4-build-job') {
+				condition('UNSTABLE_OR_BETTER')
+				parameters {
+					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+				}
+			}
+		}
+	}
 
 }
 
@@ -25,6 +34,10 @@ for(i in 1..4) {
 		}
 	parameters {
 		stringParam("BRANCH_NAME", 'origin/sivanchic') 
+	}
+
+	steps {
+		shell('echo \$BRANCH_NAME')
 	}
 
 	}
