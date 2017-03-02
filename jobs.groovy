@@ -12,7 +12,7 @@ def studname = "acherlyonok"
               description('Allows user choose from multiple choices')
               choiceType('CHECKBOX')
               groovyScript {
-                  script('def used_jobs = ["MNTLAB-acherlyonok-child1-build-job", "MNTLAB-acherlyonok-child2-build-job", "MNTLAB-acherlyonok-child3-build-job", "MNTLAB-acherlyonok-child4-build-job", "MNTLAB-acherlyonok-child5-build-job"] \n return used_jobs')
+                  script('def used_jobs = ["MNTLAB-acherlyonok-child1-build-job", "MNTLAB-acherlyonok-child2-build-job", "MNTLAB-acherlyonok-child3-build-job", "MNTLAB-acherlyonok-child4-build-job"] \n return used_jobs')
               }
           }
 
