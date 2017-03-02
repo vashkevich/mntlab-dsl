@@ -22,7 +22,7 @@ job("MNTLAB-${student}-main-build-job") {
 
 	publishers {
 		downstreamParameterized {
-			trigger('CHILDREN') {
+			trigger('$CHILDREN') {
 				condition('UNSTABLE_OR_BETTER')
 				parameters {
 					predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
