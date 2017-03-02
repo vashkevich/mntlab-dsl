@@ -9,8 +9,12 @@
         choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
                         }
         parameters {
-     choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
- 					}
+                activeChoiceReactiveParam('BUILDS_TRIGGER') {
+                choiceType('CHECKBOX')
+                groovyScript {
+                script('return ["MNTLAB-mburakouski-child1-build-job", "MNTLAB-mburakouski-child2-build-job", "MNTLAB-mburakouski-child3-build-job", "MNTLAB-mburakouski-child4-build-job"]')
+                }
+             }
            
         steps {
         downstreamParameterized {
@@ -43,14 +47,13 @@
 parameters
         {
             activeChoiceParam('BRANCH_NAME')
-          {
-                description('Allows to choose branch from repository')
+          	{
                 choiceType('SINGLE_SELECT')
                 groovyScript
-                {
+                	{
                     script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["mburakouski"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
-                }
-            }
+                	}
+            	}
         }
 
  steps {
