@@ -63,11 +63,10 @@ job('MNTLAB-amatveenko-child' + i + '-build-job') {
 	  BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
 	  tar -czvf $BRANCH_NAME_dsl_script.tar.gz jobs.groovy output.txt
           ls -lh
-          echo $BRANCH_NAME
           ''')
 	}
           publishers {
-          archiveArtifacts('$BRANCH_NAME_dsl_script.tar.gz')
+          archiveArtifacts('*.tar.gz')
           }
 }
 }
