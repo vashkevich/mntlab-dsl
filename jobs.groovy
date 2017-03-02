@@ -24,8 +24,8 @@ def studname = "acherlyonok"
             gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
-              branch('origin/acherlyonok')
-              defaultValue('origin/acherlyonok')
+              branch('acherlyonok')
+              defaultValue('acherlyonok')
               selectedValue('DEFAULT')
 
               description('')
@@ -86,7 +86,7 @@ def studname = "acherlyonok"
           activeChoiceReactiveParam('BRANCH_NAME') {
                   choiceType('SINGLE_SELECT')
                   groovyScript {
-                    script('["origin-acherlyonok", "origin-acherlyonok"]')
+                    script('["acherlyonok", "acherlyonok"]')
                   }
           }
       }
