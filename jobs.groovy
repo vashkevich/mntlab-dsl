@@ -31,11 +31,17 @@ job('MNTLAB-' + mybranch + '-main-build-job')
           github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
         }
 
-        publishers
-         {
-        	 publishBuild 
-        	 {
-            	 discardOldBuilds(7, 10)
-             }
-         }
+          steps {
+        downstreamParameterized {
+            trigger('$BUILD_TRIGGER') {
+		block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+                parameters {
+                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+                }
+            }
+        }
     }
