@@ -1,21 +1,21 @@
 for (i = 1; i < 5; i++)
 {
-    job('MNTLAB-pheraska-child' + i + '-build-job') 
+    job('MNTLAB-pheraska-child' + i + '-child-job') 
     {
         parameters
         {
             activeChoiceParam('BRANCH_NAME_CHILD')
 	        {
-                    description('Allows to choose branch from repository')
-                    choiceType('SINGLE_SELECT')
-                    groovyScript
-                    {
-                        script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["pheraska"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
-                    }
+                description('Allows to choose branch from repository')
+                choiceType('SINGLE_SELECT')
+                groovyScript
+                {
+                    script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def brnchList = ["pheraska"];def hd = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique();hd.each{ brnchList.push(it);};return brnchList.unique();')
+                }
             }
         }
 
-        scm
+        /*scm
         {
             git
             {
@@ -26,6 +26,11 @@ for (i = 1; i < 5; i++)
                 }
                 branch('$BRANCH_NAME')
             } 
+        }
+*/
+        scm
+        {
+            github('MNT-Lab/mntlab-dsl', 'pheraska')
         }
 
         steps
