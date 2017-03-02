@@ -52,13 +52,14 @@ job('MNTLAB-amatveenko-child' + i + '-build-job') {
         activeChoiceReactiveParam('BRANCH_NAME') {
         choiceType('SINGLE_SELECT')
         groovyScript {
-        script('["amatveenko", "master"]')
+        script('["origin/amatveenko", "origin/master"]')
         }
         }
   }
 
   steps {
         shell('''
+          cd $WORKSPACE
           bash script.sh > output.txt
           tar -czvf *_dsl_script.tar.gz jobs.groovy
           ls -lh
