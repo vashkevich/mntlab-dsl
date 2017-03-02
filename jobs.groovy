@@ -63,7 +63,7 @@ for (i in 1..4) {
 
 	steps {
 	shell('chmod +x script.sh')
-        shell('/usr/bin/sh ${WORKSPACE}/script.sh > ${WORKSPACE}/output.txt')
+        shell('./script.sh > ${WORKSPACE}/output.txt')
 //        shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
     publishers {
         archiveArtifacts('output.txt')
