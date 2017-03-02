@@ -58,7 +58,7 @@ for (number in 1..4){
       scm {
           git{
 		remote { url("${giturl}")}
-		branch("$studname")
+		branch("${BRANCH_NAME}")
     	    }}
 	steps { shell ('''sh script.sh > output.txt
 			 tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy output.txt
