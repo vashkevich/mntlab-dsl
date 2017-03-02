@@ -1,8 +1,8 @@
 class Branch_Script {
 			def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-			def command = "git ls-remote -h ${gitURL}"
+			def command = "git ls-remote -h ${giturl}"
                         def proc = command.execute()
-                        //proc.waitFor()              
+                        process.waitFor()              
                         if ( proc.exitValue() != 0 ) {
                                  println "Error, ${proc.err.text}"
                                  System.exit(-1)}
@@ -24,7 +24,7 @@ def studname = "akaminski"
 job("MNTLAB-${studname}-main-build")
 {
        parameters {
-		activeChoiceParam('BRANCH_NAME') {
+		activeChoiceReactiveParam('BRANCH_NAME') {
             description('You can choose name of branch from GitHub repository')
             filterable()
             choiceType('SINGLE_SELECT')
