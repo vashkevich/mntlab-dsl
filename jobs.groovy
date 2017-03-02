@@ -45,9 +45,6 @@ job('MNTLAB-pheraska-main-build-job')
 	
     parameters
     {
-	//gitParam('BRANCH_NAME') {
-       /// 	type('BRANCH')
-       // }
         activeChoiceParam('BRANCH_NAME') 
 	    {
             description('Allows to choose branch from repository')
