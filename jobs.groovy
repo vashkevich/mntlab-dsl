@@ -9,18 +9,17 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script("""
-		def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+        	def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 		def command = "git ls-remote -h $gitURL"
 		def proc = command.execute()
-		def branches = proc.in.text.readLines()
 
-		if (branches.findAll { item -> item.contains('akutsko') } )
-		{return["akutsko", "master"]}
-		else 
-		{return["master"]}
+		def branches = proc.in.text.readLines().collect { 
+        	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
+		//def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
+
+		branches.each { println it }
 		""")
-            }
-        }
+}
 	activeChoiceParam('BUILD_TRIGGER') {
             description('You can choose jobs for works')
             filterable()
