@@ -11,7 +11,6 @@ job("MNTLAB-hvysotski-main-build-job") {
     
      parameters {
         activeChoiceReactiveParam('BUILDS_TRIGGER') {
-            filterable()
             choiceType('CHECKBOX')
             groovyScript {
                 script('return ["MNTLAB-hvysotski-child1-build-job", "MNTLAB-hvysotski-child2-build-job", "MNTLAB-hvysotski-child3-build-job", "MNTLAB-hvysotski-child4-build-job"]'
