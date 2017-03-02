@@ -1,16 +1,20 @@
 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
 def studname = "mnikolayev"
 
-  for (number in 1..2){
+  for (number in 1..4){
     job("MNTLAB-${studname}-main-build-job") {
-      description("Builds main${number}")
-      
+      description("Builds mai
+
+
+parameters {
+        choiceParam('BRANCH_NAME', ['mnikolayev', 'master'])
+                }
+
       parameters {
           activeChoiceReactiveParam('BUILDS_TRIGGER') {
-              description('Allows user choose from multiple choices')
-              choiceType('CHECKBOX') // не работает почему-то тоже
+              choiceType('CHECKBOX') 
               groovyScript {
-                  script('def used_jobs = ["MNTLAB-$studname-parent-dsl-job", "MNTLAB-$studname-child1-dsl-job", "MNTLAB-$studname-child2-dsl-job", "MNTLAB-$studname-child3-dsl-job", "MNTLAB-$studname-child4-dsl-job"] \n return used_jobs')
+                  script('return ["MNTLAB-$studname-parent-dsl-job", "MNTLAB-$studname-child1-dsl-job", "MNTLAB-$studname-child2-dsl-job", "MNTLAB-$studname-child3-dsl-job", "MNTLAB-$studname-child4-dsl-job"]')
               }
           }
 
@@ -20,12 +24,12 @@ def studname = "mnikolayev"
               branch('origin/mnikolayev')
               defaultValue('origin/${studname}')  
               selectedValue('DEFAULT')
-              sortMode('NONE')                    //что это вообще?
+              sortMode('NONE')                              //что это вообще?
               quickFilterEnabled(false)           
-              description('')   //не работает без этого 
-              branchFilter('')  //
-              tagFilter('')     //
-              useRepository('') //
+              description('')                               //не работает без этого 
+              branchFilter('')                              //
+              tagFilter('')                                 //
+              useRepository('')                             //
             }
       }
 
