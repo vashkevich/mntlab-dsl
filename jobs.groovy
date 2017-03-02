@@ -43,7 +43,7 @@ job('MNTLAB-ikhamiakou-main-build-job') {
 job('MNTLAB-ikhamiakou-child1-build-job') {
     
     parameters{
-        activeChoiceReactiveParam('jobs') {
+        activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
@@ -71,7 +71,7 @@ job('MNTLAB-ikhamiakou-child1-build-job') {
 job('MNTLAB-ikhamiakou-child2-build-job') {
     
     parameters{
-        activeChoiceReactiveParam('jobs') {
+        activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
@@ -100,7 +100,7 @@ job('MNTLAB-ikhamiakou-child2-build-job') {
 job('MNTLAB-ikhamiakou-child3-build-job') {
     
     parameters{
-        activeChoiceReactiveParam('jobs') {
+        activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
@@ -129,7 +129,7 @@ job('MNTLAB-ikhamiakou-child3-build-job') {
 job('MNTLAB-ikhamiakou-child4-build-job') {
     
     parameters{
-        activeChoiceReactiveParam('jobs') {
+        activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('["ikhamiakou", "master"]')
