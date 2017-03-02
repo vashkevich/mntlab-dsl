@@ -20,15 +20,14 @@ def studname = "mnikolayev"
               name('BRANCH_NAME')
               type('BRANCH')
               branch('origin/${studname}')
-              defaultValue('origin/${studname}')
+              defaultValue('origin/${studname}')  
               selectedValue('DEFAULT')
-
-//              description('')
-//              branchFilter('')
-//              tagFilter('')
-              sortMode('NONE')
-//              useRepository('')
-              quickFilterEnabled(false)
+              sortMode('NONE')                    //что это?
+              quickFilterEnabled(false)           //
+              description('')   //не работает без этого 
+              branchFilter('')  //
+              tagFilter('')     //
+              useRepository('') //
             }
       }
 
