@@ -7,7 +7,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script("""
+                script(
 			def command = "git ls-remote -h ${gitURL}"
                         def proc = command.execute()
                         proc.waitFor()              
@@ -15,11 +15,11 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
                                  println "Error, ${proc.err.text}"
                                  System.exit(-1)}
                                  def branches = proc.in.text.readLines().collect { 
-                                 it.replaceAll(/[a-z0-9]*\trefs/heads//, '')}
+                                 it.replaceAll(/[a-z0-9]*\trefs\/heads\//, '')}
                                  def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
                                  name.each { println it }
 
-		""")
+		)
                 fallbackScript('"fallback choice"')
             }
         }
