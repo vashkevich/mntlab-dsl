@@ -54,4 +54,4 @@ job("MNTLAB-hvysotski-main-build-job") {
         archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')
                }
   } 
-  }  
+  } 
