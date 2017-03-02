@@ -27,6 +27,14 @@ def studname = "acherlyonok"
               branch('origin/acherlyonok')
               defaultValue('origin/acherlyonok')
               selectedValue('DEFAULT')
+
+              description('')
+              branchFilter('')
+              tagFilter('')
+              sortMode('')
+              useRepository('')
+              quickFilterEnabled(false)
+
             }
           }  
           
