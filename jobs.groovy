@@ -15,8 +15,10 @@ def studname = "acherlyonok"
         }
       
 
-      // build step
-      steps { shell "echo 'hello'"} 
+        // build step
+        steps { 
+          shell(readFileFromWorkspace('script.sh'))
+        } 
       }
     }
   } 
@@ -35,7 +37,9 @@ def studname = "acherlyonok"
       
 
       // build step
-      steps { shell "echo 'hello'"} 
+        steps { 
+          shell "echo 'hello'"
+        } 
       }
     }
   } 
