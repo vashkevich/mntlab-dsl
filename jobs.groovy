@@ -3,7 +3,6 @@ mybranch = 'yskrabkou'
 job('MNTLAB-' + mybranch + '-main-build-job') 
 	{
 		logRotator(30)
-		discardOldBuilds(7, 10)
 		parameters
         {        	 
             activeChoiceParam('BRANCH_NAME')
