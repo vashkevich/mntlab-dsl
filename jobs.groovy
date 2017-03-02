@@ -1,4 +1,4 @@
-
+def giturl = "MNT-Lab/mntlab-dsl"
 	job("MNTLAB-aslesarenka-main-build-job") {
    // scm {
       //  github 'MNT-Lab/mntlab-dsl'
