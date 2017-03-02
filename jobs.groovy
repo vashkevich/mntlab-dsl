@@ -71,16 +71,17 @@ job('MNTLAB-pheraska-main-build-job')
             {
                 trigger('$BUILDS_TRIGGER') 
                 {
+			
+                    parameters
+                    {
+                        predefinedProp('BRANCH_NAME', '$BRANCH_NAME');
+                    }
 		    block 
 		    {
 	                buildStepFailure('FAILURE');
 			failure('FAILURE');
 			unstable('UNSTABLE');
 		    }
-                    parameters
-                    {
-                        predefinedProp('BRANCH_NAME', '$BRANCH_NAME');
-                    }
                 }
             }
         }          
