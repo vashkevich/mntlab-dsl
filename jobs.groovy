@@ -2,21 +2,9 @@ job("MNTLAB-aslesarenka-main-build-job") {
     scm {
         github 'MNT-Lab/mntlab-dsl'
     }
-     parameters {
-    	gitParameterDefinition {
-              name('BRANCH_NAME')
-              type('BRANCH')
-              branch('origin/user')
-              defaultValue('origin/user')
-              selectedValue('DEFAULT')
-              description('')
-              branchFilter('')
-              tagFilter('')
-              sortMode('NONE')
-              useRepository('')
-              quickFilterEnabled(false)
-            }
-        }
+	 parameters {
+        choiceParam('BRANCH_NAME', ['aslesarenka', 'master'])
+    }
     }
     
      parameters {
