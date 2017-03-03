@@ -87,13 +87,11 @@ println "main job was created"
 }
 }
 }
-println "${BRANCH_NAME}"      
-      // scm git
+// scm git
       scm {
         github("${gitURI}", "${BRANCH_NAME}")
       }
-println "2222"      
-      // build step
+// build step
         steps {
           shell("""
 		cat script.sh > output.txt
