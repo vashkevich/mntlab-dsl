@@ -13,7 +13,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
             groovyScript {
                 script("""
         	def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-		def command = "git ls-remote -h $gitURL"
+		def command = "git ls-remote -h ${gitURL}"
 		def proc = command.execute()
 
 		def branches = proc.in.text.readLines().collect { 
@@ -56,7 +56,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
               unstable('UNSTABLE')
             }
             parameters {
-              predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+              predefinedProp('BRANCH_NAME', '${BRANCH_NAME}')
             }
           }
         }
@@ -92,7 +92,7 @@ for (number in 1..4){
       
       // scm git
       scm {
-        github("$gitURI", "$BRANCH_NAME")
+        github("${gitURI}", "${BRANCH_NAME}")
       }
       
       parameters {stringParam('BUILD_TRIGGER', '')}
