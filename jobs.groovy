@@ -62,7 +62,7 @@ child_jobs_list.each {
 		shell('echo "Job $JOB_NAME is running..."')
 		shell('chmod +x script.sh')
 	        shell('./script.sh > output.txt')
-		shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
+		shell('if [[ -e jobs.groovy ]]; then tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh; else tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh; fi')
 	    }
 	    publishers {
 	        archiveArtifacts('output.txt')
