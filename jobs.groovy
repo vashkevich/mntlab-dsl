@@ -72,7 +72,7 @@ for (i in 1..4)
 		{
    	    	stringParam('BRANCH_NAME', 'master')
 
-   	    	activeChoiceParam('BRANCH_NAME')
+   	    	activeChoiceParam('BRANCH_NAME1')
 	        {
                 description('Allows to choose branch from repository')
                 choiceType('SINGLE_SELECT')
