@@ -1,12 +1,48 @@
+for (i in 1..4)
+{
+    job('MNTLAB-mburakouski-child' + i + '-build-job')
+    {
+        parameters
+        {
+            activeChoiceParam('BRANCH_NAME')
+                {
+                description('Allows to choose branch from repository')
+                choiceType('SINGLE_SELECT')
+                groovyScript
+                {
+                script(readFileFromWorkspace('work.groovy'))
+                }
+            }
+        }
+
+        scm
+        {
+            github('MNT-Lab/mntlab-dsl', '${BRANCH_NAME}')
+        }
+
+        steps
+        {
+           shell('chmod +x script.sh')
+           shell('./script.sh > output.txt')
+           shell('tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
+        }
+
+        publishers
+        {
+            archiveArtifacts('output.txt')
+            archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz')
+        }
+    }
+}
 job("MNTLAB-mburakouski-main-build-job") {
     scm {
         github ('MNT-Lab/mntlab-dsl', '*/${BRANCH_NAME}')
     }
-    
+
    // triggers {
    //     scm 'H * * * *'
    // }
-    
+
      parameters {
         choiceParam('BRANCH_NAME', ['mburakouski', 'master'])
                 }
@@ -21,6 +57,13 @@ job("MNTLAB-mburakouski-main-build-job") {
         steps {
         downstreamParameterized {
             trigger('$BUILDS_TRIGGER'){
+                block {
+                        //main job fails if any step in child jobs fails
+                        buildStepFailure('FAILURE')
+                        //main job fails if any child job fails
+                        failure('FAILURE')
+                        unstable('UNSTABLE')
+                    }
                 parameters {
                     predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                         }
@@ -28,42 +71,3 @@ job("MNTLAB-mburakouski-main-build-job") {
                 }
             }
          }
-
-
-for (i in 1..4) {
-
- job("MNTLAB-mburakouski-child${i}-build-job") {
-
- scm {
-     github 'MNT-Lab/mntlab-dsl','${BRANCH_NAME}'
- }
-// triggers {
-  //   scm 'H * * * *'
-// }
-  parameters {
-        gitParameterDefinition{
-            name('BRANCH_NAME')
-            type('BRANCH')
-            defaultValue('mburakouski')
-            selectedValue('DEFAULT')
-            branch('origin/mburakouski')
-            description('')
-            branchFilter('')
-            tagFilter('')
-            sortMode('NONE')
-            useRepository('')
-            quickFilterEnabled(false)
-        }
-    }
-
- steps {
-     shell('touch output.txt')
-     shell('chmod +x script.sh')
-     shell('./script.sh >> output.txt')
-     shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-    }
-      publishers {
-     archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')
-     }
-   }
- }
