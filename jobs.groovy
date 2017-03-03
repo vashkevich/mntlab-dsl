@@ -1,7 +1,10 @@
-def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+def gitURI = "MNT-Lab/mntlab-dsl"
+def gitURL = "https://github.com/${gitURI}.git"
+def BRANCH_NAME = "akutsko"
+def NAME = "akutsko"
 
 //Groovy script for main job
-def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
+def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
 	parameters {
         activeChoiceParam('BRANCH_NAME') {
             description('You can choose name of branch from GitHub repository')
@@ -15,7 +18,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 
 		def branches = proc.in.text.readLines().collect { 
         	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
-		def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
+		def name = branches.findAll { item -> item.contains('${BRANCH_NAME}') || item.contains('master')}
 
 		name.each { println it }
 		""")
@@ -26,10 +29,10 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             choiceType('CHECKBOX')
             groovyScript {
                 script("""
-			return["MNTLAB-akutsko-child1-build-job", 
-			"MNTLAB-akutsko-child2-build-job", 
-			"MNTLAB-akutsko-child3-build-job", 
-			"MNTLAB-akutsko-child4-build-job"]
+			return["MNTLAB-${NAME}-child1-build-job", 
+			"MNTLAB-${NAME}-child2-build-job", 
+			"MNTLAB-${NAME}-child3-build-job", 
+			"MNTLAB-${NAME}-child4-build-job"]
 		""")
             }
         }
@@ -40,7 +43,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 
 // scm git url, branch
       scm {
-        github("MNT-Lab/mntlab-dsl", "akutsko")
+        github("${gitURI}", "${BRANCH_NAME}")
       }
 
 // build step
@@ -64,7 +67,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
       }
 }
 for (number in 1..4){
-    job("MNTLAB-akutsko-child${number}-build-job") {
+    job("MNTLAB-${NAME}-child${number}-build-job") {
       description("Builds child${number}")
       
 		parameters {
@@ -89,7 +92,7 @@ for (number in 1..4){
       
       // scm git
       scm {
-        github("MNT-Lab/mntlab-dsl", "$BRANCH_NAME")
+        github("$gitURI", "$BRANCH_NAME")
       }
       
       parameters {stringParam('BUILD_TRIGGER', '')}
