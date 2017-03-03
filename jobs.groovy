@@ -11,8 +11,8 @@ job("MNTLAB-${studname}-main-build")
 		  groovyScript {
 		    script('''def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
 			      def proc = command.execute()
-			      def branches = proc.in.text.readLines().collect {	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
-			      //def name = branches.findAll { item -> item.contains('akaminski') || item.contains('master')}
+			      //def branches = proc.in.text.readLines().collect {	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
+			      def name = branches.findAll { item -> item.contains('akaminski') || item.contains('master')}
 			      name.each { println it }''')
 			      fallbackScript(BRANCH_NAME = "akaminski")
 			      }
