@@ -6,7 +6,7 @@ def studname = "akaminski"
 job("MNTLAB-${studname}-main-build")
 {      parameters{
 		activeChoiceParam('BRANCH_NAME') {
-		  description('You can choose name of branch from GitHub repository')
+		  description('You can choose name of branch')
 		  choiceType('SINGLE_SELECT')
 		  groovyScript {
 		    script('''def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
@@ -54,7 +54,7 @@ for (number in 1..4){
       parameters { 
 		
 		activeChoiceParam('BRANCH_NAME') {
-		  description('You can choose name of branch from GitHub repository')
+		  description('You can choose name of branch')
 		  choiceType('SINGLE_SELECT')
 		  groovyScript {
 		    script('''def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
