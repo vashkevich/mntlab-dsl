@@ -1,7 +1,7 @@
 //main job creation
 job("MNTLAB-ikhamiakou-main-build-job") {
     parameters {
-        //ActivechoiceReactiveParam provides ability to choose child jobs should be executed (by checkboxes)   
+        //ActivechoiceReactiveParam provides ability to choose child jobs that should be executed (by checkboxes)   
         activeChoiceReactiveParam('jobs') {
             choiceType('CHECKBOX')
             groovyScript {
@@ -29,9 +29,11 @@ job("MNTLAB-ikhamiakou-main-build-job") {
         downstreamParameterized {
             trigger('$jobs') {
                     //block section:"The main job should wait until all child jobs are executed and should be failing
-                    //if even one of the triggered jobs is failed."               
+                    //if even one of the triggered jobs is failed."
                     block {
+                        //main job fails if any step in child jobs fails
                         buildStepFailure('FAILURE')
+                        //main job fails if any child job fails
                         failure('FAILURE')
                         unstable('UNSTABLE')
                     }
