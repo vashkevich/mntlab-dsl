@@ -5,28 +5,18 @@ def studname = "akaminski"
 //create master branch
 job("MNTLAB-${studname}-main-build")
 {      parameters{
-		gitParameterDefinition { 
-		             name('BRANCH_NAME') 
-		             type('BRANCH')
-		              branch('origin/akaminski')
-		              defaultValue('origin/akaminski')
-		              selectedValue('DEFAULT')
-		              description('')
-		              branchFilter('')
-		              tagFilter('')
-		              sortMode('NONE')
-		              useRepository('')
-		              quickFilterEnabled(false)            }
-		
-		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES'){
-			choiceType('CHECKBOX')
-			groovyScript {
-				script('["MNTLAB-akaminski-child1-build-job", "MNTLAB-akaminski-child2-build-job", "MNTLAB-akaminski-child3-build-job", "MNTLAB-akaminski-child4-build-job"]')
-                		}
-
-        			}	
-
-        	}	
+		activeChoiceParam('BRANCH_NAME') {
+		description('You can choose name of branch from GitHub repository')
+		choiceType('SINGLE_SELECT')
+		groovyScript {
+		  script('''def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
+			    def proc = command.execute()
+			    def branches = proc.in.text.readLines().collect {
+			      it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
+			    def name = branches.findAll { 
+			      item -> item.contains('akaminski') || item.contains('master')}
+			    name.each { println it }''')
+			    fallbackScript('''BRANCH_NAME = "akaminski"''')}
 
 		
 	description ("Build main job")
