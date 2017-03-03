@@ -9,7 +9,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 
 		parameters
         {        	 
-            activeChoiceParam('BRANCH_NAME')
+            activeChoiceParam('BRANCH_NAME_m')
 	        {              
                 choiceType('SINGLE_SELECT')
 
@@ -34,7 +34,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 
     	 scm
         {
-          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
+          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME_m')
         }
 
           steps
@@ -51,7 +51,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
                         }
                			parameters 
                			{
-               			    predefinedProp('BRANCH_NAME_child', '$BRANCH_NAME')
+               			    predefinedProp('BRANCH_NAME', '$BRANCH_NAME_m')
                         }
                     }
                 }
@@ -70,9 +70,9 @@ for (i in 1..4)
 
 		parameters
 		{
-   	    	stringParam('BRANCH_NAME_child')
+   	    	stringParam('BRANCH_NAME')
 
-   	    	activeChoiceParam('BRANCH_NAME_child')
+   	    	activeChoiceParam('BRANCH_NAME')
 	        {
                 description('Allows to choose branch from repository')
                 choiceType('SINGLE_SELECT')
@@ -89,7 +89,7 @@ for (i in 1..4)
 
          scm
         {
-          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME_child')
+          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
         }
 
         steps
@@ -100,7 +100,7 @@ for (i in 1..4)
         	      chmod +x script.sh
         	      ./script.sh > output.txt
         	      cat output.txt
-        	      tar czvf $BRANCH_NAME_child"_dsl_script.tar.gz" jobs.groovy script.sh 	
+        	      tar czvf $BRANCH_NAME"_dsl_script.tar.gz" jobs.groovy script.sh 	
 				'''
           	     )
         }
