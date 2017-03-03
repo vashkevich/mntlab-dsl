@@ -88,9 +88,7 @@ for (i in 1..4)
                // {
                //     script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def branchList  = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique(); branchList  = branchList .reverse(); return branchList;')
               //  }
-
-
-     //rm -f *.tar.gz	 
+    
          //   }
         }
 
@@ -101,7 +99,8 @@ for (i in 1..4)
 
         steps
         {
-        	shell('''BRANCH_NAME=${BRANCH_NAME##*/}    		
+        	shell('''BRANCH_NAME=${BRANCH_NAME##*/}    	
+        	      rm -f *.tar.gz	 	
         	      chmod +x script.sh
         	      ./script.sh > output.txt
         	      cat output.txt
