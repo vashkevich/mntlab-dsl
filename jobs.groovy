@@ -70,7 +70,7 @@ for (i in 1..4)
 
 		parameters
 		{
-   	    	stringParam('BRANCH_NAME', 'master')
+   	    	stringParam('BRANCH_NAME')
 
    	    	activeChoiceParam('BRANCH_NAME_CHILD')
 	        {
