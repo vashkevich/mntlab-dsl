@@ -84,6 +84,11 @@ for (i in 1..4)
             }
         }
 
+         scm
+        {
+          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
+        }
+
         steps
         {
         	shell('''rm -f *
