@@ -79,8 +79,9 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 
                 def branches = proc.in.text.readLines().collect { 
                 it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
-
-                branches.each { println it }
+		name = branches.findAll { item -> !item.contains('akutsko')}
+                name.add(0,"akutsko");
+                return name
                 ''')
 		fallbackScript('''
                 BRANCH_NAME = "akutsko"
@@ -99,5 +100,8 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 	  ''')
         }
+	publishers {
+			archiveArtifacts('*.tar.gz,output.txt')
+               	}
 	}
     }    
