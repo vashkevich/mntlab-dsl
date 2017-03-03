@@ -3,7 +3,7 @@ def gitURL = "https://github.com/MNT-Lab/mntlab-ds.git"
 def BRANCH_NAME = "akutsko"
 
 //Groovy script for main job
-def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
+def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 	parameters {
         activeChoiceParam('BRANCH_NAME') {
             description('You can choose name of branch from GitHub repository')
@@ -42,7 +42,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
 
 // scm git url, branch
       scm {
-        github("MNT-Lab/mntlab-dsl", "${BRANCH_NAME}")
+        github("${gitURI}", "${BRANCH_NAME}")
       }
 
 // build step
@@ -66,7 +66,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
       }
 }
 println "main job was created"
-for (number in 1..4){
+  for (number in 1..4){
     job("MNTLAB-akutsko-child${number}-build-job") {
       description("Builds child${number}")
       
@@ -92,7 +92,7 @@ for (number in 1..4){
 println "${BRANCH_NAME}"      
       // scm git
       scm {
-        github("MNT-Lab/mntlab-dsl", "${BRANCH_NAME}")
+        github("${gitURI}", "${BRANCH_NAME}")
       }
 println "2222"      
       // build step
@@ -103,6 +103,4 @@ println "2222"
 	  """)
         }
 	}
-    }
-    
-
+    }    
