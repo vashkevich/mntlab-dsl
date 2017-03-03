@@ -18,6 +18,13 @@ job("MNTLAB-${studname}-main-build")
 			    name.each { println it }''')
 			    fallbackScript('''BRANCH_NAME = "akaminski"''')}
 		}
+		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES'){
+			choiceType('CHECKBOX')
+			groovyScript {
+				script('["MNTLAB-akaminski-child1-build-job", "MNTLAB-akaminski-child2-build-job", "MNTLAB-akaminski-child3-build-job", "MNTLAB-akaminski-child4-build-job"]')
+                		}
+
+        			}	
 	}	
 	description ("Build main job")
       	scm {
