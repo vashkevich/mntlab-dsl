@@ -27,7 +27,12 @@ job("MNTLAB-mkuzniatsou-main-build") {
 			{
 				choiceType('CHECKBOX')
 				groovyScript {
-				script('return ["MNTLAB-mkuzniatsou-child1-build-job", "MNTLAB-mkuzniatsou-child2-build-job", "MNTLAB-mkuzniatsou-child3-build-job", "MNTLAB-mkuzniatsou-child4-build-job"]')
+				script ('''
+                    			def jobsArray = []
+                    			for (i = 1; i < 5; i++){ 
+						jobsArray.push("MNTLAB-mkuzniatsou-child${i}-build-job")
+                    			}
+                    			return jobsArray''')
 				}
 			}
 		}
@@ -51,7 +56,7 @@ job("MNTLAB-mkuzniatsou-main-build") {
 
 
 // Creating 4 child jobs
-for (i in 1..4) {
+for (i = 1; i < 5; i++) {
 job("MNTLAB-mkuzniatsou-child${i}-build-job") {
 
 	scm {
@@ -78,12 +83,10 @@ job("MNTLAB-mkuzniatsou-child${i}-build-job") {
 					def branches = proc.in.text.readLines().collect { 
 						it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')
 					}
-					return branches'''
-					)	
+					return branches''')	
 					
 					fallbackScript('''
-					BRANCH_NAME = "mkuzniatsou"'''
-					)					
+					BRANCH_NAME = "mkuzniatsou"''')					
 				}
 			}
 		}
