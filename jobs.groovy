@@ -89,8 +89,8 @@ for (number in 1..4){
                 """)
 }
 }
-stringParam('BUILD_TRIGGER', '')
-stringParam('BRANCH_NAME', '')
+//stringParam('BUILD_TRIGGER', '')
+//stringParam('BRANCH_NAME', '')
 }
 println "1111"      
       // scm git
