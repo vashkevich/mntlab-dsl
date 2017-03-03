@@ -3,14 +3,13 @@ def gitURI = "MNT-Lab/mntlab-dsl"
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
-def BRANCH_NAME = "akutsko"
+//def BRANCH_NAME = 'akutsko'
 	parameters {
         activeChoiceParam('BRANCH_NAME') {
             description('You can choose name of branch from GitHub repository')
-            filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script("""
+                script('''
 		def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
 		def proc = command.execute()
 
@@ -19,19 +18,21 @@ def BRANCH_NAME = "akutsko"
 		def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
 
 		name.each { println it }
-		""")
+		''')
+		fallbackScript('''
+		BRANCH_NAME = "akutsko"
+		''')
 }
 	activeChoiceParam('BUILD_TRIGGER') {
             description('You can choose jobs for works')
-            filterable()
             choiceType('CHECKBOX')
             groovyScript {
-                script("""
+                script('''
 			return["MNTLAB-akutsko-child1-build-job", 
 			"MNTLAB-akutsko-child2-build-job", 
 			"MNTLAB-akutsko-child3-build-job", 
 			"MNTLAB-akutsko-child4-build-job"]
-		""")
+		''')
             }
         }
 
@@ -41,7 +42,7 @@ def BRANCH_NAME = "akutsko"
 
 // scm git url, branch
       scm {
-        github("${gitURI}", "${BRANCH_NAME}")
+        github("${gitURI}", '${BRANCH_NAME}')
       }
 
 // build step
@@ -75,7 +76,7 @@ println "main job was created"
             filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script("""
+                script('''
                 def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
                 def proc = command.execute()
 
@@ -83,20 +84,23 @@ println "main job was created"
                 it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
 
                 branches.each { println it }
-                """)
+                ''')
+		fallbackScript('''
+                BRANCH_NAME = "akutsko"
+                ''')
 }
 }
 }
 // scm git
       scm {
-        github("${gitURI}", "${BRANCH_NAME}")
+        github("${gitURI}", '${BRANCH_NAME}')
       }
 // build step
         steps {
-          shell("""
+          shell('''
 		cat script.sh > output.txt
 		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
-	  """)
+	  ''')
         }
 	}
     }    
