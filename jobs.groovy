@@ -90,8 +90,7 @@ for (i in 1..4)
               //  }
 
 
-     // #cp ../MNTLAB-yskrabkou-main-build-job/jobs.groovy jobs.groovy
-     //cp ../MNTLAB-yskrabkou-main-build-job/script.sh script.sh	 
+     //rm -f *.tar.gz	 
          //   }
         }
 
@@ -102,9 +101,7 @@ for (i in 1..4)
 
         steps
         {
-        	shell('''BRANCH_NAME=${BRANCH_NAME##*/}
-        		rm -f *.tar.gz 
-        	             	
+        	shell('''BRANCH_NAME=${BRANCH_NAME##*/}    		
         	      chmod +x script.sh
         	      ./script.sh > output.txt
         	      cat output.txt
