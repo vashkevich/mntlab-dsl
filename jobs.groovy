@@ -72,6 +72,17 @@ for (i in 1..4)
 		parameters
 		{
    	    	stringParam('BRANCH_NAME', 'master')
+   	    	
+   	    	activeChoiceParam('BRANCH_NAME')
+	        {
+                description('Allows to choose branch from repository')
+                choiceType('SINGLE_SELECT')
+
+                groovyScript
+                {
+                    script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def branchList  = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique(); branchList  = branchList .reverse(); return branchList;')
+                }
+            }
         }
 
         steps
