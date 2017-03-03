@@ -66,6 +66,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
         scm 'H/5 * * * *'
       }
 }
+echo "main job was created"
 for (number in 1..4){
     job("MNTLAB-${NAME}-child${number}-build-job") {
       description("Builds child${number}")
@@ -78,7 +79,7 @@ for (number in 1..4){
             groovyScript {
                 script("""
                 def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-                def command = "git ls-remote -h $gitURL"
+                def command = "git ls-remote -h ${gitURL}"
                 def proc = command.execute()
 
                 def branches = proc.in.text.readLines().collect { 
