@@ -62,7 +62,8 @@ job("MNTLAB-ikhamiakou-child${i}-build-job") {
                 chmod +x script.sh
                 BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
                 bash script.sh >> output.txt
-                tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh '''
+                tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
+                echo "Scrip.sh output saved in output.txt. Artifacts craeted." '''
             )         
             
         publishers {
