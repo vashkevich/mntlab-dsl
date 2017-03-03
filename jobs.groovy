@@ -72,7 +72,7 @@ for (i in 1..4)
 		{
    	    	stringParam('BRANCH_NAME', 'master')
 
-   	    	activeChoiceParam('BRANCH_NAME1')
+   	    	activeChoiceParam('BRANCH_NAME_CHILD')
 	        {
                 description('Allows to choose branch from repository')
                 choiceType('SINGLE_SELECT')
@@ -92,7 +92,7 @@ for (i in 1..4)
         	      chmod +x script.sh
         	      ./script.sh > output.txt
         	      cat output.txt
-        	      tar czvf $BRANCH_NAME"_dsl_script.tar.gz" jobs.groovy script.sh 	
+        	      tar czvf $BRANCH_NAME_CHILD"_dsl_script.tar.gz" jobs.groovy script.sh 	
 				'''
           	     )
         }
