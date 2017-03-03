@@ -44,7 +44,7 @@ def studname = "acherlyonok"
 
       // scm git url, branch
       scm {
-        github("${giturl}", "${BRANCH_NAME}")
+        github("${giturl}", "$BRANCH_NAME")
       }
         // build step
       steps {
@@ -78,7 +78,7 @@ def studname = "acherlyonok"
       
       // scm git
       scm {
-        github("${giturl}", "${BRANCH_NAME}")
+        github("${giturl}", "$BRANCH_NAME")
       }
       
       parameters {
