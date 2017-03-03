@@ -66,7 +66,26 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 for (number in 1..4){
     job("MNTLAB-akutsko-child${number}-build-job") {
       description("Builds child${number}")
-      def BRANCH_NAME = "$BRANCH_NAME"      
+      
+		parameters {
+        activeChoiceParam('BRANCH_NAME') {
+            description('You can choose name of branch from GitHub repository')
+            filterable()
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script("""
+                def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
+                def command = "git ls-remote -h $gitURL"
+                def proc = command.execute()
+
+                def branches = proc.in.text.readLines().collect { 
+                it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
+
+                branches.each { println it }
+                """)
+}
+}
+      
       // scm git
       scm {
         github("MNT-Lab/mntlab-dsl", "$BRANCH_NAME")
