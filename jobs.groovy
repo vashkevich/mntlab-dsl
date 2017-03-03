@@ -9,7 +9,7 @@ job("MNTLAB-${studname}-main-build")
 		  description('You can choose name of branch from GitHub repository')
 		  choiceType('SINGLE_SELECT')
 		  groovyScript {
-		    script('''def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
+		    script('''def command = "git ls-remote -h ${giturl}"
 			      def proc = command.execute()
 			      def branches = proc.in.text.readLines().collect {	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
 			      def name = branches.findAll { item -> item.contains('akaminski') || item.contains('master')}
