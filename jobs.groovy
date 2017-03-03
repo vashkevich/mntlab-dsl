@@ -3,7 +3,6 @@ def BRANCH_NAME = "akutsko"
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
-//def BRANCH_NAME = 'akutsko'
 	parameters {
         activeChoiceParam('BRANCH_NAME') {
             description('You can choose name of branch from GitHub repository')
@@ -65,7 +64,6 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
         scm 'H/5 * * * *'
       }
 }
-println "main job was created"
   for (number in 1..4){
     job("MNTLAB-akutsko-child${number}-build-job") {
       description("Builds child${number}")
@@ -73,7 +71,6 @@ println "main job was created"
 		parameters {
         activeChoiceParam('BRANCH_NAME') {
             description('You can choose name of branch from GitHub repository')
-            filterable()
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script('''
@@ -98,7 +95,7 @@ println "main job was created"
 // build step
         steps {
           shell('''
-		cat script.sh > output.txt
+		bash script.sh > output.txt
 		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 	  ''')
         }
