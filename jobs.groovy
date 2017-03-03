@@ -1,6 +1,6 @@
 //Creating main build
 job("MNTLAB-mkuzniatsou-main-build") {
-  	
+//ik commit  	
 	
     scm {
         github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
