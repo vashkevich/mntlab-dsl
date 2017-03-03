@@ -74,7 +74,7 @@ for (i in 1..4)
 
 			gitParam('BRANCH_NAME')
 			  {
-               type('BRANCH')                     
+               type('BRANCH')                    
               }
     
 
