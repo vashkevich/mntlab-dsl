@@ -5,7 +5,7 @@ def studname = "akaminski"
 //create master branch
 job("MNTLAB-${studname}-main-build")
 {      parameters{
-		activeChoiceParam('BRANCH_NAME') {
+		activeChoiceReactiveParam('BRANCH_NAME') {
 		  description('You can choose name of branch from GitHub repository')
 		  choiceType('SINGLE_SELECT')
 		  groovyScript {
@@ -19,7 +19,7 @@ job("MNTLAB-${studname}-main-build")
 			      fallbackScript(BRANCH_NAME = "akaminski")
 			      }
 		  }
-		activeChoiceParam('TRIGGERED_JOB_NAMES'){
+		activeChoiceReactiveParam('TRIGGERED_JOB_NAMES'){
 			choiceType('CHECKBOX')
 			groovyScript {
 				script('["MNTLAB-akaminski-child1-build-job", "MNTLAB-akaminski-child2-build-job", "MNTLAB-akaminski-child3-build-job", "MNTLAB-akaminski-child4-build-job"]')
