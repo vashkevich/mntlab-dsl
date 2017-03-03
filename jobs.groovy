@@ -66,7 +66,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
         scm 'H/5 * * * *'
       }
 }
-echo "main job was created"
+println "main job was created"
 for (number in 1..4){
     job("MNTLAB-${NAME}-child${number}-build-job") {
       description("Builds child${number}")
