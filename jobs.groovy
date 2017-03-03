@@ -1,5 +1,4 @@
 def gitURI = "MNT-Lab/mntlab-dsl"
-def gitURL = "https://github.com/MNT-Lab/mntlab-ds.git"
 def BRANCH_NAME = "akutsko"
 
 //Groovy script for main job
@@ -11,13 +10,12 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script("""
-        	def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-		def command = "git ls-remote -h ${gitURL}"
+		def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
 		def proc = command.execute()
 
 		def branches = proc.in.text.readLines().collect { 
         	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
-		def name = branches.findAll { item -> item.contains('${BRANCH_NAME}') || item.contains('master')}
+		def name = branches.findAll { item -> item.contains('akutsko') || item.contains('master')}
 
 		name.each { println it }
 		""")
@@ -77,8 +75,7 @@ println "main job was created"
             choiceType('SINGLE_SELECT')
             groovyScript {
                 script("""
-                def gitURL = "https://github.com/MNT-Lab/mntlab-dsl.git"
-                def command = "git ls-remote -h ${gitURL}"
+                def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
                 def proc = command.execute()
 
                 def branches = proc.in.text.readLines().collect { 
