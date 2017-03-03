@@ -66,7 +66,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
 for (number in 1..4){
     job("MNTLAB-akutsko-child${number}-build-job") {
       description("Builds child${number}")
-      
+      def BRANCH_NAME = "$BRANCH_NAME"      
       // scm git
       scm {
         github("MNT-Lab/mntlab-dsl", "$BRANCH_NAME")
