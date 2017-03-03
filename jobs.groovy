@@ -62,7 +62,7 @@ def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
       triggers {
         scm 'H/5 * * * *'
       }
-
+}
 for (number in 1..4){
     job("MNTLAB-akutsko-child${number}-build-job") {
       description("Builds child${number}")
@@ -85,6 +85,7 @@ for (number in 1..4){
                 """)
 }
 }
+}
       
       // scm git
       scm {
@@ -104,4 +105,4 @@ for (number in 1..4){
 	}
     }
     
-}
+
