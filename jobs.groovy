@@ -1,5 +1,5 @@
 def gitURI = "MNT-Lab/mntlab-dsl"
-//def BRANCH_NAME = "akutsko"
+def BRANCH_NAME = "akutsko"
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-akutsko-main-build-job'){
