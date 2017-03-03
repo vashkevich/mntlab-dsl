@@ -50,15 +50,14 @@ for (i = 1; i <5; i++) {
             activeChoiceReactiveParam('BRANCH_NAME') {
                     choiceType('SINGLE_SELECT')
                     groovyScript {
-                        script('["origin-abilun", "origin-master"]')
+                        script('["origin/abilun", "origin/master"]')
                     }
             }
         }
         steps {
             shell('''#!/bin/bash
-BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
 bash script.sh > output.txt
-tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh output.txt '''
+tar -czvf ${BRANCH_NAME##*/}_dsl_script.tar.gz jobs.groovy script.sh output.txt '''
           	)
         }
         
