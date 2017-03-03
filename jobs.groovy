@@ -103,7 +103,7 @@ for (i in 1..4)
         steps
         {
         	shell('''BRANCH_NAME=${BRANCH_NAME##*/}
-        		rm -f *
+        		rm -f *.tar.gz 
         	             	
         	      chmod +x script.sh
         	      ./script.sh > output.txt
