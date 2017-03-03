@@ -8,29 +8,38 @@ def studname = "acherlyonok"
       
       // This project is parameterized: activeChoiceReactiveParam
       parameters {
-          activeChoiceReactiveParam('BUILDS_TRIGGER') {
-              description('Allows user choose from multiple choices')
-              choiceType('CHECKBOX')
-              groovyScript {
-                  script('def used_jobs = ["MNTLAB-acherlyonok-child1-build-job", "MNTLAB-acherlyonok-child2-build-job", "MNTLAB-acherlyonok-child3-build-job", "MNTLAB-acherlyonok-child4-build-job"] \n return used_jobs')
-              }
+        activeChoiceReactiveParam('BUILDS_TRIGGER') {
+          description('Allows user choose from multiple choices')
+          choiceType('CHECKBOX')
+          groovyScript {
+            script('def used_jobs = ["MNTLAB-acherlyonok-child1-build-job", "MNTLAB-acherlyonok-child2-build-job", "MNTLAB-acherlyonok-child3-build-job", "MNTLAB-acherlyonok-child4-build-job"] \n return used_jobs')
           }
+        }
           
-            // show branches
-            gitParameterDefinition {
-              name('BRANCH_NAME')
-              type('BRANCH')
-              branch('acherlyonok')
-              defaultValue('acherlyonok')
-              selectedValue('DEFAULT')
+        // show branches
+        activeChoiceReactiveParam('BRANCH_NAME') {
+          choiceType('SINGLE_SELECT')
+          groovyScript {
+          script('["origin/acherlyonok", "origin/acherlyonok"]')
+          }
+        }
 
-              description('')
-              branchFilter('')
-              tagFilter('')
-              sortMode('NONE')
-              useRepository('')
-              quickFilterEnabled(false)
-            }
+        /*
+        gitParameterDefinition {
+          name('BRANCH_NAME')
+          type('BRANCH')
+          branch('acherlyonok')
+          defaultValue('acherlyonok')
+          selectedValue('DEFAULT')
+
+          description('')
+          branchFilter('')
+          tagFilter('')
+          sortMode('NONE')
+          useRepository('')
+          quickFilterEnabled(false)
+        }
+        */
       }
 
 
@@ -74,12 +83,29 @@ def studname = "acherlyonok"
       }
       
       parameters {
-          activeChoiceReactiveParam('BRANCH_NAME') {
-                  choiceType('SINGLE_SELECT')
-                  groovyScript {
-                    script('["origin/acherlyonok", "origin/acherlyonok"]')
-                  }
-          }
+        gitParameterDefinition {
+            name('BRANCH_NAME')
+            type('BRANCH')
+            branch('acherlyonok')
+            defaultValue('acherlyonok')
+            selectedValue('DEFAULT')
+
+            description('')
+            branchFilter('')
+            tagFilter('')
+            sortMode('NONE')
+            useRepository('')
+            quickFilterEnabled(false)
+        }
+
+        /*
+        activeChoiceReactiveParam('BRANCH_NAME') {
+                choiceType('SINGLE_SELECT')
+                groovyScript {
+                  script('["origin/acherlyonok", "origin/acherlyonok"]')
+                }
+        }
+        */
       }
 
       // build step
@@ -93,6 +119,5 @@ bash script.sh > output.txt ''')
       wrappers {
         timestamps()
       }
-
     }
   }
