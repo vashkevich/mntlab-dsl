@@ -33,14 +33,19 @@ job("MNTLAB-${studname}-main-build")
 		branch("\${BRANCH_NAME}")
 		}
 	    }
-	publishers {
+ 	steps {
         downstreamParameterized {
-            trigger('${TRIGGERED_JOB_NAMES}') {
-                condition('UNSTABLE_OR_BETTER')
-                parameters {predefinedProp('BRANCH_NAME', '$BRANCH_NAME') }
-            }
-        }
-	}
+          trigger('$TRIGGERED_JOB_NAMES') {
+            block {
+              buildStepFailure('FAILURE')
+              failure('FAILURE')
+              unstable('UNSTABLE')}
+            parameters {
+		predefinedProp('BRANCH_NAME', '$BRANCH_NAME')}
+          	 }
+        	}
+	      }
+	
 }
 
 
