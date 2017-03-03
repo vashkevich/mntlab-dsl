@@ -1,5 +1,5 @@
 def gitURI = "MNT-Lab/mntlab-dsl"
-def gitURL = "https://github.com/${gitURI}.git"
+def gitURL = "https://github.com/MNT-Lab/mntlab-ds.git"
 def BRANCH_NAME = "akutsko"
 
 //Groovy script for main job
@@ -88,8 +88,6 @@ for (number in 1..4){
                 """)
 }
 }
-//stringParam('BUILD_TRIGGER', '')
-//stringParam('BRANCH_NAME', '')
 }
 println "${BRANCH_NAME}"      
       // scm git
@@ -97,14 +95,10 @@ println "${BRANCH_NAME}"
         github("${gitURI}", "${BRANCH_NAME}")
       }
 println "2222"      
-//      parameters {stringParam('BUILD_TRIGGER', '')}
-//      parameters {stringParam('BRANCH_NAME', '')}
-
       // build step
         steps {
           shell("""
-		BRANCH_NAME="$BRANCH_NAME"
-		cat script.sh >> output.txt
+		cat script.sh > output.txt
 		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh >> output.txt
 	  """)
         }
