@@ -90,6 +90,7 @@ for (i in 1..4)
 
 
      // #cp ../MNTLAB-yskrabkou-main-build-job/jobs.groovy jobs.groovy
+     //cp ../MNTLAB-yskrabkou-main-build-job/script.sh script.sh	 
          //   }
         }
 
@@ -102,7 +103,7 @@ for (i in 1..4)
         {
         	shell('''BRANCH_NAME=${BRANCH_NAME##*/}
         		rm -f *
-        	      cp ../MNTLAB-yskrabkou-main-build-job/script.sh script.sh	        	
+        	             	
         	      chmod +x script.sh
         	      ./script.sh > output.txt
         	      cat output.txt
