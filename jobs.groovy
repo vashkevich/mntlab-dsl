@@ -1,4 +1,5 @@
 //main job creation
+//tetrs
 job("MNTLAB-ikhamiakou-main-build-job") {
     parameters {
         //ActivechoiceReactiveParam provides ability to choose child jobs that should be executed (by checkboxes)   
