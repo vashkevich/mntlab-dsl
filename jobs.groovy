@@ -8,9 +8,11 @@ job("MNTLAB-ikhamiakou-main-build-job") {
             }
             
         }
-        gitParam('BRANCH_NAME'){
-            type('BRANCH')
-            defaultValue('origin/ikhamiakou')
+        activeChoiceReactiveParam('BRANCH_NAME') {
+            choiceType('SINGLE_SELECT')
+            groovyScript {
+                script('return ["origin/ikhamiakou", "origin/master"]')
+            }
         }
 
     }
@@ -45,11 +47,10 @@ for (i in 1..4) {
 job("MNTLAB-ikhamiakou-child${i}-build-job") {
     
     parameters{
-        activeChoiceReactiveParam('BRANCH_NAME') {
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script('return ["origin/ikhamiakou", "origin/master"]')
-            }
+        
+        gitParam('BRANCH_NAME'){
+            type('BRANCH')
+            defaultValue('origin/ikhamiakou')
         }
     }
     scm {
@@ -61,7 +62,7 @@ job("MNTLAB-ikhamiakou-child${i}-build-job") {
                 rm -rf *.tar.gz
                 chmod +x script.sh
                 BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
-                bash script.sh >> output.txt
+                bash script.sh > output.txt
                 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
                 echo "Scrip.sh output saved in output.txt. Artifacts craeted." '''
             )         
