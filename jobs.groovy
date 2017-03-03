@@ -51,7 +51,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
                         }
                			parameters 
                			{
-               			    predefinedProp('BRANCH_NAME', '$BRANCH_NAME_child')
+               			    predefinedProp('BRANCH_NAME_child', '$BRANCH_NAME')
                         }
                     }
                 }
