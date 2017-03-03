@@ -9,7 +9,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 
 		parameters
         {        	 
-            activeChoiceParam('BRANCH_NAME_m')
+            activeChoiceParam('BRANCH_NAME')
 	        {              
                 choiceType('SINGLE_SELECT')
 
@@ -34,7 +34,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 
     	 scm
         {
-          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME_m')
+          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
         }
 
           steps
@@ -51,7 +51,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
                         }
                			parameters 
                			{
-               			    predefinedProp('BRANCH_NAME', '$BRANCH_NAME_m')
+               			    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
                         }
                     }
                 }
