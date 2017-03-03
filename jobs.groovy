@@ -58,7 +58,7 @@ for (number in 1..4){
       scm {
           git{
 		remote { url("${giturl}")}
-		branch("${BRANCH_NAME}")
+		branch("\${BRANCH_NAME}")
     	    }}
 	steps { shell ('''BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
 			 sh script.sh > output.txt
