@@ -1,7 +1,6 @@
 def gitURI = "MNT-Lab/mntlab-dsl"
 def gitURL = "https://github.com/${gitURI}.git"
 def BRANCH_NAME = "akutsko"
-def NAME = "akutsko"
 
 //Groovy script for main job
 def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
@@ -29,10 +28,10 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
             choiceType('CHECKBOX')
             groovyScript {
                 script("""
-			return["MNTLAB-${NAME}-child1-build-job", 
-			"MNTLAB-${NAME}-child2-build-job", 
-			"MNTLAB-${NAME}-child3-build-job", 
-			"MNTLAB-${NAME}-child4-build-job"]
+			return["MNTLAB-akutsko-child1-build-job", 
+			"MNTLAB-akutsko-child2-build-job", 
+			"MNTLAB-akutsko-child3-build-job", 
+			"MNTLAB-akutsko-child4-build-job"]
 		""")
             }
         }
@@ -68,7 +67,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
 }
 println "main job was created"
 for (number in 1..4){
-    job("MNTLAB-${NAME}-child${number}-build-job") {
+    job("MNTLAB-akutsko-child${number}-build-job") {
       description("Builds child${number}")
       
 		parameters {
@@ -105,7 +104,7 @@ println "2222"
         steps {
           shell("""
 		cat script.sh >> output.txt
-		tar -czvf BRANCH_NAME_dsl_script.tar.gz jobs.groovy script.sh >> output.txt
+		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh >> output.txt
 	  """)
         }
 	}
