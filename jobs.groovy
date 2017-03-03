@@ -89,6 +89,8 @@ for (number in 1..4){
                 """)
 }
 }
+stringParam('BUILD_TRIGGER', '')
+stringParam('BRANCH_NAME', '')
 }
 println "1111"      
       // scm git
@@ -96,8 +98,8 @@ println "1111"
         github("${gitURI}", "${BRANCH_NAME}")
       }
 println "2222"      
-      parameters {stringParam('BUILD_TRIGGER', '')}
-      parameters {stringParam('BRANCH_NAME', '')}
+//      parameters {stringParam('BUILD_TRIGGER', '')}
+//      parameters {stringParam('BRANCH_NAME', '')}
 
       // build step
         steps {
