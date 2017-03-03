@@ -17,7 +17,7 @@ job("MNTLAB-${studname}-main-build")
 			      item -> item.contains('akaminski') || item.contains('master')}
 			    name.each { println it }''')
 			    fallbackScript('''BRANCH_NAME = "akaminski"''')}
-
+		}
 		
 	description ("Build main job")
       	scm {
