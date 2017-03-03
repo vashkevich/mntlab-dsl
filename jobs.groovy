@@ -52,7 +52,7 @@ for (number in 1..4){
       {
       description("Builds child${number}")
       parameters { 
-		stringParam("BRANCH_NAME")
+		
 		activeChoiceParam('BRANCH_NAME') {
 		  description('You can choose name of branch from GitHub repository')
 		  choiceType('SINGLE_SELECT')
