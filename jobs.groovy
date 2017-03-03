@@ -74,7 +74,7 @@ for (i in 1..4)
 
 			gitParam('BRANCH_NAME')
 			  {
-               type('BRANCH')              
+               type('BRANCH')                     
               }
     
 
@@ -96,7 +96,7 @@ for (i in 1..4)
 
          scm
         {
-          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
+           github('MNT-Lab/mntlab-dsl', '${BRANCH_NAME}')
         }
 
         steps
