@@ -95,7 +95,7 @@ println "1111"
       scm {
         github("${gitURI}", "${BRANCH_NAME}")
       }
-      
+println "2222"      
       parameters {stringParam('BUILD_TRIGGER', '')}
       parameters {stringParam('BRANCH_NAME', '')}
 
