@@ -20,7 +20,7 @@ def studname = "acherlyonok"
         activeChoiceReactiveParam('BRANCH_NAME') {
                 choiceType('SINGLE_SELECT')
                 groovyScript {
-                  script('return ["origin/acherlyonok", "origin/acherlyonok"]')
+                  script('return ["origin/acherlyonok", "origin/master"]')
                 }
         }
         /*
@@ -44,7 +44,7 @@ def studname = "acherlyonok"
 
       // scm git url, branch
       scm {
-        github("${giturl}", "${studname}")
+        github("${giturl}", "${BRANCH_NAME}")
       }
         // build step
       steps {
@@ -78,7 +78,7 @@ def studname = "acherlyonok"
       
       // scm git
       scm {
-        github("${giturl}", "${studname}")
+        github("${giturl}", "${BRANCH_NAME}")
       }
       
       parameters {
