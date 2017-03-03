@@ -42,7 +42,7 @@ def myJob = freeStyleJob('MNTLAB-${NAME}-main-build-job'){
 
 // scm git url, branch
       scm {
-        github("${gitURI}", "${BRANCH_NAME}")
+        github("MNT-Lab/mntlab-dsl", "${BRANCH_NAME}")
       }
 
 // build step
@@ -92,7 +92,7 @@ for (number in 1..4){
 println "${BRANCH_NAME}"      
       // scm git
       scm {
-        github("${gitURI}", "${BRANCH_NAME}")
+        github("MNT-Lab/mntlab-dsl", "${BRANCH_NAME}")
       }
 println "2222"      
       // build step
