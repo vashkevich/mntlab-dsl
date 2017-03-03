@@ -48,7 +48,7 @@ job("MNTLAB-ikhamiakou-child${i}-build-job") {
         activeChoiceReactiveParam('BRANCH_NAME') {
             choiceType('SINGLE_SELECT')
             groovyScript {
-                script('["origin/ikhamiakou", "origin/master"]')
+                script('return ["origin/ikhamiakou", "origin/master"]')
             }
         }
     }
