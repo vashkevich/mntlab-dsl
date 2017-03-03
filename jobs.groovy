@@ -51,14 +51,29 @@ for (number in 1..4){
   job("MNTLAB-${studname}-child${number}-build-job")
       {
       description("Builds child${number}")
-      parameters { stringParam("BRANCH_NAME")}
+      parameters { 
+		stringParam("BRANCH_NAME")
+		activeChoiceParam('BRANCH_NAME') {
+		  description('You can choose name of branch from GitHub repository')
+		  choiceType('SINGLE_SELECT')
+		  groovyScript {
+		    script('''def command = "git ls-remote -h https://github.com/MNT-Lab/mntlab-dsl.git"
+			      def proc = command.execute()
+			      def branches = proc.in.text.readLines().collect {	it.replaceAll(/[a-z0-9]*\trefs\\/heads\\//, '')}
+			      branches.each { println it }
+			      ''')
+			      fallbackScript(BRANCH_NAME = "akaminski")
+			      }
+		  }
+		
+		
+		}
       scm {
           git{
 		remote { url("${giturl}")}
 		branch("\${BRANCH_NAME}")
     	    }}
-	steps { shell ('''BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
-			 sh script.sh > output.txt
+	steps { shell ('''sh script.sh > output.txt
 			 tar -czf ${BRANCH_NAME}_dsl_script.tar.gz script.sh jobs.groovy output.txt
 			 	 ''')
     	}
