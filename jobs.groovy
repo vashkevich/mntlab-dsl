@@ -17,6 +17,13 @@ def studname = "acherlyonok"
         }
           
         // show branches
+        activeChoiceReactiveParam('BRANCH_NAME') {
+                choiceType('SINGLE_SELECT')
+                groovyScript {
+                  script('return ["origin/acherlyonok", "origin/acherlyonok"]')
+                }
+        }
+        /*
         gitParameterDefinition {
           name('BRANCH_NAME')
           type('BRANCH')
@@ -31,6 +38,7 @@ def studname = "acherlyonok"
           useRepository('')
           quickFilterEnabled(false)
         }
+        */
       }
 
 
@@ -74,13 +82,28 @@ def studname = "acherlyonok"
       }
       
       parameters {
-        
+        gitParameterDefinition {
+          name('BRANCH_NAME')
+          type('BRANCH')
+          branch('acherlyonok')
+          defaultValue('acherlyonok')
+          selectedValue('DEFAULT')
+
+          description('')
+          branchFilter('')
+          tagFilter('')
+          sortMode('NONE')
+          useRepository('')
+          quickFilterEnabled(false)
+        }
+        /*
         activeChoiceReactiveParam('BRANCH_NAME') {
                 choiceType('SINGLE_SELECT')
                 groovyScript {
                   script('return ["origin/acherlyonok", "origin/acherlyonok"]')
                 }
         }
+        */
       }
 
       // build step
