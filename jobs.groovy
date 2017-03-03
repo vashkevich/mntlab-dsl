@@ -18,13 +18,13 @@ job("MNTLAB-${studname}-main-build")
 			    name.each { println it }''')
 			    fallbackScript('''BRANCH_NAME = "akaminski"''')}
 		}
-		
+	}	
 	description ("Build main job")
       	scm {
-          git{
+	    git{
 		remote { url("${giturl}")}
 		branch("\${BRANCH_NAME}")
-    	    }
+		}
 	    }
 	publishers {
         downstreamParameterized {
@@ -33,7 +33,7 @@ job("MNTLAB-${studname}-main-build")
                 parameters {predefinedProp('BRANCH_NAME', '$BRANCH_NAME') }
             }
         }
-    }
+	}
 }
 
 
