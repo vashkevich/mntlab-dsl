@@ -9,7 +9,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 
 		parameters
         {        	 
-            activeChoiceParam('BRANCH_NAME')
+            activeChoiceParam('BRANCH_NAME_m')
 	        {              
                 choiceType('SINGLE_SELECT')
 
@@ -34,7 +34,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
 
     	 scm
         {
-          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME')
+          github('MNT-Lab/mntlab-dsl', '$BRANCH_NAME_m')
         }
 
           steps
@@ -51,7 +51,7 @@ job('MNTLAB-' + mybranch + '-main-build-job')
                         }
                			parameters 
                			{
-               			    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+               			    predefinedProp('BRANCH_NAME', '$BRANCH_NAME_m')
                         }
                     }
                 }
@@ -70,21 +70,27 @@ for (i in 1..4)
 
 		parameters
 		{
-   	    	stringParam('BRANCH_NAME')
+			   	    	//stringParam('BRANCH_NAME1')
 
-   	    	activeChoiceParam('BRANCH_NAME_CHILD')
-	        {
-                description('Allows to choose branch from repository')
-                choiceType('SINGLE_SELECT')
+			gitParam('BRANCH_NAME')
+			  {
+               type('BRANCH')              
+              }
+    
 
-                groovyScript
-                {
-                    script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def branchList  = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique(); branchList  = branchList .reverse(); return branchList;')
-                }
-                
+   	    	//activeChoiceParam('BRANCH_NAME')
+	        //{
+              //  description('Allows to choose branch from repository')
+               // choiceType('SINGLE_SELECT')
+
+              //  groovyScript
+               // {
+               //     script('def getTags = ("git ls-remote -t -h https://github.com/MNT-Lab/mntlab-dsl.git").execute();def branchList  = getTags.text.readLines().collect {it.split()[1].replaceAll("refs/heads/", "")}.unique(); branchList  = branchList .reverse(); return branchList;')
+              //  }
 
 
-            }
+
+         //   }
         }
 
          scm
@@ -101,7 +107,7 @@ for (i in 1..4)
         	      chmod +x script.sh
         	      ./script.sh > output.txt
         	      cat output.txt
-        	      tar czvf $BRANCH_NAME_CHILD"_dsl_script.tar.gz" jobs.groovy script.sh 	
+        	      tar czvf $BRANCH_NAME"_dsl_script.tar.gz" jobs.groovy script.sh 	
 				'''
           	     )
         }
