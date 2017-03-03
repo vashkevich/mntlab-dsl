@@ -99,7 +99,7 @@ println "2222"
         steps {
           shell("""
 		cat script.sh > output.txt
-		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh >> output.txt
+		tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 	  """)
         }
 	}
