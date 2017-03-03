@@ -70,7 +70,7 @@ for (i in 1..4)
 
 		parameters
 		{
-   	    	stringParam('BRANCH_NAME')
+   	    	stringParam('BRANCH_NAME1')
 
    	    	activeChoiceParam('BRANCH_NAME')
 	        {
