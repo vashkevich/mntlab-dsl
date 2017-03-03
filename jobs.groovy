@@ -1,4 +1,4 @@
-job('MNTLAB-ikhamiakou-main-build-job') {
+job("MNTLAB-ikhamiakou-main-build-job") {
     
     parameters {
         activeChoiceReactiveParam('jobs') {
@@ -42,7 +42,7 @@ job('MNTLAB-ikhamiakou-main-build-job') {
 }
 
 for (i in 1..4) {
-job('MNTLAB-ikhamiakou-child${i}-build-job') {
+job("MNTLAB-ikhamiakou-child${i}-build-job") {
     
     parameters{
         activeChoiceReactiveParam('BRANCH_NAME') {
