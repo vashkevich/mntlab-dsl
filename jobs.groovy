@@ -118,7 +118,7 @@ bash script.sh > output.txt ''')
 //Archives artifacts	    
 	publishers {
 			archiveArtifacts('output.txt')
-			archiveArtifacts('${BRANCH_NAME}.tar.gz')
+			archiveArtifacts('*.tar.gz')
 			}
 //ANOTHER VARIATION OF SHELL EXECUTION BUT THERE IS SOME PROBLEM  
 	/*shell('chmod +x script.sh')
