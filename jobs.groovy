@@ -113,6 +113,10 @@ BRANCH_NAME=${BRANCH_NAME##*/}
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 bash script.sh > output.txt ''')
         }
+      
+      publishers {
+        	archiveArtifacts('output.txt,*.tar.gz')
+      }
 
       wrappers {
         timestamps()
