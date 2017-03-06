@@ -77,5 +77,5 @@ bash script.sh | tee -a logfile.txt''')
       }
       } 
     }
-  }
+  
 }
