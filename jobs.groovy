@@ -106,11 +106,12 @@ gitParameterDefinition {
 
     }   
 //SCRIPT WHICH RENAMES BRANCH TO THE CORRECT FORMAT
-//AND ARCHIVES THE ARTIFACT	    
+//AND ARCHIVES THE ARTIFACT AFTER DELETING UNNECESSARY	    
     
     steps {
         shell('''
 BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+rm -rf *.tar.gz
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 bash script.sh > output.txt ''')
         }
