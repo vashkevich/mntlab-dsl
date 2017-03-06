@@ -3,35 +3,28 @@ job("MNTLAB-rvashkevich-main-build-job") {
     github('MNT-Lab/mntlab-dsl','rvashkevich')
   }
 	parameters {
-     		activeChoiceReactiveParam('BUILDS_TRIGGER') {
-      		choiceType('CHECKBOX')
-     	 	groovyScript {
-        	script('return ["MNTLAB-rvashkevich-child1-build-job", "MNTLAB-rvashkevich-child2-build-job", "MNTLAB-rvashkevich-child3-build-job", "MNTLAB-rvashkevich-child4-build-job"]')
-		} 
+		activeChoiceParam('BRANCH_NAME') {
+        		description('Allows user choose from multiple choices')
+        		choiceType('SINGLE_SELECT')
+        			groovyScript {
+        				script('return["origin/rvashkevich", "master"]')
+				}
 		}
-	activeChoiceParam('BRANCH_NAME') {
-        description('Allows user choose from multiple choices')
-        choiceType('SINGLE_SELECT')
-        groovyScript {
-        script('return["origin/rvashkevich", "master"]')
-          }
-        }
-  }
-  steps {
-    downstreamParameterized {
-      trigger('$BUILDS_TRIGGER') {
-        block {
-          buildStepFailure('FAILURE')
-          failure('FAILURE')
-          unstable('UNSTABLE')
-        }
-        
-        parameters {
-          predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
-        }
-      }
-    }
-  }
+	}
+  	steps {
+    		downstreamParameterized {
+      			trigger('$BUILDS_TRIGGER') {
+        			block {
+          				buildStepFailure('FAILURE')
+          				failure('FAILURE')
+          				unstable('UNSTABLE')
+				}
+        		parameters {
+          		predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+			}
+			}
+		}
+	}
 
   for (i in 1..4) {
 
@@ -40,23 +33,22 @@ job("MNTLAB-rvashkevich-main-build-job") {
       scm {
         github('MNT-Lab/mntlab-dsl','rvashkevich')
       }
-	    
-    }
+    
 		
       parameters {
-	          gitParameterDefinition {
-      name('BRANCH_NAME')
-      type('BRANCH')
-      branch('rvashkevich')
-      defaultValue('rvashkevich')
-      selectedValue('DEFAULT')
+	gitParameterDefinition {
+      	name('BRANCH_NAME')
+      	type('BRANCH')
+      	branch('rvashkevich')
+      	defaultValue('rvashkevich')
+      	selectedValue('DEFAULT')
 
-      description('')
-      branchFilter('')
-      tagFilter('')
-      sortMode('NONE')
-      useRepository('')
-      quickFilterEnabled(false)
+      	description('')
+      	branchFilter('')
+      	tagFilter('')
+      	sortMode('NONE')
+      	useRepository('')
+      	quickFilterEnabled(false)
 		  }
       } 
 
@@ -77,5 +69,5 @@ echo $BRANCH_NAME''')
       }*/ 
       }
       } 
+  }
 }
-
