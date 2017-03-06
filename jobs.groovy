@@ -64,9 +64,9 @@ job("MNTLAB-rvashkevich-main-build-job") {
 BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 bash script.sh | tee -a logfile.txt''')
+      }
         publishers {
      archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')
-      }
     } 
   }
 }
