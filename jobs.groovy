@@ -73,9 +73,8 @@ bash script.sh | tee -a logfile.txt''')
 			}
   
  /*       publishers {
-     archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')  */ 
-      }
+     archiveArtifacts('${BRANCH_NAME}_dsl_script.tar.gz, output.txt')  
+      }*/ 
       } 
     }
-  
 }
