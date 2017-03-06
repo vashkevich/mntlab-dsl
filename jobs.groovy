@@ -4,34 +4,6 @@ job("MNTLAB-imanzhulin-main-build-job") {
         github('MNT-Lab/mntlab-dsl','imanzhulin')
     }
      parameters {
-//THIS BLOCK IS FOR DROPDOWN CHECKOUT BRANCH!!! IT IS USED IN OTHER PART OF CODE
-//THE SEQUENCE IS IMPORTANT		     
-      /* activeChoiceParam('BRANCH_NAME') {
-           description('Allows user choose from multiple choices')
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script('return["imanzhulin", "master"];')
-                           }
-        }
-        */
-	     
-//THIS BLOCK IS FOR DROPDOWN ALL STUDENTS BRANCHES!!! IT IS USED IN OTHER PART OF CODE!!!
-//THE SEQUENCE IS IMPORTANT	     
-	/*  gitParameterDefinition {
-              name('BRANCH_NAME')
-              type('BRANCH')
-              branch('imanzhulin')
-              defaultValue('imanzhulin')
-              selectedValue('DEFAULT')
-
-              description('')
-              branchFilter('')
-              tagFilter('')
-              sortMode('NONE')
-              useRepository('')
-              quickFilterEnabled(false)
-            }
-*/
 //DROPDOWN OF BRANCHES (my branch and master) APPEARS IN MAIN JOB		     
 	     activeChoiceParam('BRANCH_NAME') {
             description('Allows user choose from multiple choices')
@@ -75,18 +47,7 @@ job("MNTLAB-imanzhulin-main-build-job") {
     }
 
      parameters {
-        	 
-/*
-activeChoiceParam('BRANCH_NAME') {
-            description('Allows user choose from multiple choices')
-            choiceType('SINGLE_SELECT')
-            groovyScript {
-                script('return["origin/imanzhulin", "master"]')
-                           }
-        }
-
-*/
-	   
+     	   
 //DROPDOWN OF ALL STUDENTS' BRANCHES APPEARS IN MAIN JOB
 gitParameterDefinition {
               name('BRANCH_NAME')
@@ -102,8 +63,6 @@ gitParameterDefinition {
               useRepository('')
               quickFilterEnabled(false)
             }
-
-
     }   
 //SCRIPT WHICH RENAMES BRANCH TO THE CORRECT FORMAT
 //AND ARCHIVES THE ARTIFACT AFTER DELETING UNNECESSARY	    
@@ -122,12 +81,6 @@ gitParameterDefinition {
 			archiveArtifacts('*.tar.gz')
 		   }
     	}
-
-//ANOTHER VARIATION OF SHELL EXECUTION BUT THERE IS SOME PROBLEM  
-	/*shell('chmod +x script.sh')
-        shell('./script.sh')    
-        shell('tar cvzf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh')
-        shell('bash script.sh > output.txt')*/  
        }        
      }
     }
