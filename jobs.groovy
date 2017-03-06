@@ -61,10 +61,10 @@ job("MNTLAB-rvashkevich-main-build-job") {
 
       steps {
         shell(''' rm -rf *.tar.gz
-	chmod +x script.sh
-        ./script.sh > output.txt
-tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh''')
-        
+BRANCH_NAME_SHORT=$(echo $BRANCH_NAME | cut -c 8-)
+bash script.sh > output.txt
+tar -czvf ${BRANCH_NAME_SHORT}_dsl_script.tar.gz jobs.groovy script.sh
+echo $BRANCH_NAME''')
 //Archives artifacts	    
 	publishers {
 			archiveArtifacts('output.txt')
