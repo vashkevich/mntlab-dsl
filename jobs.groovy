@@ -50,7 +50,7 @@ job("MNTLAB-rvashkevich-main-build-job") {
       	useRepository('')
       	quickFilterEnabled(false)
 		  }
-       
+      }    
 
       steps {
         shell(''' rm -rf *.tar.gz
