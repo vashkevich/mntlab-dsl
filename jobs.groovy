@@ -109,7 +109,7 @@ def studname = "acherlyonok"
       // build step
         steps {
           shell('''
-BRANCH_NAME=$(echo $BRANCH_NAME | cut -c 8-)
+BRANCH_NAME=${BRANCH_NAME##*/}
 tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh
 bash script.sh > output.txt ''')
         }
