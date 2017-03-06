@@ -61,8 +61,9 @@ job("MNTLAB-rvashkevich-main-build-job") {
 
       steps {
         shell(''' rm -rf *.tar.gz
-bash script.sh | tee -a logfile.txt
-tar -czvf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh''')
+	chmod +x script.sh
+        ./script.sh > output.txt
+tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy script.sh''')
         
 //Archives artifacts	    
 	publishers {
