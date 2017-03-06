@@ -2,23 +2,7 @@ job("MNTLAB-rvashkevich-main-build-job") {
   scm {
     github('MNT-Lab/mntlab-dsl','rvashkevich')
   }
-  parameters {
-    gitParameterDefinition {
-      name('BRANCH_NAME')
-      type('BRANCH')
-      branch('rvashkevich')
-      defaultValue('rvashkevich')
-      selectedValue('DEFAULT')
-
-      description('')
-      branchFilter('')
-      tagFilter('')
-      sortMode('NONE')
-      useRepository('')
-      quickFilterEnabled(false)
-    }
-
-    activeChoiceReactiveParam('BUILDS_TRIGGER') {
+     activeChoiceReactiveParam('BUILDS_TRIGGER') {
       choiceType('CHECKBOX')
       groovyScript {
         script('return ["MNTLAB-rvashkevich-child1-build-job", "MNTLAB-rvashkevich-child2-build-job", "MNTLAB-rvashkevich-child3-build-job", "MNTLAB-rvashkevich-child4-build-job"]')
@@ -48,7 +32,23 @@ job("MNTLAB-rvashkevich-main-build-job") {
       scm {
         github('MNT-Lab/mntlab-dsl','rvashkevich')
       }
+	    
+	parameters {
+    gitParameterDefinition {
+      name('BRANCH_NAME')
+      type('BRANCH')
+      branch('rvashkevich')
+      defaultValue('rvashkevich')
+      selectedValue('DEFAULT')
 
+      description('')
+      branchFilter('')
+      tagFilter('')
+      sortMode('NONE')
+      useRepository('')
+      quickFilterEnabled(false)
+    }
+		
       parameters {
         activeChoiceParam('BRANCH_NAME') {
           description('Allows user choose from multiple choices')
