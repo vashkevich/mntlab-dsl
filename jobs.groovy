@@ -91,8 +91,8 @@ activeChoiceParam('BRANCH_NAME') {
 gitParameterDefinition {
               name('BRANCH_NAME')
               type('BRANCH')
-              branch('imanzhulin')
-              defaultValue('imanzhulin')
+              branch('origin/imanzhulin')
+              defaultValue('origin/imanzhulin')
               selectedValue('DEFAULT')
 
               description('')
@@ -113,7 +113,9 @@ gitParameterDefinition {
 		rm -rf *.tar.gz
 		BRANCH_NAME_SHORT=$(echo $BRANCH_NAME | cut -c 8-)
 		bash script.sh > output.txt
-		tar -czvf ${BRANCH_NAME_SHORT}_dsl_script.tar.gz jobs.groovy script.sh''')
+		tar -czvf ${BRANCH_NAME_SHORT}_dsl_script.tar.gz jobs.groovy script.sh
+		echo $BRANCH_NAME''')
+	    	
        //Archives artifacts	    
 	publishers {
 			archiveArtifacts('output.txt')
