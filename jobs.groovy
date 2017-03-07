@@ -11,14 +11,15 @@ job("MNTLAB-rvashkevich-main-build-job") {
         				script('return["origin/rvashkevich", "master"]')
 				}
 		}
-	}
+	
 		// checkbox menu (main menu)
 		activeChoiceReactiveParam('BUILDS_TRIGGER') {
             		choiceType('CHECKBOX')
             		groovyScript {
                 		script('return ["MNTLAB-rvashkevich-child1-build-job", "MNTLAB-rvashkevich-child2-build-job", "MNTLAB-rvashkevich-child3-build-job", "MNTLAB-rvashkevich-child4-build-job"]')
                 	}          
-		}   
+		}
+	}
 	//check child job build status, transfer it to the mail job
   	steps {
     		downstreamParameterized {
